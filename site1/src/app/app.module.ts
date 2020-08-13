@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { RedSquareComponent } from './components/red-square/red-square.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RedSquareComponent
   ],
   imports: [
     BrowserModule,
