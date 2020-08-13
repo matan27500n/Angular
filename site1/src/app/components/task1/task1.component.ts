@@ -11,6 +11,7 @@ export class Task1Component implements OnInit {
   startHour = 9;
   endHour1 = 16;
   endHour2 =30;
+  date = new Date();
   constructor() { }
 
   ngOnInit(): void {
