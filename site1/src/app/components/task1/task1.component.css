@@ -1,0 +1,13 @@
+h1{
+    size: 40px;
+    text-align: center;
+    text-decoration: underline;
+    color: brown;
+}
+table{
+    margin-left: auto;
+    margin-right: auto;
+}
+td{
+    text-align: center;
+}

@@ -7,3 +7,20 @@
 <p>{{date}}</p>
 <p>{{date | date:'dd/MM/yyyy HH:mm'}}</p>
 <!--{{doSomething()}}-->
+<!--<p>{{whoIsBigger()}} {{result}}</p>-->
+
+
+<!--this is if/else statement-->
+<ng-container *ngIf= "age>age2; else elseTemplate">
+    <p>{{age}}</p>
+</ng-container>
+<ng-template #elseTemplate>
+    <p>{{age2}}</p>
+</ng-template>
+<br>
+<br>
+<br>
+<br>
+<app-task1></app-task1>
+
+
