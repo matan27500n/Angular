@@ -1,17 +1,28 @@
-h1{
-    size: 40px;
-    text-align: center;
-    text-decoration: underline;
-    color: brown;
+h1 {
+  size: 40px;
+  text-align: center;
+  text-decoration: underline;
+  color: brown;
 }
-table{
-    margin-left: auto;
-    margin-right: auto;
+
+table {
+  margin: auto;
 }
-td{
-    text-align: center;
-    font-size: 30px;
+
+table,
+th,
+td {
+  border: 1px solid blue;
 }
-tr{
-    font-size: 40px;
+
+tr:nth-child(even) {
+  background-color: lightblue;
+}
+
+tr:nth-child(odd) {
+  background-color: lightcoral;
+}
+
+tr:first-child {
+  background-color: gray;
 }
