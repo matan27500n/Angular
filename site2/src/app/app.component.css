@@ -11,13 +11,19 @@ section{
 header{
     grid-column: span 12;
     border: 2px solid black;
+    font-size: 30px;
 }
 footer{
-
+    grid-column: span 12;
+    border: 2px solid black;
+    font-size: 30px;
 }
 main{
-
+    grid-column: span 10;
+    border: 2px solid black;
 }
-menu{
-    
+aside{
+    grid-column: span 2;
+    border: 2px solid black;
+    font-size: 30px;
 }
