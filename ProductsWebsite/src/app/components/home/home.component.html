@@ -1,1 +1,44 @@
-<img src="../../../assets/images/reuven.jpg">
+<!-- 1. Interpolation: -->
+<!--The if statement means that if the dicount is 0%, the sentence will not show up-->
+<h3 *ngIf = "currentDiscount > 0">Only now,at {{currentDate | date:'MMMM yyyy'}} -  {{currentDiscount}}% discount on all products!</h3>
+
+<!-- 2. Property Binding: -->
+<img #homeImage src="../../../assets/images/reuven.jpg" [width] = "imageWidth">
+
+
+<div>
+    <!-- 3. Event Binding: -->
+<button (click) = "alertImageSize()">image size</button>
+<button (click) = "increaseWidth()">Increase image</button>
+<button (click) = "decreaseWidth()">Decrease image</button>
+<button (click) = "resetWidth()">Reset image</button>
+<br>
+
+    <!-- 4.Two Way Binding: -->  
+<input type="range" min="0" max="500" value="300" step="10" [(ngModel)]="imageWidth">
+<br>
+
+<!--Template reference variable: we did it by choose 'id' that called homeImage-->
+<span>Width: {{homeImage.width}}</span>
+
+</div>
+
+<div>
+    <h5>Our products:</h5>
+
+    <!-- Attribute Directive: -->
+    <p ngClass="greenish">
+        Apples
+    </p>
+
+    <!-- Structural Directive: -->
+    <p *ngIf="isWinter">
+        Avocados
+    </p>
+
+    <p *ngFor = "let p of fruits">
+        {{p}}
+    </p>
+
+</div>
+

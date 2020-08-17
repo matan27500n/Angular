@@ -6,10 +6,13 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { HomeComponent } from './components/home/home.component';
+import { FormsModule } from '@angular/forms';
+import { ProductsComponent } from './components/products/products.component';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
-  declarations: [LayoutComponent, HeaderComponent, FooterComponent, MenuComponent, HomeComponent],
-  imports: [BrowserModule, AppRoutingModule],
+  declarations: [LayoutComponent, HeaderComponent, FooterComponent, MenuComponent, HomeComponent, ProductsComponent, AboutComponent],
+  imports: [BrowserModule, AppRoutingModule,FormsModule],
   providers: [],
   bootstrap: [LayoutComponent]
 })
