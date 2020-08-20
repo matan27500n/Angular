@@ -18,7 +18,6 @@ export class ProductsComponent implements OnInit {
   public ngOnInit(): void {
     this.title.setTitle("Products site");
     this.products = this.productsService.getAllProducts();
-    console.log(this.products);
   }
 
 }
