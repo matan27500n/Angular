@@ -30,4 +30,23 @@ export class ProductsService {
       }
     }, 3000);
   }
+
+  public getAllProductsAsync2(): Promise<Product[]>{
+
+    return new Promise((resolve,reject) =>{
+      setTimeout(() => {
+        try {
+          const arr: Product[] = [];
+          arr.push(new Product(1, "Apple", 3.5, 100));
+          arr.push(new Product(1, "Banana", 3.5, 100));
+          arr.push(new Product(1, "Peach", 3.5, 100));
+          resolve(arr);
+        } catch (error) {
+          reject(error);
+        }
+      }, 3000);
+    
+    });
+
+  } 
 }

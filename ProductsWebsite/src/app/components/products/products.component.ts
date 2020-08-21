@@ -1,8 +1,9 @@
+import { Product } from './../../models/product';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ProductsService} from 'src/app/services/products.service';
 import { from } from 'rxjs';
-import { Product } from 'src/app/models/product';
+import { error } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-products',
@@ -17,7 +18,24 @@ export class ProductsComponent implements OnInit {
 
   public ngOnInit(): void {
     this.title.setTitle("Products site");
-    this.products = this.productsService.getAllProducts();
-  }
 
+    //קריאה סינכרונית
+   // this.products = this.productsService.getAllProducts();
+
+
+   //קריאה אסינכרונית - טכניקה ראשונה
+  // this.productsService.getAllProductsAsync(products => {
+   //  this.products = products;
+ //  }, error => {
+  //   alert("Error: " + error.message);
+ //  });
+
+ //קריאה אסינכרונית - טכניקה שנייה
+ this.productsService.getAllProductsAsync2().then(products => {
+   this.products = products;
+ }).catch(error => {
+  alert("Error: " + error.message);
+ });
+
+}
 }
