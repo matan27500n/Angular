@@ -5,6 +5,7 @@ import { ProductsService } from 'src/app/services/products.service';
 import { from } from 'rxjs';
 import { error } from '@angular/compiler/src/util';
 
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -39,9 +40,22 @@ export class ProductsComponent implements OnInit {
     // });
 
     //קריאה אסינכרונית - טכניקה שלישית
-    this.productsService.getAllProductsAsync3().subscribe(
+    //this.productsService.getAllProductsAsync3().subscribe(
+    //  (products) => {
+    //   this.products = products;
+    //  },
+    // (error) => {
+    //   alert('Error: ' + error.message);
+    // }
+    // );
+    //  }
+
+    //הבאת המוצרים מהשרת
+    this.productsService.getAllProductsAsync4().subscribe(
       (products) => {
-        this.products = products;
+        setTimeout(() => {
+          this.products = products;
+        }, 3000);
       },
       (error) => {
         alert('Error: ' + error.message);

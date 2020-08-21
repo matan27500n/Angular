@@ -11,10 +11,11 @@ import { ProductsComponent } from './components/products/products.component';
 import { AboutComponent } from './components/about/about.component';
 import { Page404Component } from './components/page404/page404.component';
 import { ThumbnailComponent } from './components/thumbnail/thumbnail.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [LayoutComponent, HeaderComponent, FooterComponent, MenuComponent, HomeComponent, ProductsComponent, AboutComponent, Page404Component, ThumbnailComponent],
-  imports: [BrowserModule, AppRoutingModule,FormsModule],
+  imports: [BrowserModule, AppRoutingModule,FormsModule,HttpClientModule],
   providers: [],
   bootstrap: [LayoutComponent]
 })
