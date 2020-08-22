@@ -55,7 +55,7 @@ export class ProductsComponent implements OnInit {
       (products) => {
         setTimeout(() => {
           this.products = products;
-        }, 3000);
+        }, 300);
       },
       (error) => {
         alert('Error: ' + error.message);

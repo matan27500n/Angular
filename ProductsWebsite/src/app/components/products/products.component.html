@@ -6,11 +6,17 @@
       <th>Name</th>
       <th>Price</th>
       <th>Stock</th>
+      <th>Image</th>
     </tr>
     <tr *ngFor="let p of products">
-      <td>{{p.name}}</td>
+      <td>
+        <a routerLink="/product-details/{{p.id}}"> {{p.name}}</a> 
+      </td>
       <td>{{p.price}}</td>
       <td>{{p.stock}}</td>
+      <td>
+        <app-thumbnail imageSource="/assets/images/products/{{p.id}}.jpg"></app-thumbnail>
+      </td>
     </tr>
   </table>
 </div>
