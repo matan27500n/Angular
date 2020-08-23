@@ -74,4 +74,8 @@ export class ProductsService {
   public getAllProductsAsync4(): Observable<Product[]>{
     return this.httpClient.get<Product[]>("../../../assets/json/products.json", {withCredentials:true});
   }
+
+  public addProduct(product: Product): Observable<Product>{
+    return this.httpClient.post<Product>("../../../assets/json/products.json",product, {withCredentials:true});
+  }
 }
