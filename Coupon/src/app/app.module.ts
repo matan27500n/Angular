@@ -8,11 +8,15 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { CompanyComponent } from './components/company/company.component';
+import { CouponComponent } from './components/coupon/coupon.component';
+import { CustomerComponent } from './components/customer/customer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CompanyComponent
+    CompanyComponent,
+    CouponComponent,
+    CustomerComponent
   ],
   imports: [
     BrowserModule,
