@@ -28,3 +28,6 @@ grid-column: span 2;
 border: 2px solid black;
 font-size: 30px;
 }
+.example-spacer {
+    flex: 1 1 auto;
+  }
