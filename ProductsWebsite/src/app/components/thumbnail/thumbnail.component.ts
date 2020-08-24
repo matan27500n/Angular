@@ -16,6 +16,6 @@ export class ThumbnailComponent  {
   public imageHasBeenClicked(): void{
     //Raising an even - דיווח אירוע
     this.imageClicked.emit(this.imageSource);//here we are reporting that the image has been clicked.
-  }
+  } 
 
 }

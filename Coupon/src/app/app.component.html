@@ -12,9 +12,12 @@
       <mat-icon>favorite</mat-icon>
     </button>
 
-    <button mat-raised-button color="basic" style="margin:1px;">Companies</button>
-    <button mat-raised-button color="basic" style="margin:1px;">Customers</button>
-    <button mat-raised-button color="basic" style="margin:1px;">Coupons</button>
+    <button mat-raised-button color="basic" style="margin:1px;">
+      <a [routerLink]="['/company']" routerLinkActive = "router-link-active">Company</a></button>
+    <button mat-raised-button color="basic" style="margin:1px;">
+    <a [routerLink]="['/customer']" routerLinkActive = "router-link-active">Customers</a></button>
+    <button mat-raised-button color="basic" style="margin:1px;">
+      <a [routerLink]="['/coupon']" routerLinkActive = "router-link-active">Coupons</a></button>
 
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
       <mat-icon>share</mat-icon>
@@ -26,9 +29,4 @@
 
   </mat-toolbar>
 </p>
-
-<section>
-  <app-company></app-company>
-  <app-customer></app-customer>
-  <app-coupon></app-coupon>
-</section>
+<router-outlet></router-outlet> 
