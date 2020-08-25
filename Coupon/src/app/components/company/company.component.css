@@ -8,3 +8,11 @@ h1 {
   text-align: center;
   text-decoration: solid;
 }
+section {
+  display: list-item;
+}
+
+.example-button-row {
+  display: list-item;
+  width: 490px;
+}
