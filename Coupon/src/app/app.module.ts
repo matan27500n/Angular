@@ -10,6 +10,8 @@ import {MatButtonModule} from '@angular/material/button';
 import { CompanyComponent } from './components/company/company.component';
 import { CouponComponent } from './components/coupon/coupon.component';
 import { CustomerComponent } from './components/customer/customer.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { CustomerComponent } from './components/customer/customer.component';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]
