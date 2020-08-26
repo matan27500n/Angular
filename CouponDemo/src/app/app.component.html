@@ -1,10 +1,36 @@
-<h1>
-  Coupon System
-</h1>
 
-<a [routerLink]="['/company']" routerLinkActive="router-link-active">Company</a> <br>
-<a [routerLink]="['/customer']" routerLinkActive="router-link-active">Customer</a> <br>
-<a [routerLink]="['/coupon']" routerLinkActive="router-link-active">Coupon</a> <br>
+<p>
+  <mat-toolbar color="primary">
 
-<!-- Routing - step 1 -->
-<router-outlet></router-outlet>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+
+    </button>
+    <span>Coupon System</span>
+    <span class="example-spacer"></span>
+
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>favorite</mat-icon>
+    </button>
+
+    <button mat-raised-button color="basic" style="margin:1px;">
+      <a [routerLink]="['/company']" routerLinkActive = "router-link-active" 
+      onclick ="Clicked(this,'blue')">Company</a></button>
+    <button mat-raised-button color="basic" style="margin:1px;">
+    <a [routerLink]="['/customer']" routerLinkActive = "router-link-active"
+    onclick ="Clicked(this,'yellow')">Customers</a></button>
+    <button mat-raised-button color="basic" style="margin:1px;">
+      <a [routerLink]="['/coupon']" routerLinkActive = "router-link-active"
+      onclick ="Clicked(this,'pink')">Coupons</a></button>
+
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon>share</mat-icon>
+    </button>
+
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon>person_add</mat-icon>
+    </button>
+
+  </mat-toolbar>
+</p>
+<router-outlet></router-outlet> 
