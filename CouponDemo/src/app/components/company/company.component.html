@@ -5,7 +5,7 @@
 <h1>Company Methods: </h1>
 <section>
   <div class="example-button-row">
-    <button mat-stroked-button color="primary" (click) = "getAllCompanies()">Get-All</button>
+    <button mat-stroked-button color="primary" (click)="getAllCompanies()">Get-All</button>
     <button mat-stroked-button color="accent">Get-One</button>
     <button mat-stroked-button color="warn">Add</button>
     <button mat-stroked-button color="warn">Update</button>
@@ -14,19 +14,18 @@
 </section>
 <mat-divider></mat-divider>
 
-<div *ngIf="flag===true">
-    <table  style='width:100%'>
-    <tr>
+
+<table *ngIf="flag===true" style='width:100%'>
+  <tr>
     <th>Id</th>
     <th>Name</th>
     <th>Email</th>
     <th>Password</th>
-    </tr>
-    <tr *ngFor="let p of companies">
+  </tr>
+  <tr *ngFor="let p of companies">
     <td>{{p.id}}</td>
     <td>{{p.name}}</td>
     <td>{{p.email}}</td>
     <td>{{p.password}}</td>
-    </tr>
-    </table>
-</div>
+  </tr>
+</table>

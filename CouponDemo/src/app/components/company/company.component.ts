@@ -27,11 +27,11 @@ export class CompanyComponent implements OnInit {
     this.x = this.companyNumber.getNumber();
   }
 
-  public getAllCompanies(): void {
+  public getAllCompanies(): void{
     this.flag = true;
     this.restCompanyApi.getCompanies().subscribe(
       (Company) => {
-        this.companies = this.companies;
+        this.companies = Company;
       },
       (error) => {
         alert(error.message);
