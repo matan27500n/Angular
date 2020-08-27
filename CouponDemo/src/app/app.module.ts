@@ -13,6 +13,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import{HttpClientModule} from '@angular/common/http';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import{HttpClientModule} from '@angular/common/http';
     MatIconModule,
     MatButtonModule,
     MatFormFieldModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
