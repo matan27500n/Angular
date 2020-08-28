@@ -1,1 +1,40 @@
-<p>coupon works!</p>
+<h1>Coupon Methods: </h1>
+<section>
+  <div class="example-button-row">
+    <button mat-stroked-button color="primary" (click)="getAllCoupons()">Get-All</button>
+    <button mat-stroked-button color="accent">Get-One</button>
+    <button mat-stroked-button color="warn">Add</button>
+    <button mat-stroked-button color="warn">Update</button>
+    <button mat-stroked-button disabled>Delete</button>
+  </div>
+</section>
+<mat-divider></mat-divider>
+
+
+<table *ngIf="flag3===true" style='width:100%'>
+  <tr>
+    <th>Id</th>
+    <th>CompanyID</th>
+    <th>CategoryID</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Amount</th>
+    <th>Price</th>
+    <th>Image</th>
+  </tr>
+  <tr *ngFor="let p of coupons">
+    <td>{{p.id}}</td>
+    <td>{{p.companyID}}</td>
+    <td>{{p.CategoryID}}</td>
+    <td>{{p.title}}</td>
+    <td>{{p.description}}</td>
+    <td>{{p.startDate}}</td>
+    <td>{{p.endDate}}</td>
+    <td>{{p.amount}}</td>
+    <td>{{p.price}}</td>
+    <td>{{p.image}}</td>
+  </tr>
+</table>
+
