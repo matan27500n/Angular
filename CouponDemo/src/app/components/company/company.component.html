@@ -1,31 +1,41 @@
-<p>
+<!--<p>
   {{x}}
-</p>
+</p>-->
 
 <h1>Company Methods: </h1>
 <section>
   <div class="example-button-row">
     <button mat-stroked-button color="primary" (click)="getAllCompanies()">Get-All</button>
     <button mat-stroked-button color="accent">Get-One</button>
-    <button mat-stroked-button color="warn">Add</button>
-    <button mat-stroked-button color="warn">Update</button>
-    <button mat-stroked-button disabled>Delete</button>
+    <button mat-stroked-button color="accent" (click)="addCompany()">Add</button>
+    <button mat-stroked-button color="warn" (click)="updateCompany()">Update</button>
+    <button mat-stroked-button color="warn" (click)="deleteCompany(id2)">Delete</button>
   </div>
 </section>
 <mat-divider></mat-divider>
 
 
-<table *ngIf="flag===true" style='width:100%'>
-  <tr>
-    <th>Id</th>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Password</th>
-  </tr>
-  <tr *ngFor="let p of companies">
-    <td>{{p.id}}</td>
-    <td>{{p.name}}</td>
-    <td>{{p.email}}</td>
-    <td>{{p.password}}</td>
-  </tr>
-</table>
+<div>
+  <table *ngIf="flag===true" style='width:100%'>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Password</th>
+      <th>Actions</th>
+    </tr>
+    <tr *ngFor="let p of companies">
+      <td>{{p.id}}</td>
+      <td>{{p.name}}</td>
+      <td>{{p.email}}</td>
+      <td>{{p.password}}</td>
+      <td> <button [routerLink]="['/company-addand-update/' + p.id]"
+          routerLinkActive="router-link-active">Update</button> <button (click)="deleteCompany(p.id)">Delete</button>
+        <button [routerLink]="['/company-addand-update/'+ 0]" routerLinkActive="router-link-active">Add</button>
+      </td>
+
+    </tr>
+
+  </table>
+
+</div>

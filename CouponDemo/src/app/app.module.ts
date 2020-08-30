@@ -14,13 +14,18 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import{HttpClientModule} from '@angular/common/http';
 import {MatDividerModule} from '@angular/material/divider';
+import { CompanyAddandUpdateComponent } from './components/company-addand-update/company-addand-update.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {FormsModule} from '@angular/forms';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     CompanyComponent,
     CustomerComponent,
-    CouponComponent
+    CouponComponent,
+    CompanyAddandUpdateComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +36,9 @@ import {MatDividerModule} from '@angular/material/divider';
     MatButtonModule,
     MatFormFieldModule,
     HttpClientModule,
-    MatDividerModule
+    MatDividerModule,
+    MatCheckboxModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

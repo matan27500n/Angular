@@ -10,6 +10,6 @@ export class Coupon {
     public endDate?: Date,
     public amount?: number,
     public price?: number,
-    public image?: CanvasImageSource
+    public image?: String
   ) {}
 }
