@@ -9,6 +9,10 @@ import { Injectable } from '@angular/core';
 export class RestCompanyApiService {
   public constructor(private httpClient: HttpClient) {}
 
+  public getOneCompany(id: number): Observable<Company>{
+    return this.httpClient.get<Company>('../../assets/json/company.json');
+  }
+
   public getCompanies(): Observable<Company[]> {
     return this.httpClient.get<Company[]>('../../assets/json/company.json');
   }

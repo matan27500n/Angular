@@ -1,7 +1,7 @@
+import { Company } from 'src/app/models/company';
 import { CompanyDataService } from './../../services/company-data.service';
 import { CompaniesService } from './../../../../../Coupon/src/app/services/companies.service';
 import { error } from '@angular/compiler/src/util';
-import { Company } from './../../models/company';
 import { RestCompanyApiService } from './../../services/rest-company-api.service';
 import { CompanyService } from './../../services/company.service';
 import { Title } from '@angular/platform-browser';
@@ -15,7 +15,9 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CompanyComponent implements OnInit {
   public x: number;
   public flag: boolean = false;
+  public flagOneCompany: boolean = false;
   public companies: Company[];
+  public companyOne: Company;
 
   @Input()
   public id2: number;
@@ -44,12 +46,26 @@ export class CompanyComponent implements OnInit {
 
   public getAllCompanies(): void {
     this.flag = true;
+    this.flagOneCompany = false;
     this.restCompanyApi.getCompanies().subscribe(
       (Company) => {
         this.companies = Company;
       },
       (error) => {
         alert(error.message);
+      }
+    );
+  }
+
+  public getOneCompany(id: number): void {
+    this.flagOneCompany = true;
+    this.flag = false;
+    this.restCompanyApi.getOneCompany(id).subscribe(
+      (Company) => {
+        this.companyOne = Company[id];
+      },
+      (err) => {
+        alert(err.message);
       }
     );
   }

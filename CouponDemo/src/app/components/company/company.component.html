@@ -6,7 +6,7 @@
 <section>
   <div class="example-button-row">
     <button mat-stroked-button color="primary" (click)="getAllCompanies()">Get-All</button>
-    <button mat-stroked-button color="accent">Get-One</button>
+    <button mat-stroked-button color="accent" (click)="getOneCompany(0)">Get-One</button>
     <button mat-stroked-button color="accent" (click)="addCompany()">Add</button>
     <button mat-stroked-button color="warn" (click)="updateCompany()">Update</button>
     <button mat-stroked-button color="warn" (click)="deleteCompany(id2)">Delete</button>
@@ -31,6 +31,37 @@
       <td>{{p.password}}</td>
       <td> <button [routerLink]="['/company-addand-update/' + p.id]"
           routerLinkActive="router-link-active">Update</button> <button (click)="deleteCompany(p.id)">Delete</button>
+        <button [routerLink]="['/company-addand-update/'+ 0]" routerLinkActive="router-link-active">Add</button>
+      </td>
+
+    </tr>
+
+  </table>
+
+</div>
+
+<form>
+  <input type="number" value="getOne">
+  <button type="submit" value="Ok" ></button>
+</form>
+
+<div>
+  <table *ngIf="flagOneCompany===true" style='width:100%'>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Password</th>
+      <th>Actions</th>
+    </tr>
+    <tr>
+      <td>{{companyOne.id}}</td>
+      <td>{{companyOne.name}}</td>
+      <td>{{companyOne.email}}</td>
+      <td>{{companyOne.password}}</td>
+      <td> <button [routerLink]="['/company-addand-update/' + companyOne.id]"
+          routerLinkActive="router-link-active">Update</button> <button
+          (click)="deleteCompany(companyOne.id)">Delete</button>
         <button [routerLink]="['/company-addand-update/'+ 0]" routerLinkActive="router-link-active">Add</button>
       </td>
 

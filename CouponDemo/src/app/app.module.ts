@@ -17,7 +17,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import { CompanyAddandUpdateComponent } from './components/company-addand-update/company-addand-update.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {FormsModule} from '@angular/forms';
-
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,8 @@ import {FormsModule} from '@angular/forms';
     HttpClientModule,
     MatDividerModule,
     MatCheckboxModule,
-    FormsModule
+    FormsModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
