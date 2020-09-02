@@ -6,7 +6,7 @@
 <section>
   <div class="example-button-row">
     <button mat-stroked-button color="primary" (click)="getAllCompanies()">Get-All</button>
-    <button mat-stroked-button color="accent" (click)="getOneCompany(0)">Get-One</button>
+    <button mat-stroked-button color="accent" (click)="getOneCompany(1)">Get-One</button>
     <button mat-stroked-button color="accent" (click)="addCompany()">Add</button>
     <button mat-stroked-button color="warn" (click)="updateCompany()">Update</button>
     <button mat-stroked-button color="warn" (click)="deleteCompany(id2)">Delete</button>
@@ -40,9 +40,9 @@
 
 </div>
 
-<form>
+<form *ngIf="flag5===true">
   <input type="number" value="getOne">
-  <button type="submit" value="Ok" ></button>
+  <button type="submit" value="Ok" (click) = "getOneCompany()"></button>
 </form>
 
 <div>

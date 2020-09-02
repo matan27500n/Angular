@@ -18,6 +18,7 @@ export class CompanyComponent implements OnInit {
   public flagOneCompany: boolean = false;
   public companies: Company[];
   public companyOne: Company;
+  public flag5: boolean = false;
 
   @Input()
   public id2: number;
@@ -57,12 +58,16 @@ export class CompanyComponent implements OnInit {
     );
   }
 
+  public trueORfalse(): void {
+    this.flag5 = true;
+  }
+
   public getOneCompany(id: number): void {
     this.flagOneCompany = true;
     this.flag = false;
     this.restCompanyApi.getOneCompany(id).subscribe(
       (Company) => {
-        this.companyOne = Company[id];
+        this.companyOne = this.companies[id];
       },
       (err) => {
         alert(err.message);
@@ -98,6 +103,6 @@ export class CompanyComponent implements OnInit {
     }
   }
   public getId(): number {
-    return;
+    return this.id2;
   }
 }
