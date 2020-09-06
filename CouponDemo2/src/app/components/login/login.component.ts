@@ -1,21 +1,28 @@
+import { LoginService } from './../../services/login.service';
 import { Credentials } from './../../../models/Credentials';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-
   public credentials = new Credentials();
-  constructor() { }
+  constructor(private loginService: LoginService) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  public loginToServer(): void {
+    this.loginService.loginRequest(this.credentials).subscribe(
+      (loginResponse) => {
+        alert(loginResponse.token + ' ' + loginResponse.type);
+        this.loginService.token = loginResponse.token;
+        this.loginService.type = loginResponse.type;
+      },
+      (err) => {
+        alert(err.message);
+      }
+    );
   }
-
-  public loginToServer(): void{
-    
-  }
-
 }

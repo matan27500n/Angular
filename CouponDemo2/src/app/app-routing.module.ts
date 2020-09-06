@@ -1,3 +1,6 @@
+import { AdminGuardService } from './services/admin-guard.service';
+import { CustomerGuardService } from './services/customer-guard.service';
+import { CompanyGuardService } from './services/company-guard.service';
 import { LoginComponent } from './components/login/login.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { CustomerComponent } from './components/customer/customer.component';
@@ -7,12 +10,24 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
-  { path: 'company', component: CompanyComponent },
-  { path: 'customer', component: CustomerComponent },
-  { path: 'admin', component: AdminComponent },
-  { path: 'login', component: LoginComponent},
-  {path: 'home', component: HomeComponent},
-  {path: '', component: LoginComponent}
+  {
+    path: 'company',
+    component: CompanyComponent,
+    canActivate: [CompanyGuardService],
+  },
+  {
+    path: 'customer',
+    component: CustomerComponent,
+    canActivate: [CustomerGuardService],
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AdminGuardService],
+  },
+  { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent },
+  { path: '', component: LoginComponent },
 ];
 
 @NgModule({

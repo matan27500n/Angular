@@ -10,8 +10,8 @@
     <input #password_input="ngModel" type="password"
       pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/" placeholder=" Enter password"
       name="password" [(ngModel)]="credentials.password">
-    <span *ngIf="password_input.touched && password_input.errors?.required">Missing password</span>
-    <span *ngIf="password_input.touched && password_input.errors?.pattern">Invalid password</span>
+    <!--<span *ngIf="password_input.touched && password_input.errors?.required">Missing password</span>
+    <span *ngIf="password_input.touched && password_input.errors?.pattern">Invalid password</span>-->
     <br><br>
     <select #type_input="ngModel" name="type" required [(ngModel)]="credentials.type">
       <option selected disabled>Choose Type</option>
