@@ -24,7 +24,7 @@ export class LoginService {
     this.email = credentials.email;
     this.password = credentials.password;
     this.type = credentials.type;
-    /*if (this.type === 'Admin') {
+    if (this.type === 'Admin') {
       return this.httpClient.get('../../assets/json/login-result.json');
     }
     if (this.type === 'Company') {
@@ -34,13 +34,16 @@ export class LoginService {
       return this.httpClient.get(
         '../../assets/json/login-result-customer.json'
       );
-    }*/
-    const correctUrl =
+    }
+
+    //this is for access the server side:
+    
+    /*const correctUrl =
       this.urlService.getUrl(credentials.type.toLowerCase()) +
       '/login?email=' +
       credentials.email +
       '&password=' +
       credentials.password;
-    return this.httpClient.post(correctUrl, null);
+    return this.httpClient.post(correctUrl, null);*/
   }
 }
