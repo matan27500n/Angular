@@ -3,9 +3,12 @@
 
     <button mat-button [matMenuTriggerFor]="menu">
       <mat-icon>menu</mat-icon>
+
     </button>
+    <span *ngIf="isLoggedIn()===true" id="st1">Hello {{sayHello()}}</span>
     <mat-menu #menu="matMenu">
       <button mat-menu-item> <a [routerLink]="['/home']" routerLinkActive="router-link-active">Home</a></button>
+      <span *ngIf="isLoggedIn()===true" id="st1">Hello {{sayHello()}}</span>
       <button mat-menu-item><a [routerLink]="['/admin']" routerLinkActive="router-link-active">Admin</a></button>
       <button mat-menu-item><a [routerLink]="['/company']" routerLinkActive="router-link-active">Company</a></button>
       <button mat-menu-item><a [routerLink]="['/customer']" routerLinkActive="router-link-active">Customer</a></button>
@@ -23,13 +26,20 @@
     <button mat-raised-button color="basic" style="margin:1px;">
       <a [routerLink]="['/customer']" routerLinkActive="router-link-active">Customer</a></button>
 
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <a [routerLink]="['/login']" routerLinkActive="router-link-active">
-        <mat-icon>login</mat-icon>
-      </a>
-
-    </button>
-
+    <ng-container *ngIf="isLoggedIn(); else elseTemplate">
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <a (click)="showLogOutDialog()" [routerLink]="['/home']" routerLinkActive="router-link-active">
+          <mat-icon title="logout">logout</mat-icon>
+        </a>
+      </button>
+    </ng-container>
+    <ng-template #elseTemplate>
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <a [routerLink]="['/login']" routerLinkActive="router-link-active">
+          <mat-icon title="login">login</mat-icon>
+        </a>
+      </button>
+    </ng-template>
   </mat-toolbar>
 </p>
 <router-outlet></router-outlet>

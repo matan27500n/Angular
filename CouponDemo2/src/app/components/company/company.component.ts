@@ -1,3 +1,4 @@
+import { Credentials } from './../../../models/Credentials';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

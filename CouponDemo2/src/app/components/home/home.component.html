@@ -1,1 +1,13 @@
-<p>home works!</p>
+<h1>Coupon System Introduction</h1>
+
+<button mat-raised-button color="basic" mat-button [matMenuTriggerFor]="belowMenu">About me</button>
+<mat-menu #belowMenu="matMenu" yPosition="below">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu>
+
+<button mat-raised-button color="basic" mat-button [matMenuTriggerFor]="belowMenu">About Project</button>
+<mat-menu #belowMenu2="matMenu" yPosition="below">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu>

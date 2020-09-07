@@ -5,7 +5,7 @@ import {
   RouterStateSnapshot,
   Router,
 } from '@angular/router';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +20,11 @@ export class AdminGuardService implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    if (this.loginService.type === 'admin') {
+    if (
+      this.loginService.type === 'admin' &&
+      this.loginService.email === 'admin@admin.com' &&
+      this.loginService.password === 'admin'
+    ) {
       return true;
     }
     this.router.navigateByUrl('login');
