@@ -1,3 +1,4 @@
+import { UrlService } from './url.service';
 import { LoginResponse } from './../../models/LoginResponse';
 import { Observable } from 'rxjs';
 import { Credentials } from './../../models/Credentials';
@@ -14,13 +15,16 @@ export class LoginService {
   public password: string;
   public isLoggedIn = false;
 
-  public constructor(private httpClient: HttpClient) {}
+  public constructor(
+    private httpClient: HttpClient,
+    private urlService: UrlService
+  ) {}
 
   public loginRequest(credentials: Credentials): Observable<LoginResponse> {
     this.email = credentials.email;
     this.password = credentials.password;
     this.type = credentials.type;
-    if (this.type === 'Admin') {
+    /*if (this.type === 'Admin') {
       return this.httpClient.get('../../assets/json/login-result.json');
     }
     if (this.type === 'Company') {
@@ -30,6 +34,13 @@ export class LoginService {
       return this.httpClient.get(
         '../../assets/json/login-result-customer.json'
       );
-    }
+    }*/
+    const correctUrl =
+      this.urlService.getUrl(credentials.type.toLowerCase()) +
+      '/login?email=' +
+      credentials.email +
+      '&password=' +
+      credentials.password;
+    return this.httpClient.post(correctUrl, null);
   }
 }
