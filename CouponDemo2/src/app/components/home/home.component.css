@@ -1,10 +1,21 @@
 h1 {
-color: #111;
-font-family: 'Helvetica Neue', sans-serif;
-font-size: 50px;
-font-weight: bold;
-letter-spacing: -1px;
-line-height: 1;
-text-align: center;
-text-decoration: solid;
+  color: #111;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  line-height: 1;
+  text-align: center;
+  text-decoration: solid;
+}
+body {
+  background-image: url(../../../assets/images/couponHome.png);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.mat-form-field + .mat-form-field {
+  margin-left: 8px;
 }
