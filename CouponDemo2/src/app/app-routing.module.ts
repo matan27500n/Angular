@@ -1,3 +1,4 @@
+import { Page404Component } from './components/page404/page404.component';
 import { AdminGuardService } from './services/admin-guard.service';
 import { CustomerGuardService } from './services/customer-guard.service';
 import { CompanyGuardService } from './services/company-guard.service';
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: '', component: HomeComponent },
+  { path: '**', component: Page404Component },
 ];
 
 @NgModule({

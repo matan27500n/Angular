@@ -19,6 +19,7 @@ import { CompanyComponent } from './components/company/company.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { LoginComponent } from './components/login/login.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { Page404Component } from './components/page404/page404.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { MatMenuModule } from '@angular/material/menu';
     CompanyComponent,
     CustomerComponent,
     LoginComponent,
+    Page404Component,
   ],
   imports: [
     BrowserModule,
