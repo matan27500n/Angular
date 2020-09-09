@@ -1,3 +1,4 @@
+import { AddAndUpdateComponent } from './components/add-and-update/add-and-update.component';
 import { Page404Component } from './components/page404/page404.component';
 import { AdminGuardService } from './services/admin-guard.service';
 import { CustomerGuardService } from './services/customer-guard.service';
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', component: HomeComponent },
   { path: '**', component: Page404Component },
+  {path:'add-and-update/:id', component: AddAndUpdateComponent}
 ];
 
 @NgModule({

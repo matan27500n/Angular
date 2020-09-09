@@ -1,0 +1,17 @@
+table {
+  margin: auto;
+}
+table,
+th,
+td {
+  border: 1px solid blue;
+}
+tr:nth-child(even) {
+  background-color: lightblue;
+}
+tr:nth-child(odd) {
+  background-color: lightcoral;
+}
+tr:first-child {
+  background-color: gray;
+}
