@@ -1,4 +1,4 @@
-<h1>Company Add and Update</h1>
+<h1>Company {{type}}</h1>
 
 <form #my_form="ngForm">
   <input name="id" #company_ID *ngIf="type==='Update'" [disabled]="type==='Update'" type="number" placeholder="id"

@@ -1,3 +1,4 @@
+import { Customer } from './../models/customer';
 import { Company } from './../models/company';
 import { UrlService } from './url.service';
 import { HttpClient } from '@angular/common/http';
@@ -28,5 +29,26 @@ export class AdminService {
   public updateCompany(company: Company): Observable<any> {
     return this.httpClient.put<any>('../../assets/json/company.json', company);
   }
-  
+
+  public getCustomers(): Observable<Customer[]> {
+    return this.httpClient.get<Customer[]>('../../assets/json/customer.json');
+  }
+
+  public deleteCustomer(id: number): Observable<any> {
+    return this.httpClient.delete<any>('../../assets/json/customer.json');
+  }
+
+  public addCustomer(customer: Customer): Observable<any> {
+    return this.httpClient.post<any>(
+      '../../assets/json/customer.json',
+      Customer
+    );
+  }
+
+  public updateCustomer(customer: Customer): Observable<any> {
+    return this.httpClient.put<any>(
+      '../../assets/json/customer.json',
+      Customer
+    );
+  }
 }

@@ -22,6 +22,7 @@ import { Page404Component } from './components/page404/page404.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatListModule} from '@angular/material/list';
 import { AddAndUpdateComponent } from './components/add-and-update/add-and-update.component';
+import { CustomerAddAndUpdateComponent } from './components/customer-add-and-update/customer-add-and-update.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { AddAndUpdateComponent } from './components/add-and-update/add-and-updat
     LoginComponent,
     Page404Component,
     AddAndUpdateComponent,
+    CustomerAddAndUpdateComponent,
   ],
   imports: [
     BrowserModule,

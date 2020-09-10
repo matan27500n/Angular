@@ -1,3 +1,4 @@
+import { Customer } from './../../models/customer';
 import { Company } from './../../models/company';
 import { AdminService } from './../../services/admin.service';
 import { Component, OnInit } from '@angular/core';
@@ -9,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminComponent implements OnInit {
   public companies: Company[];
+  public customers: Customer[];
 
   public constructor(private adminService: AdminService) {}
 
@@ -21,6 +23,14 @@ export class AdminComponent implements OnInit {
         alert(err.message);
       }
     );
+    this.adminService.getCustomers().subscribe(
+      (customers) => {
+        this.customers = customers;
+      },
+      (err) => {
+        err.message;
+      }
+    );
   }
   public deleteCompany(id: number): void {
     this.adminService.deleteCompany(id).subscribe(
@@ -30,6 +40,13 @@ export class AdminComponent implements OnInit {
       (err) => {
         alert(err.message);
       }
+    );
+  }
+
+  public deleteCustomer(id: number): void {
+    this.adminService.deleteCustomer(id).subscribe(
+      (res) => {this.customers},
+      () => {}
     );
   }
 }
