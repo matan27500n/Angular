@@ -30,7 +30,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: '', component: HomeComponent },
-  { path: '**', component: Page404Component },
+  { path: '****', component: Page404Component },
   {path:'add-and-update/:id', component: AddAndUpdateComponent}
 ];
 

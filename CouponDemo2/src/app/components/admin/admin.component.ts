@@ -22,4 +22,14 @@ export class AdminComponent implements OnInit {
       }
     );
   }
+  public deleteCompany(id: number): void {
+    this.adminService.deleteCompany(id).subscribe(
+      (res) => {
+        this.companies = this.companies.filter((company) => company.id !== id);
+      },
+      (err) => {
+        alert(err.message);
+      }
+    );
+  }
 }

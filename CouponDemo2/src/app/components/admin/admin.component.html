@@ -12,13 +12,10 @@
         <td>{{p.name}}</td>
         <td>{{p.email}}</td>
         <td>{{p.password}}</td>
-        <td> <button [routerLink]="['/company-addand-update/' + p.id]"
+        <td> <button [routerLink]="['/add-and-update/' + p.id]"
             routerLinkActive="router-link-active">Update</button> <button (click)="deleteCompany(p.id)">Delete</button>
-          <button [routerLink]="['/add-and-update/'+ 0]" routerLinkActive="router-link-active">Add</button>
         </td>
-  
       </tr>
-  
     </table>
-  
+    <button [routerLink]="['/add-and-update/'+ 0]" routerLinkActive="router-link-active">Add</button>
   </div>
