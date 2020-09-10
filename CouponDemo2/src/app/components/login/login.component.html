@@ -24,8 +24,10 @@
     <button (click)="loginToServer()">Login</button>
   </form>
 
-  <hr>
-  <p>email: {{credentials.email}}</p>
-  <p>password: {{credentials.password}}</p>
-  <p>type: {{credentials.type}}</p>
+  <div *ngIf="isDev()">
+    <hr>
+    <p>email: {{credentials.email}}</p>
+    <p>password: {{credentials.password}}</p>
+    <p>type: {{credentials.type}}</p>
+  </div>
 </div>

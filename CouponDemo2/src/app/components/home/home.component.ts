@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  public selected: string;
   constructor() {}
 
   panelOpenState = false;
@@ -15,6 +16,8 @@ export class HomeComponent implements OnInit {
     'GitHub: matan27500n',
     'LinkedIn: matan27500n',
   ];
+
+  typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
 
   ngOnInit(): void {}
 }

@@ -1,3 +1,4 @@
+import { Coupon } from './../models/coupon';
 import { Customer } from './../models/customer';
 import { Company } from './../models/company';
 import { UrlService } from './url.service';
@@ -50,5 +51,20 @@ export class AdminService {
       '../../assets/json/customer.json',
       Customer
     );
+  }
+
+  public getCoupons(): Observable<Coupon[]> {
+    return this.httpClient.get<Coupon[]>('../../assets/json/coupon.json');
+  }
+  public deleteCoupon(id: number): Observable<any> {
+    return this.httpClient.delete<any>('../../assets/json/coupon.json');
+  }
+
+  public addCoupon(coupon: Coupon): Observable<any> {
+    return this.httpClient.post<any>('../../assets/json/coupon.json', Coupon);
+  }
+
+  public updateCoupon(coupon: Coupon): Observable<any> {
+    return this.httpClient.put<any>('../../assets/json/coupon.json', Coupon);
   }
 }

@@ -46,3 +46,36 @@
   <button [routerLink]="['/customer-add-and-update/'+ 0]" routerLinkActive="router-link-active">Add</button>
 </div>
 
+<h1>Coupon Methods:</h1>
+<div>
+  <table style='width:100%'>
+    <tr>
+      <th>Id</th>
+      <th>Company ID</th>
+      <th>Category ID</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Amount</th>
+      <th>Price</th>
+      <th>Image</th>
+    </tr>
+    <tr *ngFor="let p of coupons">
+      <td>{{p.id}}</td>
+      <td>{{p.companyID}}</td>
+      <td>{{p.CategoryID}}</td>
+      <td>{{p.title}}</td>
+      <td>{{p.description}}</td>
+      <td>{{p.startDate}}</td>
+      <td>{{p.endDate}}</td>
+      <td>{{p.amount}}</td>
+      <td>{{p.price}}</td>
+      <td>{{p.image}}</td>
+      <td> <button [routerLink]="['/customer-add-and-update/' + p.id]" routerLinkActive="router-link-active">Update</button>
+        <button (click)="deleteCompany(p.id)">Delete</button>
+      </td>
+    </tr>
+  </table>
+  <button [routerLink]="['/customer-add-and-update/'+ 0]" routerLinkActive="router-link-active">Add</button>
+</div>

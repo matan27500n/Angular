@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "companyID": 1,
+    "categoryID": "Drinks",
+    "title": "20% discount",
+    "description": "20% discount on all products",
+    "startDate": "2012/04/30",
+    "endDate": "2012/05/30",
+    "amount": 40,
+    "price": 5,
+    "image": "../../..assets/images/cocaCola.jpg"
+  },
+  {
+    "id": 2,
+    "companyID": 2,
+    "categoryID": "Drinks",
+    "title": "50% discount",
+    "description": "50% discount on all products",
+    "startDate": "2019/04/30",
+    "endDate": "2020/05/26",
+    "amount": 30,
+    "price": 3,
+    "image": "../../..assets/images/pepsi.jpg"
+  }
+]
