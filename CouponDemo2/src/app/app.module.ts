@@ -23,6 +23,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatListModule} from '@angular/material/list';
 import { AddAndUpdateComponent } from './components/add-and-update/add-and-update.component';
 import { CustomerAddAndUpdateComponent } from './components/customer-add-and-update/customer-add-and-update.component';
+import { CouponAddAndUpdateComponent } from './components/coupon-add-and-update/coupon-add-and-update.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { CustomerAddAndUpdateComponent } from './components/customer-add-and-upd
     Page404Component,
     AddAndUpdateComponent,
     CustomerAddAndUpdateComponent,
+    CouponAddAndUpdateComponent,
   ],
   imports: [
     BrowserModule,

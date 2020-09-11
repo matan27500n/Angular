@@ -38,7 +38,8 @@
       <td>{{p.lastName}}</td>
       <td>{{p.email}}</td>
       <td>{{p.password}}</td>
-      <td> <button [routerLink]="['/customer-add-and-update/' + p.id]" routerLinkActive="router-link-active">Update</button>
+      <td> <button [routerLink]="['/customer-add-and-update/' + p.id]"
+          routerLinkActive="router-link-active">Update</button>
         <button (click)="deleteCompany(p.id)">Delete</button>
       </td>
     </tr>
@@ -60,11 +61,12 @@
       <th>Amount</th>
       <th>Price</th>
       <th>Image</th>
+      <th>Actions</th>
     </tr>
     <tr *ngFor="let p of coupons">
       <td>{{p.id}}</td>
       <td>{{p.companyID}}</td>
-      <td>{{p.CategoryID}}</td>
+      <td>{{p.categoryID}}</td>
       <td>{{p.title}}</td>
       <td>{{p.description}}</td>
       <td>{{p.startDate}}</td>
@@ -72,7 +74,8 @@
       <td>{{p.amount}}</td>
       <td>{{p.price}}</td>
       <td>{{p.image}}</td>
-      <td> <button [routerLink]="['/customer-add-and-update/' + p.id]" routerLinkActive="router-link-active">Update</button>
+      <td> <button [routerLink]="['/customer-add-and-update/' + p.id]"
+          routerLinkActive="router-link-active">Update</button>
         <button (click)="deleteCompany(p.id)">Delete</button>
       </td>
     </tr>
