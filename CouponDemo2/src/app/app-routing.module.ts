@@ -1,3 +1,4 @@
+import { CouponAddAndUpdateComponent } from './components/coupon-add-and-update/coupon-add-and-update.component';
 import { CustomerAddAndUpdateComponent } from './components/customer-add-and-update/customer-add-and-update.component';
 import { AddAndUpdateComponent } from './components/add-and-update/add-and-update.component';
 import { Page404Component } from './components/page404/page404.component';
@@ -37,6 +38,7 @@ const routes: Routes = [
     path: 'customer-add-and-update/:id',
     component: CustomerAddAndUpdateComponent,
   },
+  { path: 'coupon-add-and-update/:id', component: CouponAddAndUpdateComponent },
 ];
 
 @NgModule({

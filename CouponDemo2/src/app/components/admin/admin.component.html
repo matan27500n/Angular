@@ -74,11 +74,11 @@
       <td>{{p.amount}}</td>
       <td>{{p.price}}</td>
       <td>{{p.image}}</td>
-      <td> <button [routerLink]="['/customer-add-and-update/' + p.id]"
+      <td> <button [routerLink]="['/coupon-add-and-update/' + p.id]"
           routerLinkActive="router-link-active">Update</button>
-        <button (click)="deleteCompany(p.id)">Delete</button>
+        <button (click)="deleteCoupon(p.id)">Delete</button>
       </td>
     </tr>
   </table>
-  <button [routerLink]="['/customer-add-and-update/'+ 0]" routerLinkActive="router-link-active">Add</button>
+  <button [routerLink]="['/coupon-add-and-update/'+ 0]" routerLinkActive="router-link-active">Add</button>
 </div>
