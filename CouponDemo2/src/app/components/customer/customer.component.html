@@ -1,1 +1,26 @@
-<p>customer works!</p>
+<h1>Customer Methods:</h1>
+<h3>Get All Customers:</h3>
+<div>
+  <table style='width:100%'>
+    <tr>
+      <th>Id</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Password</th>
+      <th>Actions</th>
+    </tr>
+    <tr *ngFor="let p of customers">
+      <td>{{p.id}}</td>
+      <td>{{p.firstName}}</td>
+      <td>{{p.lastName}}</td>
+      <td>{{p.email}}</td>
+      <td>{{p.password}}</td>
+      <td> <button [routerLink]="['/customer-add-and-update/' + p.id]"
+          routerLinkActive="router-link-active">Update</button>
+        <button (click)="deleteCustomer(p.id)">Delete</button>
+      </td>
+    </tr>
+  </table>
+  <button [routerLink]="['/customer-add-and-update/'+ 0]" routerLinkActive="router-link-active">Add</button>
+</div>
