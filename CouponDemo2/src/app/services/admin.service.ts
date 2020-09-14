@@ -14,7 +14,7 @@ export class AdminService {
   public getCompanies(): Observable<Company[]> {
     return this.httpClient.get<Company[]>('../../assets/json/company.json');
   }
-
+//
   public deleteCompany(id: number): Observable<any> {
     return this.httpClient.delete<any>('../../assets/json/company.json');
   }
