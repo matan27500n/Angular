@@ -1,4 +1,3 @@
-import { UrlService } from './url.service';
 import { LoginResponse } from './../../models/LoginResponse';
 import { Observable } from 'rxjs';
 import { Credentials } from './../../models/Credentials';
@@ -15,10 +14,7 @@ export class LoginService {
   public password: string;
   public isLoggedIn = false;
 
-  public constructor(
-    private httpClient: HttpClient,
-    private urlService: UrlService
-  ) {}
+  public constructor(private httpClient: HttpClient) {}
 
   public loginRequest(credentials: Credentials): Observable<LoginResponse> {
     this.email = credentials.email;
@@ -35,15 +31,5 @@ export class LoginService {
         '../../assets/json/login-result-customer.json'
       );
     }
-
-    //this is for access the server side:
-    
-    /*const correctUrl =
-      this.urlService.getUrl(credentials.type.toLowerCase()) +
-      '/login?email=' +
-      credentials.email +
-      '&password=' +
-      credentials.password;
-    return this.httpClient.post(correctUrl, null);*/
   }
 }

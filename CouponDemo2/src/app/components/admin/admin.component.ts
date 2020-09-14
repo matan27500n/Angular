@@ -14,11 +14,21 @@ export class AdminComponent implements OnInit {
   public customers: Customer[];
   public coupons: Coupon[];
 
-  public constructor(private adminService: AdminService) {}
+  public constructor(private adminService: AdminService) {
+    this.adminService.getCompanies().subscribe(
+      (companies) => {
+        this.companies = companies;
+      },
+      (err) => {
+        alert(err.message);
+      }
+    );
+  }
 
   ngOnInit(): void {
     this.adminService.getCompanies().subscribe(
       (companies) => {
+        JSON.stringify(this.companies);
         this.companies = companies;
       },
       (err) => {

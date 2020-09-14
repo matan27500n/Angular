@@ -1,7 +1,6 @@
 import { Coupon } from './../models/coupon';
 import { Customer } from './../models/customer';
 import { Company } from './../models/company';
-import { UrlService } from './url.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -10,10 +9,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AdminService {
-  public constructor(
-    private httpClient: HttpClient,
-    private urlService: UrlService
-  ) {}
+  public constructor(private httpClient: HttpClient) {}
 
   public getCompanies(): Observable<Company[]> {
     return this.httpClient.get<Company[]>('../../assets/json/company.json');
