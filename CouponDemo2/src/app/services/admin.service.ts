@@ -12,7 +12,7 @@ export class AdminService {
   public constructor(private httpClient: HttpClient) {}
 
   public getCompanies(): Observable<Company[]> {
-    return this.httpClient.get<Company[]>('../../assets/json/company.json');
+    return this.httpClient.get<Company[]>('http://localhost:8080/admin/GetAllCompanies');
   }
 //
   public deleteCompany(id: number): Observable<any> {
