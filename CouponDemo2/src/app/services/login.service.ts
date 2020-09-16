@@ -24,7 +24,8 @@ export class LoginService {
     this.password = credentials.password;
     this.type = credentials.type;
     if (this.type === 'Admin') {
-      return this.httpClient.get('../../assets/json/login-result.json');
+     // return this.httpClient.get('../../assets/json/login-result.json');
+     return this.httpClient.post('http://localhost:8080/admin/login/admin@admin.com/admin',null);
     }
     if (this.type === 'Company') {
       return this.httpClient.get('../../assets/json/login-result-company.json');

@@ -1,3 +1,5 @@
+import { HttpClient } from '@angular/common/http';
+import { TokenManagerService } from './../../services/token-manager.service';
 import { DevService } from './../../services/dev.service';
 import { Router } from '@angular/router';
 import { LoginService } from './../../services/login.service';
@@ -10,11 +12,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  public token: string;
   public credentials = new Credentials();
   constructor(
     private loginService: LoginService,
     private router: Router,
-    private devService: DevService
+    private devService: DevService,
+    private tokenManager: TokenManagerService,
+    private httpClient: HttpClient
   ) {}
 
   ngOnInit(): void {}
