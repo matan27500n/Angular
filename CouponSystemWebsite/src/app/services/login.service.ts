@@ -1,9 +1,40 @@
+import { LoginResponse } from './../models/LoginResponse';
+import { Credentials } from './../models/Credentials';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoginService {
+  public token: string;
+  public type: string;
+  public email: string;
+  public password: string;
+  public isLoggedIn = false;
+  public constructor(private httpClient: HttpClient) {}
 
-  constructor() { }
+  public loginRequest(credentials: Credentials): Observable<LoginResponse> {
+    this.email = credentials.email;
+    this.password = credentials.password;
+    this.type = credentials.type;
+    switch (this.type) {
+      case 'Admin':
+        return this.httpClient.post(
+          'http://localhost:8080/admin/login',
+          credentials
+        );
+      case 'Company':
+        return this.httpClient.post(
+          'http://localhost:8080/company/login',
+          credentials
+        );
+      case 'Customer':
+        return this.httpClient.post(
+          'http://localhost:8080/customer/login',
+          credentials
+        );
+    }
+  }
 }

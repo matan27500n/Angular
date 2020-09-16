@@ -8,17 +8,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  public constructor(private loginService: LoginService,private router: Router) {}
-  ngOnInit(): void {
-  }
+  public constructor(
+    private loginService: LoginService,
+    private router: Router
+  ) {}
+  ngOnInit(): void {}
   title = 'CouponSystemWebsite';
 
   public showLogOutDialog(): void {
+    if (confirm('Are you sure you want to log out?')) {
+      this.loginService.token = '';
+      this.loginService.type = '';
+      this.loginService.isLoggedIn = false;
+      this.router.navigateByUrl('home');
+    } else {
+      this.router.navigateByUrl('login');
+    }
   }
   public isLoggedIn(): boolean {
-    return true;
+    return this.loginService.isLoggedIn;
   }
   public sayHello(): string {
-    return 'hello user';
+    return this.loginService.email;
   }
 }
