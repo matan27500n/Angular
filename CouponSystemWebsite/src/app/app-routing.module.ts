@@ -17,17 +17,17 @@ const routes: Routes = [
   {
     path: 'company',
     component: CompanyComponent,
-    canActivate: [CompanyGuardService],
+    //canActivate: [CompanyGuardService],
   },
   {
     path: 'customer',
     component: CustomerComponent,
-    canActivate: [CustomerGuardService],
+    //canActivate: [CustomerGuardService],
   },
   {
     path: 'admin',
     component: AdminComponent,
-    canActivate: [AdminGuardService],
+    //canActivate: [AdminGuardService],
   },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },

@@ -22,6 +22,7 @@ import { CustomerAddAndUpdateComponent } from './components/customer-add-and-upd
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { Page404Component } from './components/page404/page404.component';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { Page404Component } from './components/page404/page404.component';
     MatCheckboxModule,
     FormsModule,
     MatInputModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

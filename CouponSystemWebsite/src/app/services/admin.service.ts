@@ -1,9 +1,68 @@
+import { Coupon } from './../models/coupon';
+import { Customer } from './../models/customer';
+import { HttpClient } from '@angular/common/http';
+import { Company } from './../models/company';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AdminService {
+  public constructor(private httpClient: HttpClient) {}
 
-  constructor() { }
+  public getCompanies(): Observable<Company[]> {
+    return this.httpClient.get<Company[]>(
+      'http://localhost:8080/admin/GetAllCompanies'
+    );
+  }
+  
+  public deleteCompany(id: number): Observable<any> {
+    return this.httpClient.delete<any>('http://localhost:8080/admin/deleteCompany/id');
+  }
+
+  public addCompany(company: Company): Observable<any> {
+    return this.httpClient.post<any>('http://localhost:8080/admin/addCompany', company);
+  }
+
+  public updateCompany(company: Company): Observable<any> {
+    return this.httpClient.put<any>('http://localhost:8080/admin/updateCompany', company);
+  }
+
+  public getCustomers(): Observable<Customer[]> {
+    return this.httpClient.get<Customer[]>('../../assets/json/customer.json');
+  }
+
+  public deleteCustomer(id: number): Observable<any> {
+    return this.httpClient.delete<any>('../../assets/json/customer.json');
+  }
+
+  public addCustomer(customer: Customer): Observable<any> {
+    return this.httpClient.post<any>(
+      '../../assets/json/customer.json',
+      Customer
+    );
+  }
+
+  public updateCustomer(customer: Customer): Observable<any> {
+    return this.httpClient.put<any>(
+      '../../assets/json/customer.json',
+      Customer
+    );
+  }
+
+  public getCoupons(): Observable<Coupon[]> {
+    return this.httpClient.get<Coupon[]>('../../assets/json/coupon.json');
+  }
+  public deleteCoupon(id: number): Observable<any> {
+    return this.httpClient.delete<any>('../../assets/json/coupon.json');
+  }
+
+  public addCoupon(coupon: Coupon): Observable<any> {
+    return this.httpClient.post<any>('../../assets/json/coupon.json', Coupon);
+  }
+
+  public updateCoupon(coupon: Coupon): Observable<any> {
+    return this.httpClient.put<any>('../../assets/json/coupon.json', Coupon);
+  }
 }
