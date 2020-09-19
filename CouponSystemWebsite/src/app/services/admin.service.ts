@@ -30,7 +30,7 @@ export class AdminService {
   }
 
   public getCustomers(): Observable<Customer[]> {
-    return this.httpClient.get<Customer[]>('../../assets/json/customer.json');
+    return this.httpClient.get<Customer[]>('http://localhost:8080/admin/GetAllCustomers');
   }
 
   public deleteCustomer(id: number): Observable<any> {
@@ -52,7 +52,7 @@ export class AdminService {
   }
 
   public getCoupons(): Observable<Coupon[]> {
-    return this.httpClient.get<Coupon[]>('../../assets/json/coupon.json');
+    return this.httpClient.get<Coupon[]>('http://localhost:8080/admin/getAllCoupons');
   }
   public deleteCoupon(id: number): Observable<any> {
     return this.httpClient.delete<any>('../../assets/json/coupon.json');

@@ -1,9 +1,17 @@
+import { Coupon } from './../models/coupon';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CouponDataService {
+  public coupons: Coupon[];
+  constructor() {}
 
-  constructor() { }
+  public setCoupons(coupons: Coupon[]): void {
+    this.coupons = coupons;
+  }
+  public getCoupons(): Coupon[] {
+    return this.coupons;
+  }
 }

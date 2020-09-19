@@ -1,1 +1,32 @@
-<p>customer-add-and-update works!</p>
+<h1>Customer {{type}}</h1>
+
+<form #my_form="ngForm">
+  <input name="id" #company_ID *ngIf="type==='Update'" [disabled]="type==='Update'" type="number" placeholder="id"
+    [(ngModel)]="customer.id">
+  <br>
+  <input name="first" #customer_first="ngModel" type="text" required minlength="2" pattern="^[A-Z].*"
+    placeholder="first name" [(ngModel)]="customer.firstName">
+  <span *ngIf="customer_first.errors?.required && customer_first.touched">Minimal 2 characters is required!</span>
+  <span *ngIf="customer_first.errors?.pattern && customer_first.touched">Invalid name - must start with a capital
+    letter!</span>
+  <br>
+  <input name="last" #customer_last="ngModel" type="text" required minlength="2" pattern="^[A-Z].*"
+    placeholder="last name" [(ngModel)]="customer.lastName">
+  <span *ngIf="customer_last.errors?.required && customer_last.touched">Minimal 2 characters is required!</span>
+  <span *ngIf="customer_last.errors?.pattern && customer_last.touched">Invalid name - must start with a capital
+    letter!</span>
+  <br>
+  <input name="email" #customer_email="ngModel" type="email" required placeholder="email" pattern="^[A-Z,a-z].*"
+    [(ngModel)]="customer.email">
+  <span *ngIf="customer_email.errors?.required && customer_email.touched">Missing email</span>
+  <span *ngIf="customer_email.errors?.pattern && customer_email.touched">Invalid email - must start with a
+    letter!</span>
+  <br>
+  <input name="password" #customer_password="ngModel" type="password" required minlength="4" placeholder="password"
+    [(ngModel)]="customer.password">
+  <span *ngIf="customer_password.errors?.required && customer_password.touched">Invalid password - must have at least 4
+    signs</span>
+  <br>
+  <button [disabled]="!my_form.form.valid || (type === 'Update' && my_form.form.pristine)"
+    (click)="addOrUpdateCustomer()">{{type}}</button>
+</form>
