@@ -16,31 +16,43 @@ export class AdminService {
       'http://localhost:8080/admin/GetAllCompanies'
     );
   }
-  
+
   public deleteCompany(id: number): Observable<any> {
-    return this.httpClient.delete<any>('http://localhost:8080/admin/deleteCompany/id');
+    return this.httpClient.delete<any>(
+      'http://localhost:8080/admin/deleteCompany'
+    );
   }
 
   public addCompany(company: Company): Observable<any> {
-    return this.httpClient.post<any>('http://localhost:8080/admin/addCompany', company);
+    return this.httpClient.post<any>(
+      'http://localhost:8080/admin/addCompany',
+      company
+    );
   }
 
   public updateCompany(company: Company): Observable<any> {
-    return this.httpClient.put<any>('http://localhost:8080/admin/updateCompany', company);
+    return this.httpClient.put<any>(
+      'http://localhost:8080/admin/updateCompany',
+      company
+    );
   }
 
   public getCustomers(): Observable<Customer[]> {
-    return this.httpClient.get<Customer[]>('http://localhost:8080/admin/GetAllCustomers');
+    return this.httpClient.get<Customer[]>(
+      'http://localhost:8080/admin/GetAllCustomers'
+    );
   }
 
-  public deleteCustomer(id: number): Observable<any> {
-    return this.httpClient.delete<any>('../../assets/json/customer.json');
+  public deleteCustomer(customer: Customer): Observable<any> {
+    return this.httpClient.delete<any>(
+      'http://localhost:8080/admin/deleteCustomer'
+    );
   }
 
   public addCustomer(customer: Customer): Observable<any> {
     return this.httpClient.post<any>(
-      '../../assets/json/customer.json',
-      Customer
+      'http://localhost:8080/admin/addCustomer',
+      customer
     );
   }
 
@@ -52,7 +64,9 @@ export class AdminService {
   }
 
   public getCoupons(): Observable<Coupon[]> {
-    return this.httpClient.get<Coupon[]>('http://localhost:8080/admin/getAllCoupons');
+    return this.httpClient.get<Coupon[]>(
+      'http://localhost:8080/admin/getAllCoupons'
+    );
   }
   public deleteCoupon(id: number): Observable<any> {
     return this.httpClient.delete<any>('../../assets/json/coupon.json');
