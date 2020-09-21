@@ -13,6 +13,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class CustomerAddAndUpdateComponent implements OnInit {
   public type: string = 'Add';
   public id: number;
+  public firstName: string;
+  public lastName: string;
+  public email: string;
+  public password: string;
   public customer = new Customer();
   constructor(
     private title: Title,
@@ -22,6 +26,10 @@ export class CustomerAddAndUpdateComponent implements OnInit {
     private customerDataService: CustomerDataService
   ) {
     this.id = Number(activatedRoute.snapshot.params.id);
+    this.firstName = String(activatedRoute.snapshot.params.firstName);
+    this.lastName = String(activatedRoute.snapshot.params.lastName);
+    this.email = String(activatedRoute.snapshot.params.email);
+    this.password = String(activatedRoute.snapshot.params.password)
   }
 
   ngOnInit(): void {
@@ -29,7 +37,10 @@ export class CustomerAddAndUpdateComponent implements OnInit {
       this.type = 'Update';
       this.title.setTitle('Updating Customer');
       this.customer.id = this.id;
-
+      this.customer.firstName = this.firstName;
+      this.customer.lastName = this.lastName;
+      this.customer.email = this.email;
+      this.customer.password = this.password;
       this.customer = this.customerDataService
         .getCustomers()
         .filter((p) => p.id === this.customer.id)[0];
