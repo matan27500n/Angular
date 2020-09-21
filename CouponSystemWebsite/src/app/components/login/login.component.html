@@ -1,1 +1,31 @@
-<p>login works!</p>
+<h1>Login page:</h1>
+<br><br><br>
+<div id="parent">
+  <form #form_login="ngForm">
+    <input #email_input="ngModel" type="email" required email placeholder="Enter email" name="email"
+      [(ngModel)]="credentials.email">
+    <span *ngIf="email_input.touched && email_input.errors?.required">Missing email</span>
+    <span *ngIf="email_input.touched && email_input.errors?.email">Invalid email</span>
+    <br><br>
+    <input #password_input="ngModel" type="password"
+      pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/" placeholder=" Enter password"
+      name="password" [(ngModel)]="credentials.password">
+    <br><br>
+    <select #type_input="ngModel" name="type" required [(ngModel)]="credentials.type">
+      <option selected disabled>Choose Type</option>
+      <option>Admin</option>
+      <option>Company</option>
+      <option>Customer</option>
+    </select>
+    <span *ngIf="type_input.touched && type_input.errors?.required">Please choose type</span>
+    <br> <br>
+    <button (click)="loginToServer()">Login</button>
+  </form>
+
+  <div *ngIf="isDev()">
+    <hr>
+    <p>email: {{credentials.email}}</p>
+    <p>password: {{credentials.password}}</p>
+    <p>type: {{credentials.type}}</p>
+  </div>
+</div>

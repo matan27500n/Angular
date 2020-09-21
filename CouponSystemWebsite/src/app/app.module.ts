@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,7 +22,11 @@ import { CustomerAddAndUpdateComponent } from './components/customer-add-and-upd
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { Page404Component } from './components/page404/page404.component';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatListModule} from '@angular/material/list';
+
+
 
 @NgModule({
   declarations: [
@@ -35,7 +39,7 @@ import {MatTableModule} from '@angular/material/table';
     CustomerAddAndUpdateComponent,
     HomeComponent,
     LoginComponent,
-    Page404Component
+    Page404Component,
   ],
   imports: [
     BrowserModule,
@@ -51,9 +55,11 @@ import {MatTableModule} from '@angular/material/table';
     FormsModule,
     MatInputModule,
     MatMenuModule,
-    MatTableModule
+    MatTableModule,
+    MatExpansionModule,
+    MatListModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
