@@ -26,7 +26,7 @@ export class CustomerAddAndUpdateComponent implements OnInit {
     private customerDataService: CustomerDataService
   ) {
     this.id = Number(activatedRoute.snapshot.params.id);
-    this.firstName = String(activatedRoute.snapshot.params.firstName);
+    this.firstName = activatedRoute.snapshot.params.firstName;
     this.lastName = String(activatedRoute.snapshot.params.lastName);
     this.email = String(activatedRoute.snapshot.params.email);
     this.password = String(activatedRoute.snapshot.params.password)

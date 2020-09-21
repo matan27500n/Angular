@@ -12,13 +12,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  public token: string;
-  public credentials: Credentials;
+  public credentials = new Credentials();
   constructor(
     private loginService: LoginService,
     private router: Router,
     private devService: DevService,
-    private tokenManager: TokenManagerService,
     private httpClient: HttpClient
   ) {}
 
@@ -37,7 +35,6 @@ export class LoginComponent implements OnInit {
       }
     );
   }
-
   public isDev(): boolean {
     return this.devService.getDev();
   }

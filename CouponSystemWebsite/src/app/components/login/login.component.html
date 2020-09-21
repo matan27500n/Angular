@@ -4,12 +4,16 @@
   <form #form_login="ngForm">
     <input #email_input="ngModel" type="email" required email placeholder="Enter email" name="email"
       [(ngModel)]="credentials.email">
+      <mat-icon matSuffix *ngIf="!email_input.errors?.required && !email_input.errors?.email">sentiment_very_satisfied</mat-icon>
     <span *ngIf="email_input.touched && email_input.errors?.required">Missing email</span>
     <span *ngIf="email_input.touched && email_input.errors?.email">Invalid email</span>
     <br><br>
     <input #password_input="ngModel" type="password"
-      pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/" placeholder=" Enter password"
+      pattern="(?=.*[a-z]).{4,32}$" placeholder=" Enter password"
       name="password" [(ngModel)]="credentials.password">
+      <mat-icon matSuffix *ngIf="!password_input.errors?.pattern && password_input.touched">sentiment_very_satisfied</mat-icon>
+ <span *ngIf="password_input.touched && password_input.errors?.required">Missing password</span>
+    <span *ngIf="password_input.touched && password_input.errors?.pattern">Invalid password - Should be at least 4 letters</span>
     <br><br>
     <select #type_input="ngModel" name="type" required [(ngModel)]="credentials.type">
       <option selected disabled>Choose Type</option>
@@ -17,6 +21,7 @@
       <option>Company</option>
       <option>Customer</option>
     </select>
+    <mat-icon matSuffix *ngIf="type_input.touched && !type_input.errors?.required">sentiment_very_satisfied</mat-icon>
     <span *ngIf="type_input.touched && type_input.errors?.required">Please choose type</span>
     <br> <br>
     <button (click)="loginToServer()">Login</button>
