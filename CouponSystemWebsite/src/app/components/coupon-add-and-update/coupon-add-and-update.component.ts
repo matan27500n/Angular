@@ -39,12 +39,12 @@ export class CouponAddAndUpdateComponent implements OnInit {
     }
   }
 
-  public addOrUpdateCompany(): void {
+  public addOrUpdateCoupon(): void {
     if (this.id === 0) {
       JSON.stringify(this.coupon);
       this.adminService.addCoupon(this.coupon).subscribe(
         (res) => {
-          alert('Coupon added!')
+          res = this.coupon;
         },
         (err) => {
           alert(err.message);
@@ -54,7 +54,7 @@ export class CouponAddAndUpdateComponent implements OnInit {
       JSON.stringify(this.coupon);
       this.adminService.updateCoupon(this.coupon).subscribe(
         (res) => {
-          alert('Coupon updated');
+          res = this.coupon;
         },
         (err) => {
           alert(err.message);

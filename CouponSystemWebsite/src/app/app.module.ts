@@ -23,10 +23,8 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { Page404Component } from './components/page404/page404.component';
 import { MatTableModule } from '@angular/material/table';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatListModule} from '@angular/material/list';
-
-
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -57,7 +55,7 @@ import {MatListModule} from '@angular/material/list';
     MatMenuModule,
     MatTableModule,
     MatExpansionModule,
-    MatListModule
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -26,10 +26,10 @@ export class CustomerAddAndUpdateComponent implements OnInit {
     private customerDataService: CustomerDataService
   ) {
     this.id = Number(activatedRoute.snapshot.params.id);
-    this.firstName = activatedRoute.snapshot.params.firstName;
+    this.firstName = String(activatedRoute.snapshot.params.firstName);
     this.lastName = String(activatedRoute.snapshot.params.lastName);
-    this.email = String(activatedRoute.snapshot.params.email);
-    this.password = String(activatedRoute.snapshot.params.password)
+    this.email = String(activatedRoute.snapshot.data);
+    this.password = String(activatedRoute.snapshot.params.password);
   }
 
   ngOnInit(): void {
@@ -65,7 +65,7 @@ export class CustomerAddAndUpdateComponent implements OnInit {
       JSON.stringify(this.customer);
       this.adminService.updateCompany(this.customer).subscribe(
         (res) => {
-         this.customer = res;
+          this.customer = res;
         },
         (err) => {
           alert(err.message);

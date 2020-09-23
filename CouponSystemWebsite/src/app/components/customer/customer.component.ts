@@ -3,6 +3,15 @@ import { AdminService } from './../../services/admin.service';
 import { Customer } from './../../models/customer';
 import { Component, OnInit } from '@angular/core';
 
+export interface PeriodicElement {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  actions: string;
+}
+
 @Component({
   selector: 'app-customer',
   templateUrl: './customer.component.html',
@@ -10,30 +19,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerComponent implements OnInit {
   public customers: Customer[];
-  public dataSource;
+  displayedColumns: string[];
+  dataSource: MatTableDataSource<Customer>;
   constructor(private adminService: AdminService) {}
 
   ngOnInit(): void {
     this.adminService.getCustomers().subscribe(
       (customers) => {
         this.customers = customers;
+
+        this.displayedColumns = ['id', 'firstName','lastName', 'email', 'password', 'Actions'];
+        this.dataSource = new MatTableDataSource(this.customers);
       },
       (err) => {
         alert(err.message);
       }
     );
-    this.dataSource = new MatTableDataSource(this.customers);
   }
-  displayedColumns: string[] = ['Id', 'Name', 'Email', 'Password', 'Actions'];
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  public deleteCustomer(customer: Customer): void {
-    this.adminService.deleteCustomer(customer).subscribe(
+  public deleteCustomer(id: number): void {
+    this.adminService.deleteCustomer(id).subscribe(
       (res) => {
-        this.customers.filter((customer) => customer.id !== customer.id);
+        this.customers = res;
+        alert('deleting successfully!!');
       },
       (err) => {
         alert(err.message);

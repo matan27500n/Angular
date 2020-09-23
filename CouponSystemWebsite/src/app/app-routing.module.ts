@@ -42,7 +42,7 @@ const routes: Routes = [
     
     component: CustomerAddAndUpdateComponent,
   },
-  { path: 'coupon-add-and-update:/id', component: CouponAddAndUpdateComponent },
+  { path: 'coupon-add-and-update/:id', component: CouponAddAndUpdateComponent },
 ];
 
 @NgModule({

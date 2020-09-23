@@ -1,32 +1,57 @@
 <h1>Customer {{type}}</h1>
-
-<form #my_form="ngForm">
-  <input name="id" #company_ID *ngIf="type==='Update'" [disabled]="type==='Update'" type="number" placeholder="id"
-    [(ngModel)]="customer.id">
-  <br>
-  <input name="first" #customer_first="ngModel" type="text" required minlength="2" pattern="^[A-Z].*"
-    placeholder="first name" [(ngModel)]="customer.firstName">
-  <span *ngIf="customer_first.errors?.required && customer_first.touched">Minimal 2 characters is required!</span>
-  <span *ngIf="customer_first.errors?.pattern && customer_first.touched">Invalid name - must start with a capital
-    letter!</span>
-  <br>
-  <input name="last" #customer_last="ngModel" type="text" required minlength="2" pattern="^[A-Z].*"
-    placeholder="last name" [(ngModel)]="customer.lastName">
-  <span *ngIf="customer_last.errors?.required && customer_last.touched">Minimal 2 characters is required!</span>
-  <span *ngIf="customer_last.errors?.pattern && customer_last.touched">Invalid name - must start with a capital
-    letter!</span>
-  <br>
-  <input name="email" #customer_email="ngModel" type="email" required placeholder="email" pattern="^[A-Z,a-z].*"
-    [(ngModel)]="customer.email">
-  <span *ngIf="customer_email.errors?.required && customer_email.touched">Missing email</span>
-  <span *ngIf="customer_email.errors?.pattern && customer_email.touched">Invalid email - must start with a
-    letter!</span>
-  <br>
-  <input name="password" #customer_password="ngModel" type="password" required minlength="4" placeholder="password"
-    [(ngModel)]="customer.password">
-  <span *ngIf="customer_password.errors?.required && customer_password.touched">Invalid password - must have at least 4
-    signs</span>
-  <br>
-  <button [disabled]="!my_form.form.valid || (type === 'Update' && my_form.form.pristine)"
-    (click)="addOrUpdateCustomer()">{{type}}</button>
-</form>
+<br><br>
+<p>
+  <mat-form-field appearance="legacy">
+    <mat-label>Id</mat-label>
+    <input matInput placeholder="Id" required [(ngModel)]="customer.id"
+      [disabled]="type==='Update'">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    <mat-hint></mat-hint>
+  </mat-form-field>
+</p>
+<p>
+  <mat-form-field appearance="legacy">
+    <mat-label>FirstName</mat-label>
+    <input #customer_first="ngModel" required matInput placeholder="First Name" pattern="^[A-Z].[a-z].{2,}*"
+      minlength="2" [(ngModel)]="customer.firstName">
+    <mat-icon matSuffix
+      *ngIf="!customer_first.errors?.required && !customer_first.errors?.pattern && !customer_first.errors?.minlength">
+      sentiment_very_satisfied</mat-icon>
+    <mat-hint></mat-hint>
+  </mat-form-field>
+</p>
+<p>
+  <mat-form-field appearance="legacy">
+    <mat-label>LastName</mat-label>
+    <input #customer_last="ngModel" matInput placeholder="Last Name" [(ngModel)]="customer.lastName" required minlength="2"
+      pattern="^[A-Z].[a-z].{2,}*">
+    <mat-icon matSuffix
+      *ngIf="!customer_last.errors?.required && !customer_last.errors?.pattern && !customer_last.errors?.minlength">
+      sentiment_very_satisfied</mat-icon>
+    <mat-hint></mat-hint>
+  </mat-form-field>
+</p>
+<p>
+  <mat-form-field appearance="legacy">
+    <mat-label>Email</mat-label>
+    <input #customer_email="ngModel" matInput placeholder="Email" [(ngModel)]="customer.email" pattern="^[A-Z,a-z].[@]*"
+      minlength="8" required>
+    <mat-icon matSuffix
+      *ngIf="!customer_email.errors?.required && !customer_email.errors?.pattern && !customer_email.errors?.minlength">
+      sentiment_very_satisfied</mat-icon>
+    <mat-hint></mat-hint>
+  </mat-form-field>
+</p>
+<p>
+  <mat-form-field appearance="legacy">
+    <mat-label>Password</mat-label>
+    <input #customer_password="ngModel" matInput placeholder="Password" [(ngModel)]="customer.password" required
+      minlength="4">
+    <mat-icon matSuffix *ngIf="!customer_password.errors?.required && !customer_password.errors?.minlength">
+      sentiment_very_satisfied</mat-icon>
+    <mat-hint></mat-hint>
+  </mat-form-field>
+</p>
+<p>
+  <button (click)="addOrUpdateCustomer()" mat-raised-button color="primary">{{type}}</button>
+</p>

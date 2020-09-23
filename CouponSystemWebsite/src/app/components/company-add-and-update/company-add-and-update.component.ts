@@ -13,6 +13,9 @@ import { AdminService } from 'src/app/services/admin.service';
 export class CompanyAddAndUpdateComponent implements OnInit {
   public type: string = 'Add';
   public id: number;
+  public name: string;
+  public email: string;
+  public password: string;
   public company = new Company();
   constructor(
     private title: Title,
@@ -22,6 +25,9 @@ export class CompanyAddAndUpdateComponent implements OnInit {
     private companyDataService: CompanyDateService
   ) {
     this.id = Number(activatedRoute.snapshot.params.id);
+    this.name = String(activatedRoute.snapshot.params.name);
+    this.email = String(activatedRoute.snapshot.params.email);
+    this.password = String(activatedRoute.snapshot.params.password);
   }
 
   ngOnInit(): void {
@@ -29,10 +35,12 @@ export class CompanyAddAndUpdateComponent implements OnInit {
       this.type = 'Update';
       this.title.setTitle('Updating Company');
       this.company.id = this.id;
-
+      this.company.name = this.name;
+      this.company.email = this.email;
+      this.company.password = this.password;
       this.company = this.companyDataService
         .getCompanies()
-        .filter(p => p.id === this.company.id)[0];
+        .filter((p) => p.id === this.company.id)[0];
     } else {
       this.title.setTitle('Adding Company');
       this.type = 'Add';
@@ -44,7 +52,7 @@ export class CompanyAddAndUpdateComponent implements OnInit {
       JSON.stringify(this.company);
       this.adminService.addCompany(this.company).subscribe(
         (res) => {
-          alert('company added!')
+          res = this.company;
         },
         (err) => {
           alert(err.message);
@@ -54,7 +62,7 @@ export class CompanyAddAndUpdateComponent implements OnInit {
       JSON.stringify(this.company);
       this.adminService.updateCompany(this.company).subscribe(
         (res) => {
-          alert('company updated');
+          res = this.company;
         },
         (err) => {
           alert(err.message);

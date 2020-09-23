@@ -1,27 +1,95 @@
 <h1>Coupon {{type}}</h1>
-
-<form #my_form="ngForm">
-  <input name="id" #company_ID *ngIf="type==='Update'" [disabled]="type==='Update'" type="number" placeholder="id"
-    [(ngModel)]="coupon.id">
-  <br>
-  <input name="name" #company_name="ngModel" type="text" required minlength="2" pattern="^[A-Z].*" placeholder="name"
-    [(ngModel)]="coupon.companyID">
-  <span *ngIf="company_name.errors?.required && company_name.touched">Minimal 2 characters is required!</span>
-  <span *ngIf="company_name.errors?.pattern && company_name.touched">Invalid name - must start with a capital
-    letter!</span>
-  <br>
-  <input name="email" #company_email="ngModel" type="email" required placeholder="email" pattern="^[A-Z,a-z].*"
-    [(ngModel)]="coupon.categoryID">
-  <span *ngIf="company_email.errors?.required && company_email.touched">Missing email</span>
-  <span *ngIf="company_email.errors?.pattern && company_email.touched">Invalid email - must start with a letter!</span>
-  <br>
-  <input name="password" #company_password="ngModel" type="password" required minlength="4" placeholder="password"
-    [(ngModel)]="coupon.title">
-  <span *ngIf="company_password.errors?.required && company_password.touched">Invalid password - must have at least 4
-    signs</span>
-  <br>
-  <button [disabled]="!my_form.form.valid || (type === 'Update' && my_form.form.pristine)"
-    (click)="addOrUpdateCompany()">{{type}}</button>
-</form>
-
-
+<p>
+  <mat-form-field appearance="legacy">
+    <mat-label>Id</mat-label>
+    <input matInput placeholder="Id" required [(ngModel)]="coupon.id" [disabled]="type==='Update'"
+      [disabled]="type==='Add'">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    <mat-hint></mat-hint>
+  </mat-form-field>
+</p>
+<p>
+  <mat-form-field appearance="legacy">
+    <mat-label>Company Id</mat-label>
+    <input #company_Id="ngModel" required matInput placeholder="Company Id" [(ngModel)]="coupon.companyID">
+    <mat-icon matSuffix *ngIf="!company_Id.errors?.required">
+      sentiment_very_satisfied</mat-icon>
+    <mat-hint></mat-hint>
+  </mat-form-field>
+</p>
+<p>
+  <mat-form-field appearance="legacy">
+    <mat-label>Category Id</mat-label>
+    <input #category_Id="ngModel" required matInput placeholder="Category Id" [(ngModel)]="coupon.categoryID">
+    <mat-icon matSuffix *ngIf="!category_Id.errors?.required">
+      sentiment_very_satisfied</mat-icon>
+    <mat-hint></mat-hint>
+  </mat-form-field>
+</p>
+<p>
+  <mat-form-field appearance="legacy">
+    <mat-label>Title</mat-label>
+    <input #title="ngModel" required matInput placeholder="Category Id" [(ngModel)]="coupon.title">
+    <mat-icon matSuffix *ngIf="!title.errors?.required">
+      sentiment_very_satisfied</mat-icon>
+    <mat-hint></mat-hint>
+  </mat-form-field>
+</p>
+<p>
+  <mat-form-field appearance="legacy">
+    <mat-label>Description</mat-label>
+    <input #description="ngModel" required matInput placeholder="Description" [(ngModel)]="coupon.description"
+      minlength="4">
+    <mat-icon matSuffix *ngIf="!description.errors?.required && !description.errors?.minlength">
+      sentiment_very_satisfied</mat-icon>
+    <mat-hint></mat-hint>
+  </mat-form-field>
+</p>
+<p>
+  <mat-form-field appearance="legacy">
+    <mat-label>Start Date</mat-label>
+    <input #start_date="ngModel" required matInput placeholder="Start Date" [(ngModel)]="coupon.startDate">
+    <mat-icon matSuffix *ngIf="!start_date.errors?.required">
+      sentiment_very_satisfied</mat-icon>
+    <mat-hint></mat-hint>
+  </mat-form-field>
+</p>
+<p>
+  <mat-form-field appearance="legacy">
+    <mat-label>End Date</mat-label>
+    <input #end_date="ngModel" required matInput placeholder="End Date" [(ngModel)]="coupon.endDate">
+    <mat-icon matSuffix *ngIf="!end_date.errors?.required">
+      sentiment_very_satisfied</mat-icon>
+    <mat-hint></mat-hint>
+  </mat-form-field>
+</p>
+<p>
+  <mat-form-field appearance="legacy">
+    <mat-label>Amount</mat-label>
+    <input #amount="ngModel" matInput placeholder="Amount" [(ngModel)]="coupon.amount" min="1" required>
+    <mat-icon matSuffix *ngIf="!amount.errors?.required && !amount.errors?.min">
+      sentiment_very_satisfied</mat-icon>
+    <mat-hint></mat-hint>
+  </mat-form-field>
+</p>
+<p>
+  <mat-form-field appearance="legacy">
+    <mat-label>Price</mat-label>
+    <input #price="ngModel" matInput placeholder="Price" [(ngModel)]="coupon.price" required min="0">
+    <mat-icon matSuffix *ngIf="!price.errors?.required && !price.errors?.min">
+      sentiment_very_satisfied</mat-icon>
+    <mat-hint></mat-hint>
+  </mat-form-field>
+</p>
+<p>
+  <mat-form-field appearance="legacy">
+    <mat-label>Image</mat-label>
+    <input #image="ngModel" matInput placeholder="Image" [(ngModel)]="coupon.image" required>
+    <mat-icon matSuffix *ngIf="!image.errors?.required">
+      sentiment_very_satisfied</mat-icon>
+    <mat-hint></mat-hint>
+  </mat-form-field>
+</p>
+<p>
+  <button (click)="addOrUpdateCoupon()" mat-raised-button color="primary">{{type}}</button>
+</p>

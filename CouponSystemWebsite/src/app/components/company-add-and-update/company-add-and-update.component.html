@@ -1,26 +1,45 @@
 <h1>Company {{type}}</h1>
-
-<form #my_form="ngForm">
-  <input name="id" #company_ID *ngIf="type==='Update'" [disabled]="type==='Update'" type="number" placeholder="id"
-    [(ngModel)]="company.id">
-  <br>
-  <input name="name" #company_name="ngModel" type="text" required minlength="2" pattern="^[A-Z].*" placeholder="name"
-    [(ngModel)]="company.name">
-  <span *ngIf="company_name.errors?.required && company_name.touched">Minimal 2 characters is required!</span>
-  <span *ngIf="company_name.errors?.pattern && company_name.touched">Invalid name - must start with a capital
-    letter!</span>
-  <br>
-  <input name="email" #company_email="ngModel" type="email" required placeholder="email" pattern="^[A-Z,a-z].*"
-    [(ngModel)]="company.email">
-  <span *ngIf="company_email.errors?.required && company_email.touched">Missing email</span>
-  <span *ngIf="company_email.errors?.pattern && company_email.touched">Invalid email - must start with a letter!</span>
-  <br>
-  <input name="password" #company_password="ngModel" type="password" required minlength="4" placeholder="password"
-    [(ngModel)]="company.password">
-  <span *ngIf="company_password.errors?.required && company_password.touched">Invalid password - must have at least 4
-    signs</span>
-  <br>
-  <button [disabled]="!my_form.form.valid || (type === 'Update' && my_form.form.pristine)"
-    (click)="addOrUpdateCompany()">{{type}}</button>
-</form>
-
+<br><br>
+<p>
+  <mat-form-field appearance="legacy">
+    <mat-label>Id</mat-label>
+    <input matInput placeholder="Id" required [(ngModel)]="company.id" [disabled]="type==='Update'" [disabled] ="type ==='Add'">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    <mat-hint></mat-hint>
+  </mat-form-field>
+</p>
+<p>
+  <mat-form-field appearance="legacy">
+    <mat-label>Name</mat-label>
+    <input #company_name="ngModel" required matInput placeholder="Name" pattern="^[A-Z].[a-z].{2,}*" minlength="2"
+      [(ngModel)]="company.name">
+    <mat-icon matSuffix
+      *ngIf="!company_name.errors?.required && !company_name.errors?.pattern && !company_name.errors?.minlength">
+      sentiment_very_satisfied</mat-icon>
+    <mat-hint></mat-hint>
+  </mat-form-field>
+</p>
+<p>
+  <mat-form-field appearance="legacy">
+    <mat-label>Email</mat-label>
+    <input #company_email="ngModel" matInput placeholder="Email" [(ngModel)]="company.email" pattern="^[A-Z,a-z].[@]*"
+      minlength="8" required>
+    <mat-icon matSuffix
+      *ngIf="!company_email.errors?.required && !company_email.errors?.pattern && !company_email.errors?.minlength">
+      sentiment_very_satisfied</mat-icon>
+    <mat-hint></mat-hint>
+  </mat-form-field>
+</p>
+<p>
+  <mat-form-field appearance="legacy">
+    <mat-label>Password</mat-label>
+    <input #company_password="ngModel" matInput placeholder="Password" [(ngModel)]="company.password" required
+      minlength="4">
+    <mat-icon matSuffix *ngIf="!company_password.errors?.required && !company_password.errors?.minlength">
+      sentiment_very_satisfied</mat-icon>
+    <mat-hint></mat-hint>
+  </mat-form-field>
+</p>
+<p>
+  <button (click)="addOrUpdateCompany()" mat-raised-button color="primary">{{type}}</button>
+</p>

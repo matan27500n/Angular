@@ -1,39 +1,48 @@
-<h1>Customers:</h1>
+<h1>Customers Details:</h1>
 
 <mat-form-field>
   <mat-label>Filter</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
 </mat-form-field>
 
-<table mat-table [dataSource]="customers" class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-  <ng-container matColumnDef="Id">
+  <!-- Position Column -->
+  <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef> Id </th>
-    <td mat-cell *matCellDef="let p"> {{p.id}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="Name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let p"> {{p.first}} </td>
+  <!-- Name Column -->
+  <ng-container matColumnDef="firstName">
+    <th mat-header-cell *matHeaderCellDef> FirstName </th>
+    <td mat-cell *matCellDef="let element"> {{element.first_name}} </td>
   </ng-container>
-  
 
-  <ng-container matColumnDef="Email">
+  <!-- Name Column -->
+  <ng-container matColumnDef="lastName">
+    <th mat-header-cell *matHeaderCellDef> LastName </th>
+    <td mat-cell *matCellDef="let element"> {{element.last_name}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="email">
     <th mat-header-cell *matHeaderCellDef> Email </th>
-    <td mat-cell *matCellDef="let p"> {{p.email}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="Password">
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="password">
     <th mat-header-cell *matHeaderCellDef> Password </th>
-    <td mat-cell *matCellDef="let p"> {{p.password}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.password}} </td>
   </ng-container>
 
   <ng-container matColumnDef="Actions">
     <th mat-header-cell *matHeaderCellDef> Actions </th>
-    <td mat-cell *matCellDef="let p"> <button [routerLink]="['/customer-add-and-update/' + p.id]"
-        routerLinkActive="router-link-active">Update</button> <button (click)="deleteCustomer(p)">Delete</button>
-        <button [routerLink]="['/customer-add-and-update/'+ 0]" routerLinkActive="router-link-active">Add new</button>
-
+    <td mat-cell *matCellDef="let element"> <button [routerLink]="['/customer-add-and-update/' + element.id]"
+        routerLinkActive="router-link-active">Update</button> <button
+        (click)="deleteCustomer(element.id)">Delete</button>
+      <button [routerLink]="['/customer-add-and-update/'+ 0]" routerLinkActive="router-link-active">Add new</button>
     </td>
   </ng-container>
 
@@ -44,5 +53,4 @@
   <tr class="mat-row" *matNoDataRow>
     <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
   </tr>
-  
 </table>
