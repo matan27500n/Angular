@@ -3,31 +3,33 @@
 <p>
   <mat-form-field appearance="legacy">
     <mat-label>Id</mat-label>
-    <input matInput placeholder="Id" required [(ngModel)]="company.id" [disabled]="type==='Update'" [disabled] ="type ==='Add'">
+    <input matInput placeholder="Id" required [(ngModel)]="company.id" disabled>
     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    <mat-hint></mat-hint>
   </mat-form-field>
 </p>
-<p>
+<p *ngIf="type==='Update'">
   <mat-form-field appearance="legacy">
     <mat-label>Name</mat-label>
-    <input #company_name="ngModel" required matInput placeholder="Name" pattern="^[A-Z].[a-z].{2,}*" minlength="2"
-      [(ngModel)]="company.name">
-    <mat-icon matSuffix
-      *ngIf="!company_name.errors?.required && !company_name.errors?.pattern && !company_name.errors?.minlength">
-      sentiment_very_satisfied</mat-icon>
-    <mat-hint></mat-hint>
+    <input #company_name="ngModel" required matInput placeholder="Name" [(ngModel)]="company.name" disabled>
+    <mat-icon matSuffix> sentiment_very_satisfied</mat-icon>
   </mat-form-field>
 </p>
+
+<p *ngIf="type==='Add'">
+  <mat-form-field appearance="legacy">
+    <mat-label>Name</mat-label>
+    <input #company_name="ngModel" required matInput placeholder="Name" [(ngModel)]="company.name">
+    <mat-icon matSuffix> sentiment_very_satisfied</mat-icon>
+  </mat-form-field>
+</p>
+
 <p>
   <mat-form-field appearance="legacy">
     <mat-label>Email</mat-label>
-    <input #company_email="ngModel" matInput placeholder="Email" [(ngModel)]="company.email" pattern="^[A-Z,a-z].[@]*"
-      minlength="8" required>
+    <input #company_email="ngModel" matInput placeholder="Email" [(ngModel)]="company.email"  required>
     <mat-icon matSuffix
-      *ngIf="!company_email.errors?.required && !company_email.errors?.pattern && !company_email.errors?.minlength">
+      *ngIf="!company_email.errors?.required">
       sentiment_very_satisfied</mat-icon>
-    <mat-hint></mat-hint>
   </mat-form-field>
 </p>
 <p>
@@ -37,7 +39,6 @@
       minlength="4">
     <mat-icon matSuffix *ngIf="!company_password.errors?.required && !company_password.errors?.minlength">
       sentiment_very_satisfied</mat-icon>
-    <mat-hint></mat-hint>
   </mat-form-field>
 </p>
 <p>

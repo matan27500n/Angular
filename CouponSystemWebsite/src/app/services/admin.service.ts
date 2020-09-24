@@ -17,7 +17,7 @@ export class AdminService {
     );
   }
 
-  public getOneCompany(id: number): Observable<Company> {
+  public getOneCompany(id: number): Observable<any> {
     return this.httpClient.get<Company>(
       'http://localhost:8080/admin/getOneCompany/' + id
     );

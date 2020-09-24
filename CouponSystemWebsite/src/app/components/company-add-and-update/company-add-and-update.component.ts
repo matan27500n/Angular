@@ -13,34 +13,31 @@ import { AdminService } from 'src/app/services/admin.service';
 export class CompanyAddAndUpdateComponent implements OnInit {
   public type: string = 'Add';
   public id: number;
-  public name: string;
-  public email: string;
-  public password: string;
   public company = new Company();
   constructor(
     private title: Title,
     private activatedRoute: ActivatedRoute,
     private adminService: AdminService,
-    private route: Router,
-    private companyDataService: CompanyDateService
+    private route: Router
   ) {
     this.id = Number(activatedRoute.snapshot.params.id);
-    this.name = String(activatedRoute.snapshot.params.name);
-    this.email = String(activatedRoute.snapshot.params.email);
-    this.password = String(activatedRoute.snapshot.params.password);
   }
 
   ngOnInit(): void {
     if (this.id !== 0) {
       this.type = 'Update';
       this.title.setTitle('Updating Company');
-      this.company.id = this.id;
-      this.company.name = this.name;
-      this.company.email = this.email;
-      this.company.password = this.password;
-      this.company = this.companyDataService
-        .getCompanies()
-        .filter((p) => p.id === this.company.id)[0];
+      this.adminService.getOneCompany(this.id).subscribe(
+        (res) => {
+          this.company.id = res.id;
+          this.company.name = res.name;
+          this.company.email = res.email;
+          this.company.password = res.password;
+        },
+        (err) => {
+          alert(err.message);
+        }
+      );
     } else {
       this.title.setTitle('Adding Company');
       this.type = 'Add';
@@ -49,20 +46,18 @@ export class CompanyAddAndUpdateComponent implements OnInit {
 
   public addOrUpdateCompany(): void {
     if (this.id === 0) {
-      JSON.stringify(this.company);
       this.adminService.addCompany(this.company).subscribe(
         (res) => {
-          res = this.company;
+          this.company === res;
         },
         (err) => {
           alert(err.message);
         }
       );
     } else {
-      JSON.stringify(this.company);
       this.adminService.updateCompany(this.company).subscribe(
         (res) => {
-          res = this.company;
+          this.company === res;
         },
         (err) => {
           alert(err.message);
