@@ -48,6 +48,11 @@ export class AdminService {
       'http://localhost:8080/admin/getAllCustomers'
     );
   }
+  public getOneCustomer(id: number): Observable<Customer> {
+    return this.httpClient.get<Customer>(
+      'http://localhost:8080/admin/getOneCustomer/' + id
+    );
+  }
 
   public deleteCustomer(id: number): Observable<any> {
     return this.httpClient.delete<any>(

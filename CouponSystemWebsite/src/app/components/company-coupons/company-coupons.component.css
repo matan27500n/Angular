@@ -1,0 +1,23 @@
+table {
+  margin: auto;
+  width: 100%;
+}
+table,
+th,
+td {
+  border: 1px solid blue;
+}
+tr:nth-child(even) {
+  background-color: lightblue;
+}
+tr:nth-child(odd) {
+  background-color: lightcoral;
+}
+tr:first-child {
+  background-color: gray;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}

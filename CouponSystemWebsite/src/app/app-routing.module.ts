@@ -1,3 +1,4 @@
+import { CustomerCouponsComponent } from './components/customer-coupons/customer-coupons.component';
 import { CouponAddAndUpdateComponent } from './components/coupon-add-and-update/coupon-add-and-update.component';
 import { CustomerAddAndUpdateComponent } from './components/customer-add-and-update/customer-add-and-update.component';
 import { CompanyAddAndUpdateComponent } from './components/company-add-and-update/company-add-and-update.component';
@@ -12,6 +13,7 @@ import { CompanyGuardService } from './services/company-guard.service';
 import { CompanyComponent } from './components/company/company.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CompanyCouponsComponent } from './components/company-coupons/company-coupons.component';
 
 const routes: Routes = [
   {
@@ -39,10 +41,12 @@ const routes: Routes = [
   },
   {
     path: 'customer-add-and-update/:id',
-    
+
     component: CustomerAddAndUpdateComponent,
   },
   { path: 'coupon-add-and-update/:id', component: CouponAddAndUpdateComponent },
+  { path: 'company-coupons/:id', component: CompanyCouponsComponent },
+  { path: 'customer-coupons/:id', component: CustomerCouponsComponent },
 ];
 
 @NgModule({
