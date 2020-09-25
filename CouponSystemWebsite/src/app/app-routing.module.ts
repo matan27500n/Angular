@@ -1,3 +1,4 @@
+import { CustomerPurchaseComponent } from './components/customer-purchase/customer-purchase.component';
 import { CustomerCouponsComponent } from './components/customer-coupons/customer-coupons.component';
 import { CouponAddAndUpdateComponent } from './components/coupon-add-and-update/coupon-add-and-update.component';
 import { CustomerAddAndUpdateComponent } from './components/customer-add-and-update/customer-add-and-update.component';
@@ -47,6 +48,7 @@ const routes: Routes = [
   { path: 'coupon-add-and-update/:id', component: CouponAddAndUpdateComponent },
   { path: 'company-coupons/:id', component: CompanyCouponsComponent },
   { path: 'customer-coupons/:id', component: CustomerCouponsComponent },
+  { path: 'customer-purchase', component: CustomerPurchaseComponent },
 ];
 
 @NgModule({

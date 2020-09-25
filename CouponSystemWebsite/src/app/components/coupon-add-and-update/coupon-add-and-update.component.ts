@@ -28,11 +28,23 @@ export class CouponAddAndUpdateComponent implements OnInit {
     if (this.id !== 0) {
       this.type = 'Update';
       this.title.setTitle('Updating Coupon');
-      this.coupon.id = this.id;
-
-      this.coupon = this.couponDataService
-        .getCoupons()
-        .filter((p) => p.id === this.coupon.id)[0];
+      this.adminService.getOneCoupon(this.id).subscribe(
+        (res) => {
+          this.coupon.id = res.id;
+          this.coupon.companyID = res.companyID;
+          this.coupon.categoryID = res.categoryID;
+          this.coupon.title = res.title;
+          this.coupon.description = res.description;
+          this.coupon.start_date = res.start_date;
+          this.coupon.end_date = res.end_date;
+          this.coupon.amount = res.amount;
+          this.coupon.price = res.price;
+          this.coupon.image = res.image;
+        },
+        (err) => {
+          alert(err.message);
+        }
+      );
     } else {
       this.title.setTitle('Adding Coupon');
       this.type = 'Add';
@@ -41,26 +53,24 @@ export class CouponAddAndUpdateComponent implements OnInit {
 
   public addOrUpdateCoupon(): void {
     if (this.id === 0) {
-      JSON.stringify(this.coupon);
       this.adminService.addCoupon(this.coupon).subscribe(
         (res) => {
-          res = this.coupon;
+          this.coupon === res;
         },
         (err) => {
           alert(err.message);
         }
       );
     } else {
-      JSON.stringify(this.coupon);
       this.adminService.updateCoupon(this.coupon).subscribe(
         (res) => {
-          res = this.coupon;
+          this.coupon === res;
         },
         (err) => {
           alert(err.message);
         }
       );
     }
-    this.route.navigateByUrl('/coupon');
+    this.route.navigateByUrl('/admin');
   }
 }

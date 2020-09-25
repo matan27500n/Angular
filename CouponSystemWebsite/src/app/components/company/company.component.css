@@ -10,6 +10,7 @@ h1 {
 }
 table {
   margin: auto;
+  width: 100%;
 }
 table,
 th,
@@ -26,11 +27,31 @@ tr:first-child {
   background-color: gray;
 }
 
-table {
+.mat-form-field {
+  font-size: 22px;
   width: 100%;
 }
 
-.mat-form-field {
-  font-size: 14px;
-  width: 100%;
+button {
+  padding: 8px;
+  margin: 5px;
+}
+
+th {
+  font-size: 25px;
+  text-align: center;
+}
+
+.mat-table {
+  text-align: center;
+}
+
+.mat-cell {
+  font-size: 15px;
+}
+.head1 {
+  text-align: center;
+}
+.head2 {
+  font-size: 20px;
 }

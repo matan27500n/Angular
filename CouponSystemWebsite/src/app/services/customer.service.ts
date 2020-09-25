@@ -14,4 +14,17 @@ export class CustomerService {
       'http://localhost:8080/customer/customerCoupons/' + id
     );
   }
+
+  public updateCustomerID(id: number): Observable<any> {
+    return this.httpClient.get<any>(
+      'http://localhost:8080/customer/updateCustomerID/' + id
+    );
+  }
+
+  public purchaseCoupon(coupon: Coupon): Observable<any> {
+    return this.httpClient.post<any>(
+      'http://localhost:8080/customer/purchaseCoupon/',
+      coupon
+    );
+  }
 }

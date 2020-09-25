@@ -3,32 +3,28 @@
 <p>
   <mat-form-field appearance="legacy">
     <mat-label>Id</mat-label>
-    <input matInput placeholder="Id" required [(ngModel)]="customer.id"
-      [disabled]="type==='Update'">
+    <input matInput placeholder="Id" required [(ngModel)]="customer.id" disabled>
     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    <mat-hint></mat-hint>
   </mat-form-field>
 </p>
 <p>
   <mat-form-field appearance="legacy">
     <mat-label>FirstName</mat-label>
     <input #customer_first="ngModel" required matInput placeholder="First Name" pattern="^[A-Z].[a-z].{2,}*"
-      minlength="2" [(ngModel)]="customer.firstName">
+      minlength="2" [(ngModel)]="customer.first_name">
     <mat-icon matSuffix
       *ngIf="!customer_first.errors?.required && !customer_first.errors?.pattern && !customer_first.errors?.minlength">
       sentiment_very_satisfied</mat-icon>
-    <mat-hint></mat-hint>
   </mat-form-field>
 </p>
 <p>
   <mat-form-field appearance="legacy">
     <mat-label>LastName</mat-label>
-    <input #customer_last="ngModel" matInput placeholder="Last Name" [(ngModel)]="customer.lastName" required minlength="2"
-      pattern="^[A-Z].[a-z].{2,}*">
+    <input #customer_last="ngModel" matInput placeholder="Last Name" [(ngModel)]="customer.last_name" required
+      minlength="2" pattern="^[A-Z].[a-z].{2,}*">
     <mat-icon matSuffix
       *ngIf="!customer_last.errors?.required && !customer_last.errors?.pattern && !customer_last.errors?.minlength">
       sentiment_very_satisfied</mat-icon>
-    <mat-hint></mat-hint>
   </mat-form-field>
 </p>
 <p>
@@ -39,7 +35,6 @@
     <mat-icon matSuffix
       *ngIf="!customer_email.errors?.required && !customer_email.errors?.pattern && !customer_email.errors?.minlength">
       sentiment_very_satisfied</mat-icon>
-    <mat-hint></mat-hint>
   </mat-form-field>
 </p>
 <p>
@@ -49,7 +44,6 @@
       minlength="4">
     <mat-icon matSuffix *ngIf="!customer_password.errors?.required && !customer_password.errors?.minlength">
       sentiment_very_satisfied</mat-icon>
-    <mat-hint></mat-hint>
   </mat-form-field>
 </p>
 <p>

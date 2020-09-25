@@ -13,10 +13,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class CustomerAddAndUpdateComponent implements OnInit {
   public type: string = 'Add';
   public id: number;
-  public firstName: string;
-  public lastName: string;
-  public email: string;
-  public password: string;
   public customer = new Customer();
   constructor(
     private title: Title,
@@ -26,24 +22,24 @@ export class CustomerAddAndUpdateComponent implements OnInit {
     private customerDataService: CustomerDataService
   ) {
     this.id = Number(activatedRoute.snapshot.params.id);
-    this.firstName = activatedRoute.snapshot.params.firstName;
-    this.lastName = activatedRoute.snapshot.params.lastName;
-    this.email = activatedRoute.snapshot.params.email;
-    this.password = activatedRoute.snapshot.params.password;
   }
 
   ngOnInit(): void {
     if (this.id !== 0) {
       this.type = 'Update';
       this.title.setTitle('Updating Customer');
-      this.customer.id = this.id;
-      this.customer.firstName = this.firstName;
-      this.customer.lastName = this.lastName;
-      this.customer.email = this.email;
-      this.customer.password = this.password;
-      this.customer = this.customerDataService
-        .getCustomers()
-        .filter((p) => p.id === this.customer.id)[0];
+      this.adminService.getOneCustomer(this.id).subscribe(
+        (res) => {
+          this.customer.id = res.id;
+          this.customer.first_name = res.first_name;
+          this.customer.last_name = res.last_name;
+          this.customer.email = res.email;
+          this.customer.password = res.password;
+        },
+        (err) => {
+          alert(err.message);
+        }
+      );
     } else {
       this.title.setTitle('Adding Customer');
       this.type = 'Add';
@@ -52,23 +48,21 @@ export class CustomerAddAndUpdateComponent implements OnInit {
 
   public addOrUpdateCustomer(): void {
     if (this.id === 0) {
-      JSON.stringify(this.customer);
-      this.adminService.addCompany(this.customer).subscribe(
+      this.adminService.addCustomer(this.customer).subscribe(
         (res) => {
-          this.customer = res;
+          this.customer === res;
         },
         (err) => {
           alert(err.message);
         }
       );
     } else {
-      JSON.stringify(this.customer);
-      this.adminService.updateCompany(this.customer).subscribe(
+      this.adminService.updateCustomer(this.customer).subscribe(
         (res) => {
-          this.customer = res;
+          this.customer === res;
         },
         (err) => {
-          alert(err.message);
+          alert('something wrong here');
         }
       );
     }

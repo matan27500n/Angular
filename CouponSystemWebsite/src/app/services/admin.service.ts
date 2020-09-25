@@ -3,7 +3,7 @@ import { Customer } from './../models/customer';
 import { HttpClient } from '@angular/common/http';
 import { Company } from './../models/company';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -70,13 +70,19 @@ export class AdminService {
   public updateCustomer(customer: Customer): Observable<any> {
     return this.httpClient.put<any>(
       'http://localhost:8080/admin/updateCustomer/',
-      Customer
+      customer
     );
   }
 
   public getCoupons(): Observable<Coupon[]> {
     return this.httpClient.get<Coupon[]>(
       'http://localhost:8080/admin/getAllCoupons'
+    );
+  }
+
+  public getOneCoupon(id: number): Observable<Coupon> {
+    return this.httpClient.get<Coupon>(
+      'http://localhost:8080/admin/getOneCoupon/' + id
     );
   }
   public deleteCoupon(id: number): Observable<any> {
@@ -95,7 +101,7 @@ export class AdminService {
   public updateCoupon(coupon: Coupon): Observable<any> {
     return this.httpClient.put<any>(
       'http://localhost:8080/company/updateCoupon',
-      Coupon
+      coupon
     );
   }
 }

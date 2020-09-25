@@ -27,6 +27,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
 import { CompanyCouponsComponent } from './components/company-coupons/company-coupons.component';
 import { CustomerCouponsComponent } from './components/customer-coupons/customer-coupons.component';
+import { CustomerPurchaseComponent } from './components/customer-purchase/customer-purchase.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { CustomerCouponsComponent } from './components/customer-coupons/customer
     Page404Component,
     CompanyCouponsComponent,
     CustomerCouponsComponent,
+    CustomerPurchaseComponent,
   ],
   imports: [
     BrowserModule,
