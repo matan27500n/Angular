@@ -19,18 +19,19 @@ export class LoginService {
     this.email = credentials.email;
     this.password = credentials.password;
     this.type = credentials.type;
+    alert(this.type);
     switch (this.type) {
-      case 'Admin':
+      case 'admin':
         return this.httpClient.post(
           'http://localhost:8080/admin/login',
           credentials
         );
-      case 'Company':
+      case 'company':
         return this.httpClient.post(
           'http://localhost:8080/company/login',
           credentials
         );
-      case 'Customer':
+      case 'customer':
         return this.httpClient.post(
           'http://localhost:8080/customer/login',
           credentials

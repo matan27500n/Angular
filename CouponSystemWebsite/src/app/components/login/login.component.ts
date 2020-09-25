@@ -23,17 +23,19 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   public loginToServer(): void {
-    this.loginService.loginRequest(this.credentials).subscribe(
+    this.router.navigateByUrl(this.credentials.type);
+    /*this.loginService.loginRequest(this.credentials).subscribe(
       (loginResponse) => {
         this.loginService.token = loginResponse.token;
         this.loginService.type = loginResponse.type;
         this.loginService.isLoggedIn = true;
-        this.router.navigateByUrl(this.loginService.type);
+        
       },
       (err) => {
         alert(err.message);
       }
-    );
+    );*/
+   
   }
   public isDev(): boolean {
     return this.devService.getDev();

@@ -1,5 +1,5 @@
-<h1>Company Details</h1>
-
+<mat-toolbar color="accent" class="main-div" fxLayoutAlign="center">Company Details:</mat-toolbar>
+<body>
 <mat-form-field>
   <mat-label>Filter</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
@@ -45,3 +45,4 @@
     <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
   </tr>
 </table>
+</body>

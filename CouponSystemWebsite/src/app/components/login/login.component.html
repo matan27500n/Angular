@@ -1,36 +1,32 @@
-<h1>Login page:</h1>
-<br><br><br>
-<div id="parent">
-  <form #form_login="ngForm">
-    <input #email_input="ngModel" type="email" required email placeholder="Enter email" name="email"
-      [(ngModel)]="credentials.email">
-      <mat-icon matSuffix *ngIf="!email_input.errors?.required && !email_input.errors?.email">sentiment_very_satisfied</mat-icon>
-    <span *ngIf="email_input.touched && email_input.errors?.required">Missing email</span>
-    <span *ngIf="email_input.touched && email_input.errors?.email">Invalid email</span>
-    <br><br>
-    <input #password_input="ngModel" type="password"
-      pattern="(?=.*[a-z]).{4,32}$" placeholder=" Enter password"
-      name="password" [(ngModel)]="credentials.password">
-      <mat-icon matSuffix *ngIf="!password_input.errors?.pattern && password_input.touched">sentiment_very_satisfied</mat-icon>
- <span *ngIf="password_input.touched && password_input.errors?.required">Missing password</span>
-    <span *ngIf="password_input.touched && password_input.errors?.pattern">Invalid password - Should be at least 4 letters</span>
-    <br><br>
-    <select #type_input="ngModel" name="type" required [(ngModel)]="credentials.type">
-      <option selected disabled>Choose Type</option>
-      <option>Admin</option>
-      <option>Company</option>
-      <option>Customer</option>
-    </select>
-    <mat-icon matSuffix *ngIf="type_input.touched && !type_input.errors?.required">sentiment_very_satisfied</mat-icon>
-    <span *ngIf="type_input.touched && type_input.errors?.required">Please choose type</span>
-    <br> <br>
-    <button (click)="loginToServer()">Login</button>
-  </form>
-
-  <div *ngIf="isDev()">
-    <hr>
-    <p>email: {{credentials.email}}</p>
-    <p>password: {{credentials.password}}</p>
-    <p>type: {{credentials.type}}</p>
-  </div>
+<body>
+<div fxLayoutAlign="center center" fxFlexFill class="main-div">
+  <mat-card fxFlex="30" >
+    <mat-toolbar color="primary">Login page</mat-toolbar>
+    <form fxLayoutAlign="stretch" fxLayout="column" class="login-form"  #form_login="ngForm">
+      <mat-form-field>
+        <input matInput type="email" name="email" placeholder="Email" [(ngModel)]="credentials.email">
+      </mat-form-field>
+      <mat-form-field >
+        <input matInput type="password" name="password" placeholder="Password"  [(ngModel)]="credentials.password">
+      </mat-form-field>
+      <mat-form-field appearance="fill"   >
+        <mat-label >Select an option</mat-label>
+        <mat-select disableRipple name="type" [(ngModel)]="credentials.type">
+          <mat-option value="admin">admin</mat-option>
+          <mat-option value="company">company</mat-option>
+          <mat-option value="customer">customer</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-raised-button (click)="loginToServer()">Login</button>
+    </form>
+  </mat-card>
 </div>
+
+<div *ngIf="isDev()">
+  <hr>
+  <p>email: {{credentials.email}}</p>
+  <p>password: {{credentials.password}}</p>
+  <p>type: {{credentials.type}}</p>
+</div>
+
+</body>

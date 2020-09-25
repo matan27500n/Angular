@@ -28,6 +28,12 @@ import { MatListModule } from '@angular/material/list';
 import { CompanyCouponsComponent } from './components/company-coupons/company-coupons.component';
 import { CustomerCouponsComponent } from './components/customer-coupons/customer-coupons.component';
 import { CustomerPurchaseComponent } from './components/customer-purchase/customer-purchase.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatCardModule} from '@angular/material/card';
+import {MatSelectModule} from '@angular/material/select';
+
+
+
 
 @NgModule({
   declarations: [
@@ -62,6 +68,9 @@ import { CustomerPurchaseComponent } from './components/customer-purchase/custom
     MatTableModule,
     MatExpansionModule,
     MatListModule,
+    FlexLayoutModule,
+    MatCardModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent],

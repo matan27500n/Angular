@@ -1,12 +1,11 @@
-h1 {
-  color: #111;
+.main-div {
   font-family: "Helvetica Neue", sans-serif;
-  font-size: 50px;
+  font-size: 35px;
   font-weight: bold;
   letter-spacing: -1px;
   line-height: 1;
   text-align: center;
-  text-decoration: solid;
+  padding-top: 14px;
 }
 table {
   margin: auto;
@@ -54,4 +53,7 @@ th {
 }
 .head2 {
   font-size: 20px;
+}
+body{
+  background-color: aquamarine;
 }

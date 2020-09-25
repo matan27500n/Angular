@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DevService {
-  public isDev = false;
+  public isDev = true;
 
   constructor() {}
   public setDev(isDev: boolean): void {
