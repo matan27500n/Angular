@@ -4,20 +4,20 @@
     <mat-toolbar color="primary">Login page</mat-toolbar>
     <form fxLayoutAlign="stretch" fxLayout="column" class="login-form"  #form_login="ngForm">
       <mat-form-field>
-        <input matInput type="email" name="email" placeholder="Email" [(ngModel)]="credentials.email">
+        <input matInput type="email" name="email" placeholder="Email" [(ngModel)]="credentials.email" required>
       </mat-form-field>
       <mat-form-field >
-        <input matInput type="password" name="password" placeholder="Password"  [(ngModel)]="credentials.password">
+        <input matInput type="password" name="password" placeholder="Password"  [(ngModel)]="credentials.password" required>
       </mat-form-field>
-      <mat-form-field appearance="fill"   >
+      <mat-form-field appearance="fill">
         <mat-label >Select an option</mat-label>
-        <mat-select disableRipple name="type" [(ngModel)]="credentials.type">
+        <mat-select disableRipple name="type" [(ngModel)]="credentials.type" required> 
           <mat-option value="admin">admin</mat-option>
           <mat-option value="company">company</mat-option>
           <mat-option value="customer">customer</mat-option>
         </mat-select>
       </mat-form-field>
-      <button mat-raised-button (click)="loginToServer()">Login</button>
+      <button mat-raised-button (click)="loginToServer()" *ngIf="form_login.valid">Login</button>
     </form>
   </mat-card>
 </div>
