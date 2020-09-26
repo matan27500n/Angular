@@ -55,22 +55,22 @@ export class CouponAddAndUpdateComponent implements OnInit {
     if (this.id === 0) {
       this.adminService.addCoupon(this.coupon).subscribe(
         (res) => {
-          this.coupon === res;
+          alert("Coupon added successfully");
         },
         (err) => {
-          alert(err.message);
+          alert("You cannot add coupon with the same title");
         }
       );
     } else {
       this.adminService.updateCoupon(this.coupon).subscribe(
         (res) => {
-          this.coupon === res;
+         alert("Coupon update successfully!");
         },
         (err) => {
           alert(err.message);
         }
       );
     }
-    this.route.navigateByUrl('/admin');
+    this.route.navigateByUrl('/company');
   }
 }

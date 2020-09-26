@@ -127,6 +127,7 @@ export class AdminComponent implements OnInit {
     this.adminService.deleteCompany(id).subscribe(
       (res) => {
         this.companies = res;
+        alert('deleting successfully!');
       },
       (err) => {
         alert(err.message);

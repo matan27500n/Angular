@@ -1,6 +1,7 @@
+import { TokenManagerService } from './token-manager.service';
 import { Coupon } from './../models/coupon';
 import { Customer } from './../models/customer';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Company } from './../models/company';
 import { Injectable } from '@angular/core';
 import { Observable, observable } from 'rxjs';
@@ -9,11 +10,19 @@ import { Observable, observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AdminService {
-  public constructor(private httpClient: HttpClient) {}
+  public constructor(
+    private httpClient: HttpClient,
+    private tokenManager: TokenManagerService
+  ) {}
 
   public getCompanies(): Observable<Company[]> {
+    const headers = new HttpHeaders({
+      'Coupon-System-Header': this.tokenManager.getToken(),
+    });
+    const options = { headers: headers };
     return this.httpClient.get<Company[]>(
-      'http://localhost:8080/admin/GetAllCompanies'
+      'http://localhost:8080/admin/GetAllCompanies',
+      options
     );
   }
 
@@ -94,7 +103,7 @@ export class AdminService {
   public addCoupon(coupon: Coupon): Observable<any> {
     return this.httpClient.post<any>(
       'http://localhost:8080/company/addCoupon/',
-      Coupon
+      coupon
     );
   }
 
