@@ -16,14 +16,15 @@ export class CustomerService {
   }
 
   public updateCustomerID(id: number): Observable<any> {
-    return this.httpClient.get<any>(
-      'http://localhost:8080/customer/updateCustomerID/' + id
+    return this.httpClient.put<any>(
+      'http://localhost:8080/customer/updateCustomerID/' + id,
+      null
     );
   }
 
-  public purchaseCoupon(coupon: Coupon, id: number): Observable<any> {
+  public purchaseCoupon(coupon: Coupon): Observable<any> {
     return this.httpClient.post<any>(
-      'http://localhost:8080/customer/purchaseCoupon/' + id,
+      'http://localhost:8080/customer/purchaseCoupon/',
       coupon
     );
   }

@@ -39,7 +39,7 @@
         (click)="deleteCustomer(element.id)" class="head2">Delete</button>
       
       <button [routerLink]="['/customer-coupons/' + element.id]" routerLinkActive="router-link-active" class="head2">Coupons</button>
-      <button [routerLink]="['/customer-purchase']" routerLinkActive="router-link-active" class="head2">Purchase</button>
+      <button [routerLink]="['/customer-purchase/' + element.id]" routerLinkActive="router-link-active" class="head2">Purchase</button>
     </td>
   </ng-container>
 

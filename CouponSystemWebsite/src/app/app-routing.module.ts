@@ -48,7 +48,7 @@ const routes: Routes = [
   { path: 'coupon-add-and-update/:id', component: CouponAddAndUpdateComponent },
   { path: 'company-coupons/:id', component: CompanyCouponsComponent },
   { path: 'customer-coupons/:id', component: CustomerCouponsComponent },
-  { path: 'customer-purchase', component: CustomerPurchaseComponent },
+  { path: 'customer-purchase/:id', component: CustomerPurchaseComponent },
 ];
 
 @NgModule({
