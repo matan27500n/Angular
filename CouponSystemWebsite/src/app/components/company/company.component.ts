@@ -66,6 +66,7 @@ export class CompanyComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
   applyFilter3(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource3.filter = filterValue.trim().toLowerCase();
@@ -76,6 +77,18 @@ export class CompanyComponent implements OnInit {
       (res) => {
         this.companies = res;
         alert('delete successfully!!');
+      },
+      (err) => {
+        alert(err.message);
+      }
+    );
+  }
+
+  public deleteCoupon(id: number): void {
+    this.adminService.deleteCoupon(id).subscribe(
+      (res) => {
+        this.coupons = res;
+        alert('deleting successfully!!');
       },
       (err) => {
         alert(err.message);
