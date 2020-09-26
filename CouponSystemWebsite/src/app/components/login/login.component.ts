@@ -23,19 +23,19 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   public loginToServer(): void {
-    this.router.navigateByUrl(this.credentials.type);
-    /*this.loginService.loginRequest(this.credentials).subscribe(
+   
+    this.loginService.loginRequest(this.credentials).subscribe(
       (loginResponse) => {
         this.loginService.token = loginResponse.token;
         this.loginService.type = loginResponse.type;
         this.loginService.isLoggedIn = true;
-        
+        alert(this.loginService.token);
+        this.router.navigateByUrl(this.credentials.type);
       },
       (err) => {
-        alert(err.message);
+        alert('Invalid email or password or type');
       }
-    );*/
-   
+    );
   }
   public isDev(): boolean {
     return this.devService.getDev();

@@ -1,21 +1,20 @@
-h1 {
-  color: #111;
+.main-div {
   font-family: "Helvetica Neue", sans-serif;
-  font-size: 30px;
+  font-size: 35px;
   font-weight: bold;
   letter-spacing: -1px;
   line-height: 1;
   text-align: center;
-  text-decoration: solid;
+  padding-top: 14px;
 }
 table {
   margin: auto;
+  width: 100%;
 }
 table,
 th,
 td {
   border: 1px solid blue;
-  font-size: 15px;
 }
 tr:nth-child(even) {
   background-color: lightblue;
@@ -27,14 +26,37 @@ tr:first-child {
   background-color: gray;
 }
 
-table {
+.mat-form-field {
+  font-size: 22px;
   width: 100%;
 }
 
-.mat-form-field {
-  font-size: 25px;
-  width: 100%;
+button {
+  padding: 8px;
+  margin: 5px;
 }
-.mat-form-field + .mat-form-field {
-  margin-left: 8px;
+
+th {
+  font-size: 25px;
+  text-align: center;
+}
+
+.mat-table {
+  text-align: center;
+}
+
+.mat-cell {
+  font-size: 15px;
+}
+.head1 {
+  text-align: center;
+}
+.head2 {
+  font-size: 20px;
+}
+body{
+  background-color: aquamarine;
+}
+.coupon123{
+  background-color: aquamarine;
 }

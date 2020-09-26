@@ -49,15 +49,8 @@ export class CustomerPurchaseComponent implements OnInit {
   }
 
   public purchaseCoupon(coupon: Coupon, id: number): void {
-    this.customerService.updateCustomerID(id).subscribe(
-      (res) => {
-        id = res;
-      },
-      (err) => {
-        alert('cannot update customer id');
-      }
-    );
-    this.customerService.purchaseCoupon(coupon).subscribe(
+    alert(id);
+    this.customerService.purchaseCoupon(coupon,id).subscribe(
       (res) => {},
       () => {}
     );

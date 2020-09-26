@@ -21,9 +21,9 @@ export class CustomerService {
     );
   }
 
-  public purchaseCoupon(coupon: Coupon): Observable<any> {
+  public purchaseCoupon(coupon: Coupon, id: number): Observable<any> {
     return this.httpClient.post<any>(
-      'http://localhost:8080/customer/purchaseCoupon/',
+      'http://localhost:8080/customer/purchaseCoupon/' + id,
       coupon
     );
   }
