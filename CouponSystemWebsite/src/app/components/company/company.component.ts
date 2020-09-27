@@ -1,3 +1,6 @@
+import { CompanyService } from './../../services/company.service';
+import { LoginService } from './../../services/login.service';
+import { Credentials } from './../../models/Credentials';
 import { AdminService } from './../../services/admin.service';
 import { Company } from './../../models/company';
 import { Component, OnInit } from '@angular/core';
@@ -18,49 +21,76 @@ export interface PeriodicElement {
   styleUrls: ['./company.component.css'],
 })
 export class CompanyComponent implements OnInit {
-  private companies: Company[];
+  public id: number;
+  public company: Company[] = [];
+  public email: string;
+  public password: string;
   displayedColumns: string[];
   dataSource: MatTableDataSource<Company>;
   public coupons: Coupon[];
   displayedColumns3: string[];
   dataSource3: MatTableDataSource<Coupon>;
-  public constructor(private adminService: AdminService) {}
+  public constructor(
+    private adminService: AdminService,
+    private loginService: LoginService,
+    private companyService: CompanyService
+  ) {}
 
   ngOnInit(): void {
-    this.adminService.getCompanies().subscribe(
-      (companies) => {
-        this.companies = companies;
+    this.email = this.loginService.email;
+    console.log(this.email);
+    this.password = this.loginService.password;
+    console.log(this.password);
+    this.companyService
+      .getCompanyIdByEmailAndPassword(this.email, this.password)
+      .subscribe(
+        (res) => {
+          this.id = res;
+          console.log("the id: "+ this.id);
+          this.adminService.getOneCompany(this.id).subscribe(
+            (res) => {
+              this.company.push(res);
+              this.displayedColumns = ['id', 'name', 'email', 'password', 'Actions'];
+              this.dataSource = new MatTableDataSource(this.company);
+              this.companyService.getCompanyCoupons(this.id).subscribe(
+                (res) => {
+                  this.coupons = res;
+          
+                  console.log(this.coupons);
+                  this.displayedColumns3 = [
+                    'id',
+                    'companyID',
+                    'categoryID',
+                    'title',
+                    'description',
+                    'startDate',
+                    'endDate',
+                    'amount',
+                    'price',
+                    'image',
+                    'Actions',
+                  ];
+                  this.dataSource3 = new MatTableDataSource(this.coupons);
+                },
+                (err) => {
+                  alert('wrong!!');
+                }
+              );
+            },
+            (err) => {
+              alert(err.message);
+            }
+          );
+        },
+        (err) => {
+          alert(err.message);
+        }
 
-        this.displayedColumns = ['id', 'name', 'email', 'password', 'Actions'];
-        this.dataSource = new MatTableDataSource(this.companies);
-      },
-      (err) => {
-        alert(err.message);
-      }
-    );
+        
+      );
+    
 
-    this.adminService.getCoupons().subscribe(
-      (coupons) => {
-        this.coupons = coupons;
-        this.displayedColumns3 = [
-          'id',
-          'companyID',
-          'categoryID',
-          'title',
-          'description',
-          'startDate',
-          'endDate',
-          'amount',
-          'price',
-          'image',
-          'Actions',
-        ];
-        this.dataSource3 = new MatTableDataSource(this.coupons);
-      },
-      (err) => {
-        alert(err.message);
-      }
-    );
+  
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -75,7 +105,7 @@ export class CompanyComponent implements OnInit {
   public deleteCompany(id: number): void {
     this.adminService.deleteCompany(id).subscribe(
       (res) => {
-        this.companies = res;
+        this.company = res;
         alert('delete successfully!!');
       },
       (err) => {

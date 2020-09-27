@@ -1,3 +1,5 @@
+import { CouponsMaxPriceComponent } from './components/coupons-max-price/coupons-max-price.component';
+import { CouponsCategoryComponent } from './components/coupons-category/coupons-category.component';
 import { CustomerPurchaseComponent } from './components/customer-purchase/customer-purchase.component';
 import { CustomerCouponsComponent } from './components/customer-coupons/customer-coupons.component';
 import { CouponAddAndUpdateComponent } from './components/coupon-add-and-update/coupon-add-and-update.component';
@@ -49,6 +51,8 @@ const routes: Routes = [
   { path: 'company-coupons/:id', component: CompanyCouponsComponent },
   { path: 'customer-coupons/:id', component: CustomerCouponsComponent },
   { path: 'customer-purchase/:id', component: CustomerPurchaseComponent },
+  { path: 'coupons-category/:categoryID', component: CouponsCategoryComponent },
+  { path: 'coupons-max-price/:price', component: CouponsMaxPriceComponent },
 ];
 
 @NgModule({

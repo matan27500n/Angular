@@ -1,8 +1,9 @@
+import { Category } from './category';
 export class Coupon {
     public constructor(
       public id?: number,
       public companyID?: number,
-      public categoryID?: string,
+      public categoryID?: Category,
       public title?: string,
       public description?: string,
       public start_date?: Date,

@@ -1,0 +1,78 @@
+<body>
+    <mat-toolbar color="accent" class="main-div" fxLayoutAlign="center">Coupons By Max Price</mat-toolbar>
+      <div class="coupon123">
+      <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter3($event)" placeholder="Ex. ium" #input>
+      </mat-form-field>
+    
+      <table mat-table [dataSource]="dataSource3" class="mat-elevation-z8">
+    
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef class="head1"> Id </th>
+          <td mat-cell *matCellDef="let element" class="head2"> {{element.id}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="companyID">
+          <th mat-header-cell *matHeaderCellDef class="head1"> CompanyID </th>
+          <td mat-cell *matCellDef="let element" class="head2"> {{element.companyID}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="categoryID">
+          <th mat-header-cell *matHeaderCellDef class="head1"> CategoryID </th>
+          <td mat-cell *matCellDef="let element" class="head2"> {{element.categoryID}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef class="head1"> Title </th>
+          <td mat-cell *matCellDef="let element" class="head2"> {{element.title}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef class="head1"> Description </th>
+          <td mat-cell *matCellDef="let element" class="head2"> {{element.description}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="startDate">
+          <th mat-header-cell *matHeaderCellDef class="head1"> Start Date </th>
+          <td mat-cell *matCellDef="let element" class="head2"> {{element.start_date}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="endDate">
+          <th mat-header-cell *matHeaderCellDef class="head1"> End Date </th>
+          <td mat-cell *matCellDef="let element" class="head2"> {{element.end_date}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef class="head1"> Amount </th>
+          <td mat-cell *matCellDef="let element" class="head2"> {{element.amount}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef class="head1"> Price </th>
+          <td mat-cell *matCellDef="let element" class="head2"> {{element.price}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="image">
+          <th mat-header-cell *matHeaderCellDef class="head1"> Image </th>
+          <td mat-cell *matCellDef="let element" class="head2"> {{element.image}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="Actions">
+          <th mat-header-cell *matHeaderCellDef class="head1"> Actions <button [routerLink]="['/coupon-add-and-update/'+ 0]"
+              routerLinkActive="router-link-active" class="head2">Add Coupon</button></th>
+          <td mat-cell *matCellDef="let element"> <button [routerLink]="['/coupon-add-and-update/' + element.id]"
+              routerLinkActive="router-link-active" class="head2">Update</button> <button (click)="deleteCoupon(element.id)"
+              class="head2">Delete</button>
+          </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns3"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns3;"></tr>
+    
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+    </div>
+    </body>

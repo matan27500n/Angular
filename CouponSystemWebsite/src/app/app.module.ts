@@ -31,6 +31,8 @@ import { CustomerPurchaseComponent } from './components/customer-purchase/custom
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatCardModule} from '@angular/material/card';
 import {MatSelectModule} from '@angular/material/select';
+import { CouponsCategoryComponent } from './components/coupons-category/coupons-category.component';
+import { CouponsMaxPriceComponent } from './components/coupons-max-price/coupons-max-price.component';
 
 
 
@@ -50,6 +52,8 @@ import {MatSelectModule} from '@angular/material/select';
     CompanyCouponsComponent,
     CustomerCouponsComponent,
     CustomerPurchaseComponent,
+    CouponsCategoryComponent,
+    CouponsMaxPriceComponent,
   ],
   imports: [
     BrowserModule,
