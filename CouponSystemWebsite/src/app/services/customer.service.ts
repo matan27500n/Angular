@@ -28,4 +28,16 @@ export class CustomerService {
       coupon
     );
   }
+
+  public getCustomerByEmailAndPassword(
+    email: string,
+    password: string
+  ): Observable<any> {
+    return this.httpClient.get<any>(
+      'http://localhost:8080/customer/getCustomerByEmailAndPassword/' +
+        email +
+        '/' +
+        password
+    );
+  }
 }
