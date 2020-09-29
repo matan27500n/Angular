@@ -5,37 +5,6 @@ import { AdminService } from 'src/app/services/admin.service';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 
-export interface PeriodicElement {
-  id: number;
-  name: number;
-  email: number;
-  password: string;
-  actions: string;
-}
-
-export interface PeriodicElement3 {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  actions: string;
-}
-
-export interface PeriodicElement3 {
-  id: number;
-  companyID: number;
-  categoryID: string;
-  title: string;
-  description: string;
-  startDate: Date;
-  endDate: Date;
-  amount: number;
-  price: number;
-  image: string;
-  actions: string;
-}
-
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -126,7 +95,9 @@ export class AdminComponent implements OnInit {
   public deleteCompany(id: number): void {
     this.adminService.deleteCompany(id).subscribe(
       (res) => {
-        this.companies = res;
+        this.companies = this.companies.filter((company) => company.id !== id);
+        this.displayedColumns = ['id', 'name', 'email', 'password', 'Actions'];
+        this.dataSource = new MatTableDataSource(this.companies);
         alert('deleting successfully!');
       },
       (err) => {
@@ -138,7 +109,16 @@ export class AdminComponent implements OnInit {
   public deleteCustomer(id: number): void {
     this.adminService.deleteCustomer(id).subscribe(
       (res) => {
-        this.customers = res;
+        this.customers = this.customers.filter((customer)=> customer.id !== id);
+        this.displayedColumns2 = [
+          'id',
+          'firstName',
+          'lastName',
+          'email',
+          'password',
+          'Actions',
+        ];
+        this.dataSource2 = new MatTableDataSource(this.customers);
         alert('deleting successfully!!');
       },
       (err) => {
@@ -149,7 +129,21 @@ export class AdminComponent implements OnInit {
   public deleteCoupon(id: number): void {
     this.adminService.deleteCoupon(id).subscribe(
       (res) => {
-        this.coupons = res;
+        this.coupons = this.coupons.filter((coupon) => coupon.id !== id);
+        this.displayedColumns3 = [
+          'id',
+          'companyID',
+          'categoryID',
+          'title',
+          'description',
+          'startDate',
+          'endDate',
+          'amount',
+          'price',
+          'image',
+          'Actions',
+        ];
+        this.dataSource3 = new MatTableDataSource(this.coupons);
         alert('deleting successfully!!');
       },
       (err) => {

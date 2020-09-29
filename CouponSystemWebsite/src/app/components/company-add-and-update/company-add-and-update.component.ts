@@ -1,3 +1,4 @@
+import { LoginService } from './../../services/login.service';
 import { CompanyDateService } from './../../services/company-data.service';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
@@ -11,6 +12,7 @@ import { AdminService } from 'src/app/services/admin.service';
   styleUrls: ['./company-add-and-update.component.css'],
 })
 export class CompanyAddAndUpdateComponent implements OnInit {
+  public companies: Company[] = [];
   public type: string = 'Add';
   public id: number;
   public company = new Company();
@@ -18,12 +20,14 @@ export class CompanyAddAndUpdateComponent implements OnInit {
     private title: Title,
     private activatedRoute: ActivatedRoute,
     private adminService: AdminService,
-    private route: Router
+    private route: Router,
+    private loginService: LoginService
   ) {
     this.id = Number(activatedRoute.snapshot.params.id);
   }
 
   ngOnInit(): void {
+    console.log('the type: ' + this.loginService.type);
     if (this.id !== 0) {
       this.type = 'Update';
       this.title.setTitle('Updating Company');
@@ -45,10 +49,16 @@ export class CompanyAddAndUpdateComponent implements OnInit {
   }
 
   public addOrUpdateCompany(): void {
+    this.adminService.getCompanies().subscribe(
+      (res) => {this.companies = res},
+      (err) => {alert("something was wrong..")}
+    );
+
     if (this.id === 0) {
       this.adminService.addCompany(this.company).subscribe(
         (res) => {
-          this.company === res;
+          alert('company added successfully!!');
+          this.companies = res;
         },
         (err) => {
           alert(err.message);
@@ -64,6 +74,6 @@ export class CompanyAddAndUpdateComponent implements OnInit {
         }
       );
     }
-    this.route.navigateByUrl('/company');
+    this.route.navigateByUrl('/admin');
   }
 }

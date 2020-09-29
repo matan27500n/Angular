@@ -1,9 +1,9 @@
 <h1>Company {{type}}</h1>
 <br><br>
 <p>
-  <mat-form-field appearance="legacy">
+  <mat-form-field appearance="legacy" [(ngModel)]="company">
     <mat-label>Id</mat-label>
-    <input matInput placeholder="Id" required [(ngModel)]="company.id" disabled>
+    <input matInput placeholder="Id" required [(ngModel)]="company.id" disabled ngDefaultControl>
     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
   </mat-form-field>
 </p>
@@ -18,7 +18,7 @@
 <p *ngIf="type==='Add'">
   <mat-form-field appearance="legacy">
     <mat-label>Name</mat-label>
-    <input #company_name="ngModel" required matInput placeholder="Name" [(ngModel)]="company.name">
+    <input #company_name="ngModel" required matInput placeholder="Name" [(ngModel)]="company.name" ngDefaultControl>
     <mat-icon matSuffix> sentiment_very_satisfied</mat-icon>
   </mat-form-field>
 </p>
@@ -26,7 +26,7 @@
 <p>
   <mat-form-field appearance="legacy">
     <mat-label>Email</mat-label>
-    <input #company_email="ngModel" matInput placeholder="Email" [(ngModel)]="company.email"  required>
+    <input #company_email="ngModel" matInput placeholder="Email" [(ngModel)]="company.email"  required ngDefaultControl>
     <mat-icon matSuffix
       *ngIf="!company_email.errors?.required">
       sentiment_very_satisfied</mat-icon>
@@ -36,11 +36,11 @@
   <mat-form-field appearance="legacy">
     <mat-label>Password</mat-label>
     <input #company_password="ngModel" matInput placeholder="Password" [(ngModel)]="company.password" required
-      minlength="4">
+      minlength="4" ngDefaultControl>
     <mat-icon matSuffix *ngIf="!company_password.errors?.required && !company_password.errors?.minlength">
       sentiment_very_satisfied</mat-icon>
   </mat-form-field>
-</p>
+</p>>
 <p>
   <button (click)="addOrUpdateCompany()" mat-raised-button color="primary">{{type}}</button>
 </p>

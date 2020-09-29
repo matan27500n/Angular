@@ -50,7 +50,7 @@ export class CustomerAddAndUpdateComponent implements OnInit {
     if (this.id === 0) {
       this.adminService.addCustomer(this.customer).subscribe(
         (res) => {
-          this.customer === res;
+          alert('customer added');
         },
         (err) => {
           alert(err.message);
@@ -59,13 +59,13 @@ export class CustomerAddAndUpdateComponent implements OnInit {
     } else {
       this.adminService.updateCustomer(this.customer).subscribe(
         (res) => {
-          this.customer === res;
+          alert('customer ' + this.customer.id + ' updated!');
         },
         (err) => {
           alert('something wrong here');
         }
       );
     }
-    this.route.navigateByUrl('/customer');
+    this.route.navigateByUrl('/admin');
   }
 }

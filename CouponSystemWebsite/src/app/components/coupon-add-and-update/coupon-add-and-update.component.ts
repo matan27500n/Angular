@@ -1,3 +1,7 @@
+import { LoginService } from './../../services/login.service';
+import { CompanyService } from 'src/app/services/company.service';
+import { Credentials } from './../../models/Credentials';
+import { Company } from 'src/app/models/company';
 import { CouponDataService } from './../../services/coupon-data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Coupon } from './../../models/coupon';
@@ -11,6 +15,7 @@ import { AdminService } from 'src/app/services/admin.service';
   styleUrls: ['./coupon-add-and-update.component.css'],
 })
 export class CouponAddAndUpdateComponent implements OnInit {
+  public company = new Company();
   public type: string = 'Add';
   public id: number;
   public coupon = new Coupon();
@@ -19,7 +24,9 @@ export class CouponAddAndUpdateComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private adminService: AdminService,
     private route: Router,
-    private couponDataService: CouponDataService
+    private couponDataService: CouponDataService,
+    private loginService: LoginService,
+    private companyService: CompanyService
   ) {
     this.id = Number(activatedRoute.snapshot.params.id);
   }
@@ -46,6 +53,20 @@ export class CouponAddAndUpdateComponent implements OnInit {
         }
       );
     } else {
+      console.log("email: " + this.loginService.email);
+      this.companyService
+        .getCompanyByEmailAndPassword(
+          this.loginService.email,
+          this.loginService.password
+        )
+        .subscribe(
+          (res) => {
+            this.company = res;
+          },
+          (err) => {
+            alert('GetCompanyByEmailAndPassword failed..');
+          }
+        );
       this.title.setTitle('Adding Coupon');
       this.type = 'Add';
     }
@@ -55,16 +76,16 @@ export class CouponAddAndUpdateComponent implements OnInit {
     if (this.id === 0) {
       this.adminService.addCoupon(this.coupon).subscribe(
         (res) => {
-          alert("Coupon added successfully");
+          alert('Coupon added successfully');
         },
         (err) => {
-          alert("You cannot add coupon with the same title");
+          alert('You cannot add coupon with the same title');
         }
       );
     } else {
       this.adminService.updateCoupon(this.coupon).subscribe(
         (res) => {
-         alert("Coupon update successfully!");
+          alert('Coupon update successfully!');
         },
         (err) => {
           alert(err.message);
