@@ -31,7 +31,7 @@ export class CouponAddAndUpdateComponent implements OnInit {
     private loginService: LoginService,
     private companyService: CompanyService,
     private customerService: CustomerService,
-    private location2:Location
+    private location2: Location
   ) {
     this.id = Number(activatedRoute.snapshot.params.id);
   }
@@ -78,9 +78,8 @@ export class CouponAddAndUpdateComponent implements OnInit {
   }
 
   public addOrUpdateCoupon(): void {
-    
     if (this.id === 0) {
-      if(this.type === 'company'){
+      if (this.type === 'company') {
         this.companyService.getCompanyCoupons(this.company.id).subscribe(
           (res) => {
             this.coupons = res;
@@ -90,7 +89,7 @@ export class CouponAddAndUpdateComponent implements OnInit {
           }
         );
       }
-      this.adminService.addCoupon(this.coupon).subscribe(
+      this.companyService.addCoupon(this.coupon).subscribe(
         (res) => {
           console.log('res: ' + res);
           alert('Coupon added successfully');
@@ -101,10 +100,9 @@ export class CouponAddAndUpdateComponent implements OnInit {
         }
       );
     } else {
-      this.adminService.updateCoupon(this.coupon).subscribe(
+      this.companyService.updateCoupon(this.coupon).subscribe(
         (res) => {
-          console.log(res);
-          alert("Coupon update successfully!");
+          alert('Coupon update successfully!');
         },
         (err) => {
           alert(err.message);

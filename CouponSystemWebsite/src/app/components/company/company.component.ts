@@ -46,16 +46,22 @@ export class CompanyComponent implements OnInit {
       .subscribe(
         (res) => {
           this.id = res;
-          console.log("the id: "+ this.id);
+          console.log('the id: ' + this.id);
           this.adminService.getOneCompany(this.id).subscribe(
             (res) => {
               this.company.push(res);
-              this.displayedColumns = ['id', 'name', 'email', 'password', 'Actions'];
+              this.displayedColumns = [
+                'id',
+                'name',
+                'email',
+                'password',
+                'Actions',
+              ];
               this.dataSource = new MatTableDataSource(this.company);
               this.companyService.getCompanyCoupons(this.id).subscribe(
                 (res) => {
                   this.coupons = res;
-          
+
                   console.log(this.coupons);
                   this.displayedColumns3 = [
                     'id',
@@ -85,12 +91,7 @@ export class CompanyComponent implements OnInit {
         (err) => {
           alert(err.message);
         }
-
-        
       );
-    
-
-  
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -103,7 +104,7 @@ export class CompanyComponent implements OnInit {
   }
 
   public deleteCoupon(id: number): void {
-    this.adminService.deleteCoupon(id).subscribe(
+    this.companyService.deleteCoupon(id).subscribe(
       (res) => {
         this.coupons = this.coupons.filter((coupon) => coupon.id !== id);
         this.displayedColumns3 = [
@@ -120,7 +121,7 @@ export class CompanyComponent implements OnInit {
           'Actions',
         ];
         this.dataSource3 = new MatTableDataSource(this.coupons);
-        alert("deleting successfully!")
+        alert('deleting successfully!');
       },
       (err) => {
         alert(err.message);

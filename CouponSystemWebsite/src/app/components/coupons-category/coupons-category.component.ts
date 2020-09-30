@@ -28,10 +28,10 @@ export class CouponsCategoryComponent implements OnInit {
   ngOnInit(): void {
     this.companyService.getCompanyCouponsCategory(this.categoryID).subscribe(
       (res) => {
-        for(let  i =0; i < res.length; i++){
+        for (let i = 0; i < res.length; i++) {
           this.coupons.push(res[i]);
         }
-        console.log("Category by: " + this.coupons);
+        console.log('Category by: ' + this.coupons);
         this.displayedColumns3 = [
           'id',
           'companyID',
@@ -58,7 +58,7 @@ export class CouponsCategoryComponent implements OnInit {
   }
 
   public deleteCoupon(id: number): void {
-    this.adminService.deleteCoupon(id).subscribe(
+    this.companyService.deleteCoupon(id).subscribe(
       (res) => {
         this.coupons = res;
         alert('deleting successfully!!');

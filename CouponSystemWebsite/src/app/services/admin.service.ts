@@ -27,14 +27,24 @@ export class AdminService {
   }
 
   public getOneCompany(id: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Coupon-System-Header': this.tokenManager.getToken(),
+    });
+    const options = { headers: headers };
     return this.httpClient.get<Company>(
-      'http://localhost:8080/admin/getOneCompany/' + id
+      'http://localhost:8080/admin/getOneCompany/' + id,
+      options
     );
   }
 
   public deleteCompany(id: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Coupon-System-Header': this.tokenManager.getToken(),
+    });
+    const options = { headers: headers };
     return this.httpClient.delete<any>(
-      'http://localhost:8080/admin/deleteCompany/' + id
+      'http://localhost:8080/admin/deleteCompany/' + id,
+      options
     );
   }
 
@@ -45,76 +55,99 @@ export class AdminService {
     const options = { headers: headers };
     return this.httpClient.post<any>(
       'http://localhost:8080/admin/addCompany/',
-      company,options
+      company,
+      options
     );
   }
 
   public updateCompany(company: Company): Observable<any> {
+    const headers = new HttpHeaders({
+      'Coupon-System-Header': this.tokenManager.getToken(),
+    });
+    const options = { headers: headers };
     return this.httpClient.put<any>(
       'http://localhost:8080/admin/updateCompany/',
-      company
+      company,
+      options
     );
   }
 
   public getCustomers(): Observable<Customer[]> {
+    const headers = new HttpHeaders({
+      'Coupon-System-Header': this.tokenManager.getToken(),
+    });
+    const options = { headers: headers };
     return this.httpClient.get<Customer[]>(
-      'http://localhost:8080/admin/getAllCustomers'
+      'http://localhost:8080/admin/getAllCustomers',
+      options
     );
   }
+
   public getOneCustomer(id: number): Observable<Customer> {
+    const headers = new HttpHeaders({
+      'Coupon-System-Header': this.tokenManager.getToken(),
+    });
+    const options = { headers: headers };
     return this.httpClient.get<Customer>(
-      'http://localhost:8080/admin/getOneCustomer/' + id
+      'http://localhost:8080/admin/getOneCustomer/' + id,
+      options
     );
   }
 
   public deleteCustomer(id: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Coupon-System-Header': this.tokenManager.getToken(),
+    });
+    const options = { headers: headers };
     return this.httpClient.delete<any>(
-      'http://localhost:8080/admin/deleteCustomer/' + id
+      'http://localhost:8080/admin/deleteCustomer/' + id,
+      options
     );
   }
 
   public addCustomer(customer: Customer): Observable<any> {
+    const headers = new HttpHeaders({
+      'Coupon-System-Header': this.tokenManager.getToken(),
+    });
+    const options = { headers: headers };
     return this.httpClient.post<any>(
       'http://localhost:8080/admin/addCustomer/',
-      customer
+      customer,
+      options
     );
   }
 
   public updateCustomer(customer: Customer): Observable<any> {
+    const headers = new HttpHeaders({
+      'Coupon-System-Header': this.tokenManager.getToken(),
+    });
+    const options = { headers: headers };
     return this.httpClient.put<any>(
       'http://localhost:8080/admin/updateCustomer/',
-      customer
+      customer,
+      options
     );
   }
 
   public getCoupons(): Observable<Coupon[]> {
+    const headers = new HttpHeaders({
+      'Coupon-System-Header': this.tokenManager.getToken(),
+    });
+    const options = { headers: headers };
     return this.httpClient.get<Coupon[]>(
-      'http://localhost:8080/admin/getAllCoupons'
+      'http://localhost:8080/admin/getAllCoupons',
+      options
     );
   }
 
   public getOneCoupon(id: number): Observable<Coupon> {
+    const headers = new HttpHeaders({
+      'Coupon-System-Header': this.tokenManager.getToken(),
+    });
+    const options = { headers: headers };
     return this.httpClient.get<Coupon>(
-      'http://localhost:8080/admin/getOneCoupon/' + id
-    );
-  }
-  public deleteCoupon(id: number): Observable<any> {
-    return this.httpClient.delete<any>(
-      'http://localhost:8080/admin/deleteCoupon/' + id
-    );
-  }
-
-  public addCoupon(coupon: Coupon): Observable<any> {
-    return this.httpClient.post<any>(
-      'http://localhost:8080/company/addCoupon/',
-      coupon
-    );
-  }
-
-  public updateCoupon(coupon: Coupon): Observable<any> {
-    return this.httpClient.put<any>(
-      'http://localhost:8080/company/updateCoupon',
-      coupon
+      'http://localhost:8080/admin/getOneCoupon/' + id,
+      options
     );
   }
 }

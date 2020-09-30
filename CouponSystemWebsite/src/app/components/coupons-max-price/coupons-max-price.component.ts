@@ -56,7 +56,7 @@ export class CouponsMaxPriceComponent implements OnInit {
   }
 
   public deleteCoupon(id: number): void {
-    this.adminService.deleteCoupon(id).subscribe(
+    this.companyService.deleteCoupon(id).subscribe(
       (res) => {
         this.coupons = res;
         alert('deleting successfully!!');

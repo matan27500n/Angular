@@ -1,3 +1,4 @@
+import { CompanyService } from 'src/app/services/company.service';
 import { Coupon } from './../../models/coupon';
 import { Customer } from './../../models/customer';
 import { Company } from './../../models/company';
@@ -21,7 +22,7 @@ export class AdminComponent implements OnInit {
   public coupons: Coupon[];
   displayedColumns3: string[];
   dataSource3: MatTableDataSource<Coupon>;
-  public constructor(private adminService: AdminService) {}
+  public constructor(private adminService: AdminService, private companyService: CompanyService) {}
 
   ngOnInit(): void {
     this.adminService.getCompanies().subscribe(
@@ -127,7 +128,7 @@ export class AdminComponent implements OnInit {
     );
   }
   public deleteCoupon(id: number): void {
-    this.adminService.deleteCoupon(id).subscribe(
+    this.companyService.deleteCoupon(id).subscribe(
       (res) => {
         this.coupons = this.coupons.filter((coupon) => coupon.id !== id);
         this.displayedColumns3 = [

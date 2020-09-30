@@ -1,3 +1,4 @@
+import { CompanyService } from 'src/app/services/company.service';
 import { CustomerService } from './../../services/customer.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { AdminService } from './../../services/admin.service';
@@ -34,7 +35,8 @@ export class CustomerComponent implements OnInit {
   constructor(
     private adminService: AdminService,
     private customerService: CustomerService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private companyService: CompanyService
   ) {}
 
   ngOnInit(): void {
@@ -106,7 +108,7 @@ export class CustomerComponent implements OnInit {
   }
 
   public deleteCoupon(id: number): void {
-    this.adminService.deleteCoupon(id).subscribe(
+    this.companyService.deleteCoupon(id).subscribe(
       (res) => {
         this.coupons = res;
         alert('deleting successfully!!');
