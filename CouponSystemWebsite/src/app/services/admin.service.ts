@@ -39,9 +39,13 @@ export class AdminService {
   }
 
   public addCompany(company: Company): Observable<any> {
+    const headers = new HttpHeaders({
+      'Coupon-System-Header': this.tokenManager.getToken(),
+    });
+    const options = { headers: headers };
     return this.httpClient.post<any>(
       'http://localhost:8080/admin/addCompany/',
-      company
+      company,options
     );
   }
 

@@ -5,6 +5,7 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Company } from 'src/app/models/company';
 import { AdminService } from 'src/app/services/admin.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-company-add-and-update',
@@ -21,7 +22,8 @@ export class CompanyAddAndUpdateComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private adminService: AdminService,
     private route: Router,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private location2: Location
   ) {
     this.id = Number(activatedRoute.snapshot.params.id);
   }
@@ -57,23 +59,24 @@ export class CompanyAddAndUpdateComponent implements OnInit {
     if (this.id === 0) {
       this.adminService.addCompany(this.company).subscribe(
         (res) => {
-          alert('company added successfully!!');
-          this.companies = res;
+          alert("company added successfully!!");
         },
         (err) => {
-          alert(err.message);
+          alert("error with adding company, please try again");
         }
       );
     } else {
       this.adminService.updateCompany(this.company).subscribe(
         (res) => {
-          this.company === res;
+          console.log("the updated: " + res);
+          alert("company updated successfully!!")
         },
         (err) => {
           alert(err.message);
         }
       );
+     
     }
-    this.route.navigateByUrl('/admin');
+    this.location2.back();
   }
 }

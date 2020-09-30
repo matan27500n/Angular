@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./customer-add-and-update.component.css'],
 })
 export class CustomerAddAndUpdateComponent implements OnInit {
+  public customers: Customer[];
   public type: string = 'Add';
   public id: number;
   public customer = new Customer();
@@ -48,8 +49,18 @@ export class CustomerAddAndUpdateComponent implements OnInit {
 
   public addOrUpdateCustomer(): void {
     if (this.id === 0) {
+      this.adminService.getCustomers().subscribe(
+        (res) => {
+          this.customers = res;
+        },
+        (err) => {
+          alert('getCustomers failed..');
+        }
+      );
       this.adminService.addCustomer(this.customer).subscribe(
         (res) => {
+          console.log("res: "+ res);
+          this.customers = res;
           alert('customer added');
         },
         (err) => {

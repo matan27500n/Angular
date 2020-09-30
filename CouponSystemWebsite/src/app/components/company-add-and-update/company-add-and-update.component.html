@@ -10,27 +10,32 @@
 <p *ngIf="type==='Update'">
   <mat-form-field appearance="legacy">
     <mat-label>Name</mat-label>
-    <input #company_name="ngModel" required matInput placeholder="Name" [(ngModel)]="company.name" disabled>
-    <mat-icon matSuffix> sentiment_very_satisfied</mat-icon>
+    <input #company_name="ngModel" required matInput placeholder="Name" minlength="2" [(ngModel)]="company.name" disabled>
+    <mat-icon matSuffix *ngIf="!company_name.errors?.required  && !company_name.errors?.minlength"> sentiment_very_satisfied</mat-icon>
   </mat-form-field>
+  <span *ngIf="company_name.errors?.required">Empty name</span>
+  <span *ngIf="company_name.errors?.minlength">Short name - must be at least 2 characters</span>
 </p>
 
 <p *ngIf="type==='Add'">
   <mat-form-field appearance="legacy">
     <mat-label>Name</mat-label>
-    <input #company_name="ngModel" required matInput placeholder="Name" [(ngModel)]="company.name" ngDefaultControl>
-    <mat-icon matSuffix> sentiment_very_satisfied</mat-icon>
+    <input #company_name="ngModel" required matInput placeholder="Name" minlength="2" [(ngModel)]="company.name"
+      ngDefaultControl>
+    <mat-icon matSuffix *ngIf="!company_name.errors?.required  && !company_name.errors?.minlength">
+      sentiment_very_satisfied</mat-icon>
   </mat-form-field>
+  <span *ngIf="company_name.errors?.required">Empty name</span>
+  <span *ngIf="company_name.errors?.minlength">Short name - must be at least 2 characters</span>
 </p>
-
 <p>
   <mat-form-field appearance="legacy">
     <mat-label>Email</mat-label>
-    <input #company_email="ngModel" matInput placeholder="Email" [(ngModel)]="company.email"  required ngDefaultControl>
-    <mat-icon matSuffix
-      *ngIf="!company_email.errors?.required">
+    <input #company_email="ngModel" matInput placeholder="Email" [(ngModel)]="company.email" required ngDefaultControl>
+    <mat-icon matSuffix *ngIf="!company_email.errors?.required">
       sentiment_very_satisfied</mat-icon>
   </mat-form-field>
+  <span *ngIf="company_email.errors?.required">Empty email</span>
 </p>
 <p>
   <mat-form-field appearance="legacy">
@@ -40,6 +45,8 @@
     <mat-icon matSuffix *ngIf="!company_password.errors?.required && !company_password.errors?.minlength">
       sentiment_very_satisfied</mat-icon>
   </mat-form-field>
+  <span *ngIf="company_password.errors?.required">Empty password</span>
+  <span *ngIf="company_password.errors?.minlength">Invalid password-must be at least 4 letters</span>
 </p>>
 <p>
   <button (click)="addOrUpdateCompany()" mat-raised-button color="primary">{{type}}</button>

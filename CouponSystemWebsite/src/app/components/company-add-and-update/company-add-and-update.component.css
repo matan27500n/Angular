@@ -18,3 +18,8 @@ p {
   text-align: center;
   text-decoration: solid;
 }
+span{
+  margin-left: 10px;
+  color: red;
+  font-weight: bold;
+}

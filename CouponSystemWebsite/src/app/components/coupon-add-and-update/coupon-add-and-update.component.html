@@ -7,13 +7,23 @@
   </mat-form-field>
 </p>
 <p>
-  <mat-form-field appearance="legacy">
+  <mat-form-field appearance="legacy" *ngIf="company.id !== null">
     <mat-label>Company Id</mat-label>
-    <input required matInput placeholder="Company Id" [(ngModel)]="company.id" disabled>
+    <input required matInput placeholder="Company Id" [(ngModel)]="company.id"  disabled>
     <mat-icon matSuffix>
       sentiment_very_satisfied</mat-icon>
   </mat-form-field>
 </p>
+
+<p>
+  <mat-form-field appearance="legacy" *ngIf="company.id === null">
+    <mat-label>Company Id</mat-label>
+    <input required matInput placeholder="Company Id" [(ngModel)]="coupon.companyID"  disabled>
+    <mat-icon matSuffix>
+      sentiment_very_satisfied</mat-icon>
+  </mat-form-field>
+</p>
+
 <p>
   <mat-form-field appearance="legacy">
     <mat-label>Category Id</mat-label>
@@ -25,7 +35,7 @@
 <p>
   <mat-form-field appearance="legacy">
     <mat-label>Title</mat-label>
-    <input #title="ngModel" required matInput placeholder="Category Id" [(ngModel)]="coupon.title">
+    <input #title="ngModel" required matInput placeholder="Title" [(ngModel)]="coupon.title">
     <mat-icon matSuffix *ngIf="!title.errors?.required">
       sentiment_very_satisfied</mat-icon>
   </mat-form-field>

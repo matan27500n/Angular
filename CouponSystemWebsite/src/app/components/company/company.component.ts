@@ -102,23 +102,25 @@ export class CompanyComponent implements OnInit {
     this.dataSource3.filter = filterValue.trim().toLowerCase();
   }
 
-  public deleteCompany(id: number): void {
-    this.adminService.deleteCompany(id).subscribe(
-      (res) => {
-        this.company = res;
-        alert('delete successfully!!');
-      },
-      (err) => {
-        alert(err.message);
-      }
-    );
-  }
-
   public deleteCoupon(id: number): void {
     this.adminService.deleteCoupon(id).subscribe(
       (res) => {
-        this.coupons = res;
-        alert('deleting successfully!!');
+        this.coupons = this.coupons.filter((coupon) => coupon.id !== id);
+        this.displayedColumns3 = [
+          'id',
+          'companyID',
+          'categoryID',
+          'title',
+          'description',
+          'startDate',
+          'endDate',
+          'amount',
+          'price',
+          'image',
+          'Actions',
+        ];
+        this.dataSource3 = new MatTableDataSource(this.coupons);
+        alert("deleting successfully!")
       },
       (err) => {
         alert(err.message);
