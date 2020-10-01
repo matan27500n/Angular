@@ -1,54 +1,43 @@
 <body>
-  <h1>Coupon System Introduction</h1>
-
-  <mat-accordion>
-    <mat-expansion-panel hideToggle>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <h2>About me</h2>
-        </mat-panel-title>
-        <mat-panel-description>
-          Details about my hobbies, profession and more.
-        </mat-panel-description>
-      </mat-expansion-panel-header>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>About Me</mat-card-title>
+      <mat-card-subtitle>Private details</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="../../../assets/images/me.jpg">
+    <mat-card-content>
       <p>
-        <img src="../../../assets/images/me.jpg">
         <br> My name is Matan, I'm 22 years old. <br>
         I'm a junior full stack developer.
         In my free time i like to go to the gym and play basketball
       </p>
-    </mat-expansion-panel>
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-    </mat-expansion-panel>
+    </mat-card-content>
+  </mat-card>
 
-    <mat-expansion-panel hideToggle>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <h2>About Project</h2>
-        </mat-panel-title>
-        <mat-panel-description>
-          Details about the project.
-        </mat-panel-description>
-      </mat-expansion-panel-header>
+  <mat-card class="example-card2">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image2"></div>
+      <mat-card-title>About Project</mat-card-title>
+      <mat-card-subtitle>Detail's project</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="../../../assets/images/couponforCard.jpg">
+    <mat-card-content>
       <p>
-        <img src="../../../assets/images/couponforCard.jpg">
-        <br> The Coupon System is consists of 3 main things: Company,Customer and Coupon. <br>
-        You can purchase here coupons that will give you huge discount about many products of some companies.
+        The Coupon System is consists of 3 main things: Company,Customer and Coupon.
+        You can purchase here coupons that will give you huge discount about many products of many companies.
       </p>
-    </mat-expansion-panel>
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-    </mat-expansion-panel>
+    </mat-card-content>
+  </mat-card>
 
-    <mat-expansion-panel hideToggle>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <h2>Create Contact</h2>
-        </mat-panel-title>
-        <mat-panel-description>
-          Details about ways to contact with me
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-
+  <mat-card class="example-card3">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image3"></div>
+      <mat-card-title>Create Contact</mat-card-title>
+      <mat-card-subtitle>Contact with me</mat-card-subtitle>
+    </mat-card-header>
+    <img id="stam2" mat-card-image src="../../../assets/images/contactme.jpg">
+    <mat-card-content>
       <mat-selection-list #contacts [multiple]="false">
         <mat-list-option *ngFor="let p of typeOfContacts" [value]="p">
           {{p}}
@@ -58,11 +47,8 @@
       <p>
         Option selected: {{contacts.selectedOptions.selected[0]?.value}}
       </p>
-
-    </mat-expansion-panel>
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-    </mat-expansion-panel>
-
-
-  </mat-accordion>
+    </mat-card-content>
+  </mat-card>
 </body>
+
+

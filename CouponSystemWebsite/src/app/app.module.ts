@@ -29,13 +29,10 @@ import { CompanyCouponsComponent } from './components/company-coupons/company-co
 import { CustomerCouponsComponent } from './components/customer-coupons/customer-coupons.component';
 import { CustomerPurchaseComponent } from './components/customer-purchase/customer-purchase.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {MatCardModule} from '@angular/material/card';
-import {MatSelectModule} from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
 import { CouponsCategoryComponent } from './components/coupons-category/coupons-category.component';
 import { CouponsMaxPriceComponent } from './components/coupons-max-price/coupons-max-price.component';
-
-
-
 
 @NgModule({
   declarations: [
@@ -74,7 +71,7 @@ import { CouponsMaxPriceComponent } from './components/coupons-max-price/coupons
     MatListModule,
     FlexLayoutModule,
     MatCardModule,
-    MatSelectModule
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
