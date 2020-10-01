@@ -6,7 +6,6 @@
  
   <mat-menu #menu="matMenu">
     <button mat-menu-item> <a [routerLink]="['/home']" routerLinkActive="router-link-active">Home</a></button>
-    <span *ngIf="isLoggedIn()===true" id="st1">Hello {{sayHello()}}</span>
     <button mat-menu-item><a [routerLink]="['/admin']" routerLinkActive="router-link-active">Admin</a></button>
     <button mat-menu-item><a [routerLink]="['/company']" routerLinkActive="router-link-active">Company</a></button>
     <button mat-menu-item><a [routerLink]="['/customer']" routerLinkActive="router-link-active">Customer</a></button>
@@ -28,7 +27,7 @@
 
   <span>Coupon System</span>
   <span class="example-spacer"></span>
-  <span *ngIf="isLoggedIn()===true" id="st1">Hello {{sayHello()}}</span>
+  <button mat-menu-item *ngIf="isLoggedIn()===true" id="st1">Hello {{sayHello()}}</button>
   <button mat-raised-button color="basic" style="margin:1px;">
     <a [routerLink]="['/home']" routerLinkActive="router-link-active">Home</a></button>
   <button mat-raised-button color="basic" style="margin:1px;">

@@ -10,23 +10,25 @@
 <p *ngIf="type==='Update'">
   <mat-form-field appearance="legacy">
     <mat-label>Name</mat-label>
-    <input #company_name="ngModel" required matInput placeholder="Name" minlength="2" [(ngModel)]="company.name" disabled>
+    <input #company_name="ngModel" required matInput placeholder="Name" minlength="2" pattern="^[A-Z].*" [(ngModel)]="company.name" disabled>
     <mat-icon matSuffix *ngIf="!company_name.errors?.required  && !company_name.errors?.minlength"> sentiment_very_satisfied</mat-icon>
   </mat-form-field>
   <span *ngIf="company_name.errors?.required">Empty name</span>
   <span *ngIf="company_name.errors?.minlength">Short name - must be at least 2 characters</span>
+  <span *ngIf="company_name.errors?.pattern"> not valid</span>
 </p>
 
 <p *ngIf="type==='Add'">
   <mat-form-field appearance="legacy">
     <mat-label>Name</mat-label>
-    <input #company_name="ngModel" required matInput placeholder="Name" minlength="2" [(ngModel)]="company.name"
+    <input #company_name="ngModel" pattern="^[A-Z].*" required matInput placeholder="Name" minlength="2" [(ngModel)]="company.name"
       ngDefaultControl>
     <mat-icon matSuffix *ngIf="!company_name.errors?.required  && !company_name.errors?.minlength">
       sentiment_very_satisfied</mat-icon>
   </mat-form-field>
   <span *ngIf="company_name.errors?.required">Empty name</span>
   <span *ngIf="company_name.errors?.minlength">Short name - must be at least 2 characters</span>
+  <span *ngIf="company_name.errors?.pattern"> not valid</span>
 </p>
 <p>
   <mat-form-field appearance="legacy">

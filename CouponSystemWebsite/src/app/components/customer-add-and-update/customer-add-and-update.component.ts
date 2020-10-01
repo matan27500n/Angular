@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { CustomerDataService } from './../../services/customer-data.service';
 import { AdminService } from 'src/app/services/admin.service';
 import { Customer } from './../../models/customer';
@@ -20,7 +21,8 @@ export class CustomerAddAndUpdateComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private adminService: AdminService,
     private route: Router,
-    private customerDataService: CustomerDataService
+    private customerDataService: CustomerDataService,
+    private location2: Location
   ) {
     this.id = Number(activatedRoute.snapshot.params.id);
   }
@@ -77,6 +79,7 @@ export class CustomerAddAndUpdateComponent implements OnInit {
         }
       );
     }
-    this.route.navigateByUrl('/admin');
+    //this.route.navigateByUrl('/admin');
+    this.location2.back();
   }
 }
