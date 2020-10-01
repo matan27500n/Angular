@@ -16,15 +16,13 @@ th,
 td {
   border: 1px solid blue;
 }
-tr:nth-child(even) {
+td{
   background-color: lightblue;
 }
-tr:nth-child(odd) {
+th {
   background-color: lightcoral;
 }
-tr:first-child {
-  background-color: gray;
-}
+
 
 .mat-form-field {
   font-size: 22px;
@@ -52,8 +50,11 @@ th {
   text-align: center;
 }
 .head2 {
-  font-size: 13px;
+  font-size: 20px;
 }
 body{
-  background-color: aqua;
+  background-color: aquamarine;
+}
+.coupon123{
+  background-color: aquamarine;
 }

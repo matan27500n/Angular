@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { CompanyService } from './../../services/company.service';
 import { LoginService } from './../../services/login.service';
 import { Credentials } from './../../models/Credentials';
@@ -33,7 +34,8 @@ export class CompanyComponent implements OnInit {
   public constructor(
     private adminService: AdminService,
     private loginService: LoginService,
-    private companyService: CompanyService
+    private companyService: CompanyService,
+    private location2: Location
   ) {}
 
   ngOnInit(): void {
@@ -102,6 +104,51 @@ export class CompanyComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource3.filter = filterValue.trim().toLowerCase();
   }
+
+  public deleteCompany(id: number): void {
+    if (confirm('Are you sure you want to delete this company?')) {
+      this.adminService.deleteCompany(id).subscribe(
+        (res) => {
+          this.company = this.company.filter(
+            (company) => company.id !== id
+          ); 
+          this.displayedColumns = [
+            'id',
+            'name',
+            'email',
+            'password',
+            'Actions',
+          ];
+          this.dataSource = new MatTableDataSource(this.company);
+          this.coupons = this.coupons.filter((coupon) => coupon.companyID !== id);
+          this.displayedColumns3 = [
+            'id',
+            'companyID',
+            'categoryID',
+            'title',
+            'description',
+            'startDate',
+            'endDate',
+            'amount',
+            'price',
+            'image',
+            'Actions',
+          ];
+          this.dataSource3 = new MatTableDataSource(this.coupons);
+          this.loginService.isLoggedIn = false;
+          this.loginService.email = '';
+          this.loginService.password = '';
+          this.loginService.type = '';
+          this.loginService.token = '';
+          this.location2.back();
+        },
+        (err) => {
+          alert(err.message);
+        }
+      );
+    }
+  }
+
 
   public deleteCoupon(id: number): void {
     this.companyService.deleteCoupon(id).subscribe(

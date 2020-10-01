@@ -1,13 +1,10 @@
 .example-spacer {
     flex: 1 1 auto;
   }
-  #st1 {
-    position: fixed;
-    margin: 0 auto;
-    margin-left: -500px;
-    margin-top: -345px;
-    left: 50%;
-    top: 50%;
-    font-size: x-large;
-    color: white;
-  }
+ span{
+   padding: 5px;
+   margin: 5px;
+ }
+ button{
+  margin:5px
+ }

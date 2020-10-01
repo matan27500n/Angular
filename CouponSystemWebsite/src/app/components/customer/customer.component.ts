@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { CompanyService } from 'src/app/services/company.service';
 import { CustomerService } from './../../services/customer.service';
 import { MatTableDataSource } from '@angular/material/table';
@@ -36,7 +37,8 @@ export class CustomerComponent implements OnInit {
     private adminService: AdminService,
     private customerService: CustomerService,
     private loginService: LoginService,
-    private companyService: CompanyService
+    private companyService: CompanyService,
+    private location2: Location
   ) {}
 
   ngOnInit(): void {
@@ -96,26 +98,50 @@ export class CustomerComponent implements OnInit {
   }
 
   public deleteCustomer(id: number): void {
-    this.adminService.deleteCustomer(id).subscribe(
-      (res) => {
-        this.customers = res;
-        alert('deleting successfully!!');
-      },
-      (err) => {
-        alert(err.message);
-      }
-    );
+    if (confirm('Are you sure you want to delete this customer?')) {
+      this.adminService.deleteCustomer(id).subscribe(
+        (res) => {
+          this.customer = this.customer.filter(
+            (customer) => customer.id !== id
+          );
+          this.loginService.isLoggedIn = false;
+          this.loginService.email = '';
+          this.loginService.password = '';
+          this.loginService.type = '';
+          this.loginService.token = '';
+          this.location2.back();
+        },
+        (err) => {
+          alert(err.message);
+        }
+      );
+    }
   }
 
   public deleteCoupon(id: number): void {
-    this.companyService.deleteCoupon(id).subscribe(
-      (res) => {
-        this.coupons = res;
-        alert('deleting successfully!!');
-      },
-      (err) => {
-        alert(err.message);
-      }
-    );
+    if (confirm('Are you sure you want to delete this coupon?')) {
+      this.companyService.deleteCoupon(id).subscribe(
+        (res) => {
+          this.coupons = this.coupons.filter((coupon) => coupon.id !== id);
+          this.displayedColumns3 = [
+            'id',
+            'companyID',
+            'categoryID',
+            'title',
+            'description',
+            'startDate',
+            'endDate',
+            'amount',
+            'price',
+            'image',
+            'Actions',
+          ];
+          this.dataSource3 = new MatTableDataSource(this.coupons);
+        },
+        (err) => {
+          alert(err.message);
+        }
+      );
+    }
   }
 }
