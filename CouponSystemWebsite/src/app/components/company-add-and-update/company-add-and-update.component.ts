@@ -68,7 +68,6 @@ export class CompanyAddAndUpdateComponent implements OnInit {
     } else {
       this.adminService.updateCompany(this.company).subscribe(
         (res) => {
-          console.log("the updated: " + res);
           alert("company updated successfully!!")
         },
         (err) => {
