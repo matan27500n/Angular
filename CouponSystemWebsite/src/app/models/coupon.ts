@@ -10,6 +10,6 @@ export class Coupon {
       public end_date?: Date,
       public amount?: number,
       public price?: number,
-      public image?: String
+      public image?: string
     ) {}
   }

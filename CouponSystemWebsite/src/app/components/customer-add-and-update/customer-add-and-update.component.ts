@@ -1,3 +1,4 @@
+import { LoginService } from 'src/app/services/login.service';
 import { Location } from '@angular/common';
 import { CustomerDataService } from './../../services/customer-data.service';
 import { AdminService } from 'src/app/services/admin.service';
@@ -61,7 +62,7 @@ export class CustomerAddAndUpdateComponent implements OnInit {
       );
       this.adminService.addCustomer(this.customer).subscribe(
         (res) => {
-          console.log("res: "+ res);
+          console.log('res: ' + res);
           this.customers = res;
           alert('customer added');
         },
@@ -79,7 +80,6 @@ export class CustomerAddAndUpdateComponent implements OnInit {
         }
       );
     }
-    //this.route.navigateByUrl('/admin');
     this.location2.back();
   }
 }

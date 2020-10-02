@@ -93,7 +93,14 @@ export class CouponAddAndUpdateComponent implements OnInit {
         (res) => {
           console.log('res: ' + res);
           alert('Coupon added successfully');
-          //this.coupons = res;
+          this.companyService.getCompanyCoupons(this.company.id).subscribe(
+            (res) => {
+              this.coupons = res;
+            },
+            (err) => {
+              alert('getCompanyCoupons wrong..');
+            }
+          );
         },
         (err) => {
           alert('You cannot add coupon with the same title');
