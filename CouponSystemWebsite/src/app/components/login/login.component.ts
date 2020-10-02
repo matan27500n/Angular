@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
         this.loginService.token = loginResponse.token;
         this.loginService.type = loginResponse.type;
         this.loginService.isLoggedIn = true;
-        alert(this.loginService.token);
+        alert(this.loginService.token + " " + this.loginService.type);
         this.router.navigateByUrl(this.credentials.type);
       },
       (err) => {

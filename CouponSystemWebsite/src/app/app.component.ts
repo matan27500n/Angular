@@ -31,4 +31,7 @@ export class AppComponent implements OnInit {
   public sayHello(): string {
     return this.loginService.email;
   }
+  public getType(): string{
+    return this.loginService.type;
+  }
 }
