@@ -5,6 +5,7 @@ import { Company } from './../../models/company';
 import { AdminService } from 'src/app/services/admin.service';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -23,11 +24,20 @@ export class AdminComponent implements OnInit {
   displayedColumns3: string[];
   dataSource3: MatTableDataSource<Coupon>;
   public constructor(
+    private router: Router,
     private adminService: AdminService,
     private companyService: CompanyService
   ) {}
 
   ngOnInit(): void {
+    this.router.events.subscribe((evt) => {
+      if (evt instanceof NavigationEnd) {
+         // trick the Router into believing it's last link wasn't previously loaded
+         this.router.navigated = false;
+         // if you need to scroll back to top, here is the right place
+         window.scrollTo(0, 0);
+      }
+  });
     this.adminService.getCompanies().subscribe(
       (companies) => {
         this.companies = companies;

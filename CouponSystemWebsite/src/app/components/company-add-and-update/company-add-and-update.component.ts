@@ -76,6 +76,7 @@ export class CompanyAddAndUpdateComponent implements OnInit {
       );
      
     }
+    this.route.navigateByUrl('/admin');
     this.location2.back();
   }
 }
