@@ -33,6 +33,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { CouponsCategoryComponent } from './components/coupons-category/coupons-category.component';
 import { CouponsMaxPriceComponent } from './components/coupons-max-price/coupons-max-price.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -72,6 +74,8 @@ import { CouponsMaxPriceComponent } from './components/coupons-max-price/coupons
     FlexLayoutModule,
     MatCardModule,
     MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent],

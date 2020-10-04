@@ -11,12 +11,22 @@ import { Title } from '@angular/platform-browser';
 import { AdminService } from 'src/app/services/admin.service';
 import { Location } from '@angular/common';
 
+interface Category {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-coupon-add-and-update',
   templateUrl: './coupon-add-and-update.component.html',
   styleUrls: ['./coupon-add-and-update.component.css'],
 })
 export class CouponAddAndUpdateComponent implements OnInit {
+  categories: Category[] = [
+    { value: 'Drinks', viewValue: 'Drinks' },
+    { value: 'Pharmacy', viewValue: 'Pharmacy' },
+    { value: 'Fast_food', viewValue: 'Fast_food' },
+  ];
   public coupons: Coupon[] = [];
   public company = new Company();
   public type: string = 'Add';
@@ -34,6 +44,20 @@ export class CouponAddAndUpdateComponent implements OnInit {
     private location2: Location
   ) {
     this.id = Number(activatedRoute.snapshot.params.id);
+    this.companyService
+        .getCompanyByEmailAndPassword(
+          this.loginService.email,
+          this.loginService.password
+        )
+        .subscribe(
+          (res) => {
+            this.company = res;
+            this.coupon.companyID = this.company.id;
+          },
+          (err) => {
+            alert('GetCompanyByEmailAndPassword failed..');
+          }
+        );
   }
 
   ngOnInit(): void {

@@ -6,28 +6,23 @@
     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
   </mat-form-field>
 </p>
-<!--<p>
-  <mat-form-field appearance="legacy" *ngIf="company.id !== null">
-    <mat-label>Company Id</mat-label>
-    <input required matInput placeholder="Company Id" [(ngModel)]="company.id" disabled>
-    <mat-icon matSuffix>
-      sentiment_very_satisfied</mat-icon>
-  </mat-form-field>
-</p>-->
 
 <p>
-  <mat-form-field appearance="legacy" >
+  <mat-form-field appearance="legacy">
     <mat-label>Company Id</mat-label>
-    <input required matInput placeholder="Company Id" [(ngModel)]="coupon.companyID">
-    <mat-icon matSuffix>
+    <input #company_id=ngModel required matInput placeholder="Company Id" [(ngModel)]="coupon.companyID" disabled>
+    <mat-icon matSuffix *ngIf="!company_id.errors?.required">
       sentiment_very_satisfied</mat-icon>
+    <mat-hint *ngIf="company_id.errors?.required">Missing companyID</mat-hint>
   </mat-form-field>
 </p>
 
 <p>
   <mat-form-field appearance="legacy">
     <mat-label>Category Id</mat-label>
-    <input #category_Id="ngModel" required matInput placeholder="Category Id" [(ngModel)]="coupon.categoryID">
+    <mat-select required [(ngModel)]="coupon.categoryID" #category_Id="ngModel">
+      <mat-option *ngFor="let item of categories" [value]="item.value">{{item.viewValue}}</mat-option>
+    </mat-select>
     <mat-icon matSuffix *ngIf="!category_Id.errors?.required">
       sentiment_very_satisfied</mat-icon>
     <mat-hint *ngIf="category_Id.errors?.required">Empty CategoryID</mat-hint>
@@ -79,22 +74,23 @@
 <p>
   <mat-form-field appearance="legacy">
     <mat-label>Amount</mat-label>
-    <input #amount="ngModel" matInput placeholder="Amount" [(ngModel)]="coupon.amount"
+    <input type="number" #amount="ngModel" matInput placeholder="Amount" [(ngModel)]="coupon.amount"
       pattern="([1-9]|[1-8][0-9]|9[0-9]|[1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|1000)" required>
     <mat-icon matSuffix *ngIf="!amount.errors?.required && !amount.errors?.pattern">
       sentiment_very_satisfied</mat-icon>
     <mat-hint *ngIf="amount.errors?.required">Empty amount</mat-hint>
-    <mat-hint *ngIf="amount.errors?.pattern">Invalid amount- can't be 0</mat-hint>
+    <mat-hint *ngIf="amount.errors?.pattern">Invalid amount- range between 1 - 1000</mat-hint>
   </mat-form-field>
 </p>
 <p>
   <mat-form-field appearance="legacy">
     <mat-label>Price</mat-label>
-    <input #price="ngModel" matInput placeholder="Price" [(ngModel)]="coupon.price" required pattern="([1-9]|[1-8][0-9]|9[0-9]|100)">
+    <input type="number" #price="ngModel" matInput placeholder="Price" [(ngModel)]="coupon.price" required
+      pattern="([1-9]|[1-8][0-9]|9[0-9]|100)">
     <mat-icon matSuffix *ngIf="!price.errors?.required && !price.errors?.pattern">
       sentiment_very_satisfied</mat-icon>
     <mat-hint *ngIf="price.errors?.required">Empty price</mat-hint>
-    <mat-hint *ngIf="price.errors?.pattern">Invalid price-can't be 0</mat-hint>
+    <mat-hint *ngIf="price.errors?.pattern">Invalid price-range between 1 - 100</mat-hint>
   </mat-form-field>
 </p>
 <p>
