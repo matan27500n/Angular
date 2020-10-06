@@ -134,7 +134,7 @@ export class CompanyService {
     });
     const options = { headers: headers };
     return this.httpClient.delete<any>(
-      'http://localhost:8080/admin/deleteCoupon/' + id,
+      'http://localhost:8080/company/deleteCoupon/' + id,
       options
     );
   }

@@ -1,5 +1,6 @@
 <body>
-  <mat-toolbar color="basic" class="main-div" fxLayoutAlign="center">Companies Details</mat-toolbar>
+  <!--<mat-toolbar color="basic" class="main-div" fxLayoutAlign="center">Companies Details</mat-toolbar>-->
+  <h1>Companies Details</h1>
   <mat-form-field>
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
@@ -48,7 +49,8 @@
     </tr>
   </table>
 
-  <mat-toolbar color="accent" class="main-div" fxLayoutAlign="center">Customers Details</mat-toolbar>
+  <div>
+  <h1>Customers Details</h1>
   <mat-form-field>
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter2($event)" placeholder="Ex. ium" #input2>
@@ -100,9 +102,10 @@
       <td class="mat-cell" colspan="4">No data matching the filter "{{input2.value}}"</td>
     </tr>
   </table>
-
-  <mat-toolbar color="accent" class="main-div" fxLayoutAlign="center">Coupons Details</mat-toolbar>
-  <div class="coupon123">
+</div>
+<div class="coupon123">
+  <h1>Coupons Details</h1>
+  
     <mat-form-field>
       <mat-label>Filter</mat-label>
       <input matInput (keyup)="applyFilter3($event)" placeholder="Ex. ium" #input>

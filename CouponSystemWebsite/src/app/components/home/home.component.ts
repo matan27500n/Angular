@@ -17,13 +17,5 @@ export class HomeComponent implements OnInit {
     'LinkedIn: matan27500n',
   ];
 
-  typesOfShoes: string[] = [
-    'Boots',
-    'Clogs',
-    'Loafers',
-    'Moccasins',
-    'Sneakers',
-  ];
-
   ngOnInit(): void {}
 }

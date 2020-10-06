@@ -17,10 +17,10 @@ td {
   border: 1px solid blue;
 }
 td{
-  background-color: lightblue;
+  background-color: whitesmoke;
 }
 th {
-  background-color: lightcoral;
+  background-color: cornflowerblue;
 }
 
 
@@ -53,8 +53,8 @@ th {
   font-size: 20px;
 }
 body{
-  background-color: aquamarine;
+  background-color: cornflowerblue;
 }
 .coupon123{
-  background-color: aquamarine;
+  background-color: cornflowerblue;
 }

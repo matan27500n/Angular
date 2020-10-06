@@ -53,8 +53,20 @@ th {
   font-size: 20px;
 }
 body{
-  background-color: aquamarine;
+  background-color: cornflowerblue;
 }
 .coupon123{
-  background-color: aquamarine;
+  background-color: cornflowerblue;
+}
+
+h1 {
+color: whitesmoke;
+font-family: 'Helvetica Neue', sans-serif;
+font-size: 50px;
+font-weight: bold;
+letter-spacing: -1px;
+line-height: 1;
+text-align: center;
+text-decoration: solid;
+padding: 15px;
 }

@@ -9,9 +9,9 @@
       routerLinkActive="router-link-active">
       <mat-icon aria-hidden="true" aria-label="Example home icon" title="home page">home</mat-icon>
     </button><br>
-    <button [disabled]="getType() !== 'Administrator'" mat-button color="primary" [routerLink]="['/admin']" routerLinkActive="router-link-active">Admin</button><br>
-    <button [disabled]="getType() !== 'Company'" mat-button color="primary" [routerLink]="['/company']" routerLinkActive="router-link-active">Company</button><br>
-    <button [disabled]="getType() !== 'Customer'" mat-button color="primary" [routerLink]="['/customer']" routerLinkActive="router-link-active">Customer</button><br>
+    <button *ngIf="getType() === 'Administrator'" mat-button color="primary" [routerLink]="['/admin']" routerLinkActive="router-link-active">Admin</button><br>
+    <button *ngIf="getType() === 'Company'" mat-button color="primary" [routerLink]="['/company']" routerLinkActive="router-link-active">Company</button><br>
+    <button *ngIf="getType() === 'Customer'" mat-button color="primary" [routerLink]="['/customer']" routerLinkActive="router-link-active">Customer</button><br>
     <ng-container *ngIf="isLoggedIn()===true">
       <button mat-icon-button color="primary" style="margin:1px;" aria-label="Example icon-button with share icon"
         (click)="showLogOutDialog()" [routerLink]="['/login']" routerLinkActive="router-link-active">
@@ -33,10 +33,10 @@
     routerLinkActive="router-link-active">
     <mat-icon aria-hidden="true" aria-label="Example home icon" title="home page">home</mat-icon>
   </button>
-  <button [disabled]="getType() !== 'Administrator'" mat-button style="margin:1px;" [routerLink]="['/admin']" routerLinkActive="router-link-active">Admin</button>
-  <button [disabled]="getType() !== 'Company'" mat-button style="margin:1px;" [routerLink]="['/company']"
+  <button *ngIf= "getType() === 'Administrator'" mat-button style="margin:1px;" [routerLink]="['/admin']" routerLinkActive="router-link-active">Admin</button>
+  <button *ngIf="getType() === 'Company'" mat-button style="margin:1px;" [routerLink]="['/company']"
     routerLinkActive="router-link-active">Company</button>
-  <button [disabled]="getType() !== 'Customer'" mat-button style="margin:1px;" [routerLink]="['/customer']" routerLinkActive="router-link-active">
+  <button *ngIf="getType() === 'Customer'" mat-button style="margin:1px;" [routerLink]="['/customer']" routerLinkActive="router-link-active">
     Customer</button>
 
   <ng-container *ngIf="isLoggedIn()===true">
