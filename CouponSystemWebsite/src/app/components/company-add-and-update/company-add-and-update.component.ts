@@ -52,31 +52,39 @@ export class CompanyAddAndUpdateComponent implements OnInit {
 
   public addOrUpdateCompany(): void {
     this.adminService.getCompanies().subscribe(
-      (res) => {this.companies = res},
-      (err) => {alert("something was wrong..")}
+      (res) => {
+        this.companies = res;
+      },
+      (err) => {
+        alert('something was wrong..');
+      }
     );
 
     if (this.id === 0) {
       this.adminService.addCompany(this.company).subscribe(
         (res) => {
-          alert("company added successfully!!");
+          alert('company added successfully!!');
+          this.location2.back();
         },
         (err) => {
-          alert("error with adding company, please try again");
+          alert('error with adding company, please try again');
         }
       );
     } else {
       this.adminService.updateCompany(this.company).subscribe(
         (res) => {
-          alert("company updated successfully!!")
+          alert('company updated successfully!!');
+          this.loginService.email = '';
+          this.loginService.password = '';
+          this.loginService.type = '';
+          this.loginService.token = '';
+          this.loginService.isLoggedIn = false;
+          this.route.navigateByUrl('/home');
         },
         (err) => {
           alert(err.message);
         }
       );
-     
     }
-    this.route.navigateByUrl('/admin');
-    this.location2.back();
   }
 }

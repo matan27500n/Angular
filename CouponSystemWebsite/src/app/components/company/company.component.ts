@@ -7,6 +7,7 @@ import { Company } from './../../models/company';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Coupon } from 'src/app/models/coupon';
+import { Router } from '@angular/router';
 
 export interface PeriodicElement {
   id: number;
@@ -35,7 +36,8 @@ export class CompanyComponent implements OnInit {
     private adminService: AdminService,
     private loginService: LoginService,
     private companyService: CompanyService,
-    private location2: Location
+    private location2: Location,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -81,17 +83,23 @@ export class CompanyComponent implements OnInit {
                   this.dataSource3 = new MatTableDataSource(this.coupons);
                 },
                 (err) => {
-                  alert('wrong!!');
+                  alert('wrong1');
                 }
               );
             },
             (err) => {
-              alert(err.message);
+              alert('wrong2');
             }
           );
         },
         (err) => {
-          alert(err.message);
+          alert('something was wrong, please login again');
+          this.loginService.email = '';
+          this.loginService.password = '';
+          this.loginService.type = '';
+          this.loginService.token = '';
+          this.loginService.isLoggedIn = false;
+          this.router.navigateByUrl('/home');
         }
       );
   }
@@ -109,9 +117,7 @@ export class CompanyComponent implements OnInit {
     if (confirm('Are you sure you want to delete this company?')) {
       this.adminService.deleteCompany(id).subscribe(
         (res) => {
-          this.company = this.company.filter(
-            (company) => company.id !== id
-          ); 
+          this.company = this.company.filter((company) => company.id !== id);
           this.displayedColumns = [
             'id',
             'name',
@@ -120,7 +126,9 @@ export class CompanyComponent implements OnInit {
             'Actions',
           ];
           this.dataSource = new MatTableDataSource(this.company);
-          this.coupons = this.coupons.filter((coupon) => coupon.companyID !== id);
+          this.coupons = this.coupons.filter(
+            (coupon) => coupon.companyID !== id
+          );
           this.displayedColumns3 = [
             'id',
             'companyID',
@@ -148,7 +156,6 @@ export class CompanyComponent implements OnInit {
       );
     }
   }
-
 
   public deleteCoupon(id: number): void {
     this.companyService.deleteCoupon(id).subscribe(

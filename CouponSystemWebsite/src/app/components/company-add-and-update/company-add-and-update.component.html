@@ -1,3 +1,4 @@
+<body>
 <h1>Company {{type}}</h1>
 <br><br>
 
@@ -52,3 +53,4 @@
     [disabled]="company_password.errors?.required || company_password.errors?.minlength || company_email.errors?.required || company_email.errors?.pattern || company_name.errors?.required || company_name.errors?.minlength && company_name.errors?.pattern"
     (click)="addOrUpdateCompany()" mat-raised-button color="primary">{{type}}</button>
 </p>
+</body>

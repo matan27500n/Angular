@@ -1,3 +1,4 @@
+import { LoginService } from './../../services/login.service';
 import { CompanyService } from 'src/app/services/company.service';
 import { Coupon } from './../../models/coupon';
 import { Customer } from './../../models/customer';
@@ -26,18 +27,11 @@ export class AdminComponent implements OnInit {
   public constructor(
     private router: Router,
     private adminService: AdminService,
-    private companyService: CompanyService
+    private companyService: CompanyService,
+    private loginService: LoginService
   ) {}
 
   ngOnInit(): void {
-    this.router.events.subscribe((evt) => {
-      if (evt instanceof NavigationEnd) {
-         // trick the Router into believing it's last link wasn't previously loaded
-         this.router.navigated = false;
-         // if you need to scroll back to top, here is the right place
-         window.scrollTo(0, 0);
-      }
-  });
     this.adminService.getCompanies().subscribe(
       (companies) => {
         this.companies = companies;
@@ -45,7 +39,12 @@ export class AdminComponent implements OnInit {
         this.dataSource = new MatTableDataSource(this.companies);
       },
       (err) => {
-        alert(err.message);
+        this.loginService.email = '';
+        this.loginService.password = '';
+        this.loginService.type = '';
+        this.loginService.token = '';
+        this.loginService.isLoggedIn = false;
+        this.router.navigateByUrl('/home');
       }
     );
 
@@ -64,7 +63,13 @@ export class AdminComponent implements OnInit {
         this.dataSource2 = new MatTableDataSource(this.customers);
       },
       (err) => {
-        alert(err.message);
+        alert('something was wrong, please sign in again');
+        this.loginService.email = '';
+        this.loginService.password = '';
+        this.loginService.type = '';
+        this.loginService.token = '';
+        this.loginService.isLoggedIn = false;
+        this.router.navigateByUrl('/home');
       }
     );
 
@@ -87,7 +92,12 @@ export class AdminComponent implements OnInit {
         this.dataSource3 = new MatTableDataSource(this.coupons);
       },
       (err) => {
-        alert(err.message);
+        this.loginService.email = '';
+        this.loginService.password = '';
+        this.loginService.type = '';
+        this.loginService.token = '';
+        this.loginService.isLoggedIn = false;
+        this.router.navigateByUrl('/home');
       }
     );
   }
@@ -121,7 +131,9 @@ export class AdminComponent implements OnInit {
             'Actions',
           ];
           this.dataSource = new MatTableDataSource(this.companies);
-          this.coupons = this.coupons.filter((coupon) => coupon.companyID !== id);
+          this.coupons = this.coupons.filter(
+            (coupon) => coupon.companyID !== id
+          );
           this.displayedColumns3 = [
             'id',
             'companyID',

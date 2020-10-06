@@ -13,6 +13,17 @@ export class CustomerService {
     private tokenManager: TokenManagerService
   ) {}
 
+  public logout(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Coupon-System-Header': this.tokenManager.getToken(),
+    });
+    const options = { headers: headers };
+    return this.httpClient.delete<any>(
+      'http://localhost:8080/customer/logout',
+      options
+    );
+  }
+
   public getCustomerCoupons(id: number): Observable<any> {
     const headers = new HttpHeaders({
       'Coupon-System-Header': this.tokenManager.getToken(),
