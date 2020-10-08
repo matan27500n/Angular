@@ -15,6 +15,8 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class AdminComponent implements OnInit {
   panelOpenState = false;
+  public company: Company[] = [];
+  public customer: Customer[] = [];
   public companies: Company[];
   displayedColumns: string[];
   dataSource: MatTableDataSource<Company>;
@@ -32,6 +34,27 @@ export class AdminComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getAllCompanies();
+    this.getAllCustomers();
+    this.getAllCoupons();
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  applyFilter2(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource2.filter = filterValue.trim().toLowerCase();
+  }
+
+  applyFilter3(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource3.filter = filterValue.trim().toLowerCase();
+  }
+
+  public getAllCompanies(): void {
     this.adminService.getCompanies().subscribe(
       (companies) => {
         this.companies = companies;
@@ -47,7 +70,9 @@ export class AdminComponent implements OnInit {
         this.router.navigateByUrl('/home');
       }
     );
+  }
 
+  public getAllCustomers(): void {
     this.adminService.getCustomers().subscribe(
       (customers) => {
         this.customers = customers;
@@ -72,7 +97,9 @@ export class AdminComponent implements OnInit {
         this.router.navigateByUrl('/home');
       }
     );
+  }
 
+  public getAllCoupons(): void {
     this.adminService.getCoupons().subscribe(
       (coupons) => {
         this.coupons = coupons;
@@ -101,19 +128,46 @@ export class AdminComponent implements OnInit {
       }
     );
   }
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+  public getOneCompany(id: number): void {
+    this.adminService.getOneCompany(id).subscribe(
+      (res) => {
+        if (this.company.length !== 0) {
+          while (this.company.length !== 0) {
+            this.company.pop();
+          }
+        }
+        this.company.push(res);
+        this.displayedColumns = ['id', 'name', 'email', 'password', 'Actions'];
+        this.dataSource = new MatTableDataSource(this.company);
+      },
+      (err) => {
+        alert(err.message);
+      }
+    );
   }
 
-  applyFilter2(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource2.filter = filterValue.trim().toLowerCase();
-  }
-
-  applyFilter3(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource3.filter = filterValue.trim().toLowerCase();
+  public getOneCustomer(id: number): void {
+    this.adminService.getOneCustomer(id).subscribe(
+      (res) => {
+        if(this.customer.length !== 0){
+          while(this.customer.length !== 0){
+            this.customer.pop();
+          }
+        }
+        this.customer.push(res);
+        this.displayedColumns2 = [
+          'id',
+          'firstName',
+          'lastName',
+          'email',
+          'password',
+          'Actions',
+        ];
+        this.dataSource2 = new MatTableDataSource(this.customer);
+      },
+      (err) => {alert(err.message)}
+    );
   }
 
   public deleteCompany(id: number): void {

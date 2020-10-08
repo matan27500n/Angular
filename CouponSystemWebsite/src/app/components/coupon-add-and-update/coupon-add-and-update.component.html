@@ -1,107 +1,113 @@
-<h1>Coupon {{type}}</h1>
-<p>
-  <mat-form-field appearance="legacy">
-    <mat-label>Id</mat-label>
-    <input matInput placeholder="Id" required [(ngModel)]="coupon.id" disabled>
-    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-  </mat-form-field>
-</p>
+<body>
+  <h1>{{type}} Coupon</h1>
+  <p>
+    <mat-form-field appearance="legacy">
+      <mat-label>Id</mat-label>
+      <input matInput placeholder="Id" required [(ngModel)]="coupon.id" disabled>
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+  </p>
 
-<p>
-  <mat-form-field appearance="legacy">
-    <mat-label>Company Id</mat-label>
-    <input #company_id=ngModel required matInput placeholder="Company Id" [(ngModel)]="coupon.companyID" disabled>
-    <mat-icon matSuffix *ngIf="!company_id.errors?.required">
-      sentiment_very_satisfied</mat-icon>
-    <mat-hint *ngIf="company_id.errors?.required">Missing companyID</mat-hint>
-  </mat-form-field>
-</p>
+  <p>
+    <mat-form-field appearance="legacy">
+      <mat-label>Company Id</mat-label>
+      <input #company_id=ngModel required matInput placeholder="Company Id" [(ngModel)]="coupon.companyID" disabled>
+      <mat-icon matSuffix *ngIf="!company_id.errors?.required">
+        sentiment_very_satisfied</mat-icon>
+      <mat-hint class="icon2" *ngIf="company_id.errors?.required">Missing companyID</mat-hint>
+    </mat-form-field>
+  </p>
 
-<p>
-  <mat-form-field appearance="legacy">
-    <mat-label>Category Id</mat-label>
-    <mat-select required [(ngModel)]="coupon.categoryID" #category_Id="ngModel">
-      <mat-option *ngFor="let item of categories" [value]="item.value">{{item.viewValue}}</mat-option>
-    </mat-select>
-    <mat-icon matSuffix *ngIf="!category_Id.errors?.required">
-      sentiment_very_satisfied</mat-icon>
-    <mat-hint *ngIf="category_Id.errors?.required">Empty CategoryID</mat-hint>
-  </mat-form-field>
-</p>
-<p>
-  <mat-form-field appearance="legacy">
-    <mat-label>Title</mat-label>
-    <input #title="ngModel" required pattern="^[A-Z].*" minlength="2" matInput placeholder="Title"
-      [(ngModel)]="coupon.title">
-    <mat-icon matSuffix *ngIf="!title.errors?.required && !title.errors?.pattern && !title.errors?.minlength">
-      sentiment_very_satisfied</mat-icon>
-    <mat-hint *ngIf="title.errors?.required">Empty title</mat-hint>
-    <mat-hint *ngIf="title.errors?.minlength">Short title - should be at least 2 characters</mat-hint>
-    <mat-hint *ngIf="title.errors?.pattern">Invalid title - should begin with capital letter</mat-hint>
-  </mat-form-field>
-</p>
-<p>
-  <mat-form-field appearance="legacy">
-    <mat-label>Description</mat-label>
-    <input #description="ngModel" required matInput placeholder="Description" [(ngModel)]="coupon.description">
-    <mat-icon matSuffix *ngIf="!description.errors?.required">
-      sentiment_very_satisfied</mat-icon>
-    <mat-hint *ngIf="description.errors?.required">Empty description</mat-hint>
-  </mat-form-field>
-</p>
-<p>
-  <mat-form-field appearance="legacy">
-    <mat-label>Start Date</mat-label>
-    <input #start_date="ngModel" required matInput placeholder="Start Date" [(ngModel)]="coupon.start_date"
-      pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$">
-    <mat-icon matSuffix *ngIf="!start_date.errors?.required && !start_date.errors?.pattern">
-      sentiment_very_satisfied</mat-icon>
-    <mat-hint *ngIf="start_date.errors?.required">Empty date</mat-hint>
-    <mat-hint *ngIf="start_date.errors?.pattern">Invalid date</mat-hint>
-  </mat-form-field>
-</p>
-<p>
-  <mat-form-field appearance="legacy">
-    <mat-label>End Date</mat-label>
-    <input #end_date="ngModel" required matInput placeholder="End Date" [(ngModel)]="coupon.end_date"
-      pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$">
-    <mat-icon matSuffix *ngIf="!end_date.errors?.required && !end_date.errors?.pattern">
-      sentiment_very_satisfied</mat-icon>
-    <mat-hint *ngIf="end_date.errors?.required">Empty date</mat-hint>
-    <mat-hint *ngIf="end_date.errors?.pattern">Invalid date</mat-hint>
-  </mat-form-field>
-</p>
-<p>
-  <mat-form-field appearance="legacy">
-    <mat-label>Amount</mat-label>
-    <input type="number" #amount="ngModel" matInput placeholder="Amount" [(ngModel)]="coupon.amount"
-      pattern="([1-9]|[1-8][0-9]|9[0-9]|[1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|1000)" required>
-    <mat-icon matSuffix *ngIf="!amount.errors?.required && !amount.errors?.pattern">
-      sentiment_very_satisfied</mat-icon>
-    <mat-hint *ngIf="amount.errors?.required">Empty amount</mat-hint>
-    <mat-hint *ngIf="amount.errors?.pattern">Invalid amount- range between 1 - 1000</mat-hint>
-  </mat-form-field>
-</p>
-<p>
-  <mat-form-field appearance="legacy">
-    <mat-label>Price</mat-label>
-    <input type="number" #price="ngModel" matInput placeholder="Price" [(ngModel)]="coupon.price" required
-      pattern="([1-9]|[1-8][0-9]|9[0-9]|100)">
-    <mat-icon matSuffix *ngIf="!price.errors?.required && !price.errors?.pattern">
-      sentiment_very_satisfied</mat-icon>
-    <mat-hint *ngIf="price.errors?.required">Empty price</mat-hint>
-    <mat-hint *ngIf="price.errors?.pattern">Invalid price-range between 1 - 100</mat-hint>
-  </mat-form-field>
-</p>
-<p>
-  <mat-form-field appearance="legacy">
-    <mat-label>Image</mat-label>
-    <input #image="ngModel" matInput placeholder="Image" [(ngModel)]="coupon.image" required>
-    <mat-icon matSuffix *ngIf="!image.errors?.required">
-      sentiment_very_satisfied</mat-icon>
-    <mat-hint *ngIf="image.errors?.required">Empty image</mat-hint>
-  </mat-form-field>
-</p>
-<p>
-  <button (click)="addOrUpdateCoupon()" mat-raised-button color="primary">{{type}}</button>
-</p>
+  <p>
+    <mat-form-field appearance="legacy">
+      <mat-label>Category Id</mat-label>
+      <mat-select required [(ngModel)]="coupon.categoryID" #category_Id="ngModel">
+        <mat-option *ngFor="let item of categories" [value]="item.value">{{item.viewValue}}</mat-option>
+      </mat-select>
+      <mat-icon matSuffix *ngIf="!category_Id.errors?.required">
+        sentiment_very_satisfied</mat-icon>
+      <mat-hint class="icon2" *ngIf="category_Id.errors?.required">Empty CategoryID</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="legacy">
+      <mat-label>Title</mat-label>
+      <input #title="ngModel" required pattern="^[A-Z].*" minlength="2" matInput placeholder="Title"
+        [(ngModel)]="coupon.title">
+      <mat-icon matSuffix *ngIf="!title.errors?.required && !title.errors?.pattern && !title.errors?.minlength">
+        sentiment_very_satisfied</mat-icon>
+      <mat-hint class="icon2" *ngIf="title.errors?.required">Empty title</mat-hint>
+      <mat-hint class="icon2" *ngIf="title.errors?.minlength">Short title - should be at least 2 characters</mat-hint>
+      <mat-hint class="icon2" *ngIf="title.errors?.pattern">Invalid title - should begin with capital letter</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="legacy">
+      <mat-label>Description</mat-label>
+      <input #description="ngModel" required matInput placeholder="Description" [(ngModel)]="coupon.description">
+      <mat-icon matSuffix *ngIf="!description.errors?.required">
+        sentiment_very_satisfied</mat-icon>
+      <mat-hint class="icon2" *ngIf="description.errors?.required">Empty description</mat-hint>
+    </mat-form-field>
+  </p> 
+  <div>
+  <p>
+    <mat-form-field appearance="legacy">
+      <mat-label>Start Date</mat-label>
+      <input #start_date="ngModel" required matInput placeholder="Start Date" [(ngModel)]="coupon.start_date"
+        pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$">
+      <mat-icon matSuffix *ngIf="!start_date.errors?.required && !start_date.errors?.pattern">
+        sentiment_very_satisfied</mat-icon>
+      <mat-hint class="icon2" *ngIf="start_date.errors?.required">Empty date</mat-hint>
+      <mat-hint class="icon2" *ngIf="start_date.errors?.pattern">Invalid date</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="legacy">
+      <mat-label>End Date</mat-label>
+      <input #end_date="ngModel" required matInput placeholder="End Date" [(ngModel)]="coupon.end_date"
+        pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$">
+      <mat-icon matSuffix *ngIf="!end_date.errors?.required && !end_date.errors?.pattern">
+        sentiment_very_satisfied</mat-icon>
+      <mat-hint class="icon2" *ngIf="end_date.errors?.required">Empty date</mat-hint>
+      <mat-hint class="icon2" *ngIf="end_date.errors?.pattern">Invalid date</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="legacy">
+      <mat-label>Amount</mat-label>
+      <input type="number" #amount="ngModel" matInput placeholder="Amount" [(ngModel)]="coupon.amount"
+        pattern="([1-9]|[1-8][0-9]|9[0-9]|[1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|1000)" required>
+      <mat-icon matSuffix *ngIf="!amount.errors?.required && !amount.errors?.pattern">
+        sentiment_very_satisfied</mat-icon>
+      <mat-hint class="icon2" *ngIf="amount.errors?.required">Empty amount</mat-hint>
+      <mat-hint class="icon2" *ngIf="amount.errors?.pattern">Invalid amount- range between 1 - 1000</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="legacy">
+      <mat-label>Price</mat-label>
+      <input type="number" #price="ngModel" matInput placeholder="Price" [(ngModel)]="coupon.price" required
+        pattern="([1-9]|[1-8][0-9]|9[0-9]|100)">
+      <mat-icon matSuffix *ngIf="!price.errors?.required && !price.errors?.pattern">
+        sentiment_very_satisfied</mat-icon>
+      <mat-hint class="icon2" *ngIf="price.errors?.required">Empty price</mat-hint>
+      <mat-hint class="icon2" *ngIf="price.errors?.pattern">Invalid price-range between 1 - 100</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="legacy">
+      <mat-label>Image</mat-label>
+      <input #image="ngModel" matInput placeholder="Image" [(ngModel)]="coupon.image" required>
+      <mat-icon matSuffix *ngIf="!image.errors?.required">
+        sentiment_very_satisfied</mat-icon>
+      <mat-hint class="icon2" *ngIf="image.errors?.required">Empty image</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <button
+      [disabled]="company_id.errors?.required || category_Id.errors?.required || title.errors?.required || title.errors?.minlength || title.errors?.pattern || description.errors?.required || start_date.errors?.required || start_date.errors?.pattern || end_date.errors?.required || end_date.errors?.pattern || amount.errors?.required || amount.errors?.pattern || price.errors?.required || price.errors?.pattern || image.errors?.required"
+      (click)="addOrUpdateCoupon()" mat-raised-button color="primary">{{type}}</button>
+  </p>
+</div>
+</body>

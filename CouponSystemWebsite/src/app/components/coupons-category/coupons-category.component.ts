@@ -22,7 +22,6 @@ export class CouponsCategoryComponent implements OnInit {
     private adminService: AdminService
   ) {
     this.categoryID = activateRoute.snapshot.params.categoryID;
-    alert(this.categoryID);
   }
 
   ngOnInit(): void {

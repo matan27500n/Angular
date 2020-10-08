@@ -1,5 +1,6 @@
 <body>
-<mat-toolbar color="accent" class="main-div" fxLayoutAlign="center">Coupons By Category: {{categoryID}}</mat-toolbar>
+  <h1> Coupons By Category: {{categoryID}}</h1>
+<!-- <mat-toolbar color="accent" class="main-div" fxLayoutAlign="center">Coupons By Category: {{categoryID}}</mat-toolbar>-->
   <div class="coupon123">
   <mat-form-field>
     <mat-label>Filter</mat-label>
@@ -55,14 +56,14 @@
 
     <ng-container matColumnDef="image">
       <th mat-header-cell *matHeaderCellDef class="head1"> Image </th>
-      <td mat-cell *matCellDef="let element" class="head2"> {{element.image}} </td>
+      <td mat-cell *matCellDef="let element" class="head2"> <img height="50px" width="50px" src="{{element.image}}"> </td>
     </ng-container>
 
     <ng-container matColumnDef="Actions">
-      <th mat-header-cell *matHeaderCellDef class="head1"> Actions <button [routerLink]="['/coupon-add-and-update/'+ 0]"
+      <th mat-header-cell *matHeaderCellDef class="head1"> Actions <button mat-button color="primary" [routerLink]="['/coupon-add-and-update/'+ 0]"
           routerLinkActive="router-link-active" class="head2">Add Coupon</button></th>
-      <td mat-cell *matCellDef="let element"> <button [routerLink]="['/coupon-add-and-update/' + element.id]"
-          routerLinkActive="router-link-active" class="head2">Update</button> <button (click)="deleteCoupon(element.id)"
+      <td mat-cell *matCellDef="let element"> <button mat-button color="accent" [routerLink]="['/coupon-add-and-update/' + element.id]"
+          routerLinkActive="router-link-active" class="head2">Update</button> <button mat-button color="warn" (click)="deleteCoupon(element.id)"
           class="head2">Delete</button>
       </td>
     </ng-container>

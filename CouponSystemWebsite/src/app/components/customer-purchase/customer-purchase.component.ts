@@ -1,4 +1,5 @@
-import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
 import { CustomerService } from './../../services/customer.service';
 import { Component, OnInit } from '@angular/core';
@@ -11,6 +12,8 @@ import { Coupon } from 'src/app/models/coupon';
   styleUrls: ['./customer-purchase.component.css'],
 })
 export class CustomerPurchaseComponent implements OnInit {
+  public emptyArray: Coupon[] = [];
+  public flag = false;
   public id: number;
   public coupons: Coupon[];
   public couponsCustomer: Coupon[] = [];
@@ -20,15 +23,14 @@ export class CustomerPurchaseComponent implements OnInit {
   constructor(
     private customerService: CustomerService,
     private adminService: AdminService,
-    private activateRoute: ActivatedRoute
+    private activateRoute: ActivatedRoute,
+    private router: Router
   ) {
     this.id = Number(activateRoute.snapshot.params.id);
   }
 
   ngOnInit(): void {
     this.tempCoupons = [];
-    this.coupons = [];
-    this.couponsCustomer = [];
     this.customerService.getCustomerCoupons(this.id).subscribe(
       (res) => {
         this.couponsCustomer = res;
@@ -38,39 +40,50 @@ export class CustomerPurchaseComponent implements OnInit {
         alert(err.message);
       }
     );
-      this.adminService.getCoupons().subscribe(
-        (res) => {
-          this.coupons = res;
-          console.log(this.coupons.length);
-          if (this.coupons !== null) {
-            for (let i = 0; i < this.couponsCustomer.length; i++) {
-              for (let j = 0; j < this.coupons.length; j++) {
-                if (this.coupons[j].id !== this.couponsCustomer[i].id) {
-                  this.tempCoupons.push(this.coupons[i]);
-                }
-              }
+    this.adminService.getCoupons().subscribe(
+      (res) => {
+        this.coupons = res;
+
+        this.tempCoupons = [];
+        for (let i = 0; i < this.coupons.length; i++) {
+          for (let j = 0; j < this.couponsCustomer.length; j++) {
+            if (this.coupons[i].id === this.couponsCustomer[j].id) {
+              this.flag = true;
+              console.log(this.coupons[i].id);
             }
           }
-          this.coupons = this.tempCoupons;
-          this.displayedColumns3 = [
-            'id',
-            'companyID',
-            'categoryID',
-            'title',
-            'description',
-            'startDate',
-            'endDate',
-            'amount',
-            'price',
-            'image',
-            'Actions',
-          ];
-          this.dataSource3 = new MatTableDataSource(this.coupons);
-        },
-        (err) => {
-          alert(err.message);
+          if (this.flag === false) {
+            this.tempCoupons.push(this.coupons[i]);
+          }
+          this.flag = false;
         }
-      );
+        console.log('temp: ' + this.tempCoupons);
+       if(this.tempCoupons.length === this.emptyArray.length){
+        this.tempCoupons = [];
+        this.flag = false;
+         alert('There are no coupons available');
+          this.router.navigateByUrl('/customer');
+        }
+        
+        this.displayedColumns3 = [
+          'id',
+          'companyID',
+          'categoryID',
+          'title',
+          'description',
+          'startDate',
+          'endDate',
+          'amount',
+          'price',
+          'image',
+          'Actions',
+        ];
+        this.dataSource3 = new MatTableDataSource(this.tempCoupons);
+      },
+      (err) => {
+        alert(err.message);
+      }
+    );
   }
 
   applyFilter3(event: Event) {
@@ -91,7 +104,7 @@ export class CustomerPurchaseComponent implements OnInit {
     this.customerService.purchaseCoupon(coupon).subscribe(
       (res) => {
         alert('purchase successfully!!!');
-        this.coupons = this.coupons.filter(
+        this.tempCoupons = this.tempCoupons.filter(
           (coupons) => coupons.id !== coupon.id
         );
         this.displayedColumns3 = [
@@ -107,10 +120,10 @@ export class CustomerPurchaseComponent implements OnInit {
           'image',
           'Actions',
         ];
-        this.dataSource3 = new MatTableDataSource(this.coupons);
+        this.dataSource3 = new MatTableDataSource(this.tempCoupons);
       },
       (err) => {
-        alert('something was wrong..');
+        alert('Coupon had already purchased, you can not buy this coupon');
       }
     );
   }

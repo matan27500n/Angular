@@ -1,8 +1,10 @@
-import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { Coupon } from './../../models/coupon';
 import { CompanyService } from './../../services/company.service';
 import { Component, OnInit } from '@angular/core';
+import { __await } from 'tslib';
 
 @Component({
   selector: 'app-company-coupons',
@@ -14,7 +16,11 @@ export class CompanyCouponsComponent implements OnInit {
   public coupons: Coupon[];
   displayedColumns: string[];
   dataSource: MatTableDataSource<Coupon>;
-  constructor(private companyService: CompanyService,private activateRoute :ActivatedRoute) {
+  public constructor(
+    private companyService: CompanyService,
+    private activateRoute: ActivatedRoute,
+    private location2: Location
+  ) {
     this.id = Number(activateRoute.snapshot.params.id);
   }
 
@@ -22,6 +28,12 @@ export class CompanyCouponsComponent implements OnInit {
     this.companyService.getCompanyCoupons(this.id).subscribe(
       (res) => {
         this.coupons = res;
+        if (Array.isArray(this.coupons) && this.coupons.length === 0) {
+          setTimeout(() => {
+            this.location2.back();
+            alert('Sorry, there are no coupons available for this company');
+          }, 100);
+        }
         this.displayedColumns = [
           'id',
           'companyID',
@@ -46,5 +58,4 @@ export class CompanyCouponsComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
 }

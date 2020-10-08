@@ -16,13 +16,12 @@ th,
 td {
   border: 1px solid blue;
 }
-td{
+td {
   background-color: lightblue;
 }
 th {
   background-color: lightcoral;
 }
-
 
 .mat-form-field {
   font-size: 22px;
@@ -48,27 +47,29 @@ th {
 }
 .head1 {
   text-align: center;
+  
 }
+
 .head2 {
   font-size: 20px;
 }
-body{
-  background-color: cornflowerblue
-}
-.coupon123{
+body {
   background-color: cornflowerblue;
 }
-div{
+.coupon123 {
+  background-color: cornflowerblue;
+}
+div {
   background-color: cornflowerblue;
 }
 h1 {
-color: whitesmoke;
-font-family: 'Helvetica Neue', sans-serif;
-font-size: 50px;
-font-weight: bold;
-letter-spacing: -1px;
-line-height: 1;
-text-align: center;
-text-decoration: solid;
-padding: 15px;
+  color: whitesmoke;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  line-height: 1;
+  text-align: center;
+  text-decoration: solid;
+  padding: 15px;
 }
