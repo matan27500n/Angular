@@ -74,12 +74,16 @@ export class CompanyAddAndUpdateComponent implements OnInit {
       this.adminService.updateCompany(this.company).subscribe(
         (res) => {
           alert('company updated successfully!!');
-          this.loginService.email = '';
-          this.loginService.password = '';
-          this.loginService.type = '';
-          this.loginService.token = '';
-          this.loginService.isLoggedIn = false;
-          this.route.navigateByUrl('/home');
+          if (this.loginService.type === 'Administrator') {
+            this.location2.back();
+          } else {
+            this.loginService.email = '';
+            this.loginService.password = '';
+            this.loginService.type = '';
+            this.loginService.token = '';
+            this.loginService.isLoggedIn = false;
+            this.route.navigateByUrl('/home');
+          }
         },
         (err) => {
           alert(err.message);

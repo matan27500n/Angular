@@ -1,3 +1,4 @@
+import { Category } from './../models/category';
 import { Coupon } from './../models/coupon';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -72,6 +73,40 @@ export class CustomerService {
         email +
         '/' +
         password,
+      options
+    );
+  }
+
+  public getCustomerCouponsByCategory(
+    category: Category,
+    id: number
+  ): Observable<any> {
+    const headers = new HttpHeaders({
+      'Coupon-System-Header': this.tokenManager.getToken(),
+    });
+    const options = { headers: headers };
+    return this.httpClient.get<any>(
+      'http://localhost:8080/customer/customerCouponsCategory/' +
+        category +
+        '/' +
+        id,
+      options
+    );
+  }
+
+  public getCustomerCouponsByMaxPrice(
+    maxPrice: number,
+    id: number
+  ): Observable<any> {
+    const headers = new HttpHeaders({
+      'Coupon-System-Header': this.tokenManager.getToken(),
+    });
+    const options = { headers: headers };
+    return this.httpClient.get<any>(
+      'http://localhost:8080/customer/customerCouponsMaxPrice/' +
+        maxPrice +
+        '/' +
+        id,
       options
     );
   }

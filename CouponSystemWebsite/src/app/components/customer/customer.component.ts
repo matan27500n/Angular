@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { CompanyService } from 'src/app/services/company.service';
 import { CustomerService } from './../../services/customer.service';
@@ -38,7 +39,8 @@ export class CustomerComponent implements OnInit {
     private customerService: CustomerService,
     private loginService: LoginService,
     private companyService: CompanyService,
-    private location2: Location
+    private location2: Location,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -109,7 +111,7 @@ export class CustomerComponent implements OnInit {
           this.loginService.password = '';
           this.loginService.type = '';
           this.loginService.token = '';
-          this.location2.back();
+          this.router.navigateByUrl('/login');
         },
         (err) => {
           alert(err.message);
