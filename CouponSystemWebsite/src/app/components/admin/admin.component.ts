@@ -113,8 +113,7 @@ export class AdminComponent implements OnInit {
           'endDate',
           'amount',
           'price',
-          'image',
-          'Actions',
+          'image'
         ];
         this.dataSource3 = new MatTableDataSource(this.coupons);
       },

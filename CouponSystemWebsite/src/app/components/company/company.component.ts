@@ -25,6 +25,7 @@ export interface PeriodicElement {
 export class CompanyComponent implements OnInit {
   public id: number;
   public company: Company[] = [];
+  public coupon: Coupon[] = [];
   public email: string;
   public password: string;
   displayedColumns: string[];
@@ -103,6 +104,48 @@ export class CompanyComponent implements OnInit {
         }
       );
   }
+
+  public getCompaniesCoupons(): void{
+    this.email = this.loginService.email;
+    console.log(this.email);
+    this.password = this.loginService.password;
+    console.log(this.password);
+    this.companyService
+      .getCompanyIdByEmailAndPassword(this.email, this.password)
+      .subscribe(
+        (res) => {
+          this.id = res;
+          this.companyService.getCompanyCoupons(this.id).subscribe(
+            (res) => {
+              this.coupons = res;
+
+              console.log(this.coupons);
+              this.displayedColumns3 = [
+                'id',
+                'companyID',
+                'categoryID',
+                'title',
+                'description',
+                'startDate',
+                'endDate',
+                'amount',
+                'price',
+                'image',
+                'Actions',
+              ];
+              this.dataSource3 = new MatTableDataSource(this.coupons);
+            },
+            (err) => {
+              alert('wrong1');
+            }
+          );
+        },
+        (err) => {
+          alert('wrong2');
+        }
+      );
+
+  }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -111,6 +154,36 @@ export class CompanyComponent implements OnInit {
   applyFilter3(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource3.filter = filterValue.trim().toLowerCase();
+  }
+
+  public getOneCoupon(id: number): void {
+    this.companyService.getOneCoupon(id).subscribe(
+      (res) => {
+        if (this.coupon.length !== 0) {
+          while (this.coupon.length !== 0) {
+            this.coupon.pop();
+          }
+        }
+        this.coupon.push(res);
+        this.displayedColumns3 = [
+          'id',
+          'companyID',
+          'categoryID',
+          'title',
+          'description',
+          'startDate',
+          'endDate',
+          'amount',
+          'price',
+          'image',
+          'Actions',
+        ];
+        this.dataSource3 = new MatTableDataSource(this.coupon);
+      },
+      (err) => {
+        alert(err.message);
+      }
+    );
   }
 
   public deleteCompany(id: number): void {

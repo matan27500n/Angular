@@ -26,6 +26,17 @@ export class CompanyService {
     );
   }
 
+  public getOneCoupon(id: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Coupon-System-Header': this.tokenManager.getToken(),
+    });
+    const options = { headers: headers };
+    return this.httpClient.get<Coupon>(
+      'http://localhost:8080/company/getOneCoupon/' + id,
+      options
+    );
+  }
+
   public getCompanyCoupons(id: number): Observable<any> {
     const headers = new HttpHeaders({
       'Coupon-System-Header': this.tokenManager.getToken(),

@@ -62,12 +62,11 @@ export class CustomerAddAndUpdateComponent implements OnInit {
       );
       this.adminService.addCustomer(this.customer).subscribe(
         (res) => {
-          console.log('res: ' + res);
           this.customers = res;
           alert('customer added');
         },
         (err) => {
-          alert(err.message);
+          alert('email equal to the other email, please try again');
         }
       );
     } else {
