@@ -1,54 +1,64 @@
 <body>
-  <mat-card class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>About Me</mat-card-title>
-      <mat-card-subtitle>Private details</mat-card-subtitle>
-    </mat-card-header>
-    <img id="me1" mat-card-image src="../../../assets/images/me.jpg">
-    <mat-card-content>
-      <p>
-        <br> My name is Matan, I'm 22 years old. <br><br>
-        I'm a junior full stack developer. <br><br>
-        In my free time i like to go to the gym and play <br><br> basketball
-      </p>
-    </mat-card-content>
-  </mat-card>
 
-  <mat-card class="example-card2">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image2"></div>
-      <mat-card-title>About Project</mat-card-title>
-      <mat-card-subtitle>Detail's project</mat-card-subtitle>
-    </mat-card-header>
-    <img id="stam3" mat-card-image src="../../../assets/images/couponforCard.jpg">
-    <mat-card-content>
-      <p>
-        The Coupon System is consists of 3 main things: <br><br>  Company,Customer and Coupon. <br><br>
-        You can purchase here coupons that will give you <br><br> huge discount about many products of many <br><br> companies.
-      </p>
-    </mat-card-content>
-  </mat-card>
-  <mat-card class="example-card3" id="exm3">
-    <br><br>
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image3"></div>
-      <mat-card-title>Create Contact</mat-card-title>
-      <mat-card-subtitle>Contact with me</mat-card-subtitle>
-    </mat-card-header>
-    <img id="stam2" mat-card-image src="../../../assets/images/contactme.jpg">
-    <mat-card-content>
-      <mat-selection-list #contacts [multiple]="false">
-        <mat-list-option *ngFor="let p of typeOfContacts" [value]="p">
-          {{p}}
-        </mat-list-option>
-      </mat-selection-list>
-      <br>
-      <p>
-        Option selected: {{contacts.selectedOptions.selected[0]?.value}}
-      </p>
-    </mat-card-content>
-  </mat-card>
+  <mat-tab-group mat-align-tabs="center">
+    
+    <mat-tab label="About me"> 
+      <div class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>About Me</mat-card-title>
+          <mat-card-subtitle>Private details</mat-card-subtitle>
+        </mat-card-header>
+        <img id="me1" mat-card-image src="../../../assets/images/me.jpg">
+        <mat-card-content>
+          <p>
+            <br> My name is Matan, I'm 22 years old. <br><br>
+            I'm a junior full stack developer. <br><br>
+            In my free time i like to go to the gym and play <br><br> basketball
+          </p>
+        </mat-card-content>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="About Project"> 
+      <div class="example-card2">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image2"></div>
+          <mat-card-title>About Project</mat-card-title>
+          <mat-card-subtitle>Detail's project</mat-card-subtitle>
+        </mat-card-header>
+        <img id="stam3" mat-card-image src="../../../assets/images/couponforCard.jpg">
+        <mat-card-content>
+          <p>
+            The Coupon System is consists of 3 main things: <br><br>  Company,Customer and Coupon. <br><br>
+            You can purchase here coupons that will give you <br><br> huge discount about many products of many <br><br> companies.
+          </p>
+        </mat-card-content>
+    </div>
+    </mat-tab>
+
+    <mat-tab label="Contacts">
+      <div class="example-card3">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image3"></div>
+          <div><mat-card-title>Create Contact</mat-card-title></div>
+          <div><mat-card-subtitle>Contact with me</mat-card-subtitle></div>
+        </mat-card-header>
+        <img id="stam2" mat-card-image src="../../../assets/images/contactme.jpg">
+        <mat-card-content>
+          <mat-selection-list #contacts [multiple]="false">
+            <mat-list-option *ngFor="let p of typeOfContacts" [value]="p">
+              {{p}}
+            </mat-list-option>
+          </mat-selection-list>
+          <br>
+          <p>
+            Option selected: {{contacts.selectedOptions.selected[0]?.value}}
+          </p>
+        </mat-card-content>
+    </div>
+    </mat-tab>
+  </mat-tab-group>
 </body>
 
 

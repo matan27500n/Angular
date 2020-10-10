@@ -17,5 +17,7 @@ export class HomeComponent implements OnInit {
     'LinkedIn: matan27500n',
   ];
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    document.body.style.background = 'cornFlowerBlue';
+  }
 }
