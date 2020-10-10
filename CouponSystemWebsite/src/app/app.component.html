@@ -1,5 +1,4 @@
-<mat-toolbar color="primary" class="tool-main">
-
+<mat-toolbar [color]="backgroundColorToggle.value" class="tool-main">
   <button mat-button [matMenuTriggerFor]="menu">
     <mat-icon>menu</mat-icon>
   </button>
@@ -9,9 +8,12 @@
       routerLinkActive="router-link-active">
       <mat-icon aria-hidden="true" aria-label="Example home icon" title="home page">home</mat-icon>
     </button><br>
-    <button [disabled]="getType() !== 'Administrator'" mat-button color="primary" [routerLink]="['/admin']" routerLinkActive="router-link-active">Admin</button><br>
-    <button [disabled]="getType() !== 'Company'" mat-button color="primary" [routerLink]="['/company']" routerLinkActive="router-link-active">Company</button><br>
-    <button [disabled]="getType() !== 'Customer'" mat-button color="primary" [routerLink]="['/customer']" routerLinkActive="router-link-active">Customer</button><br>
+    <button [disabled]="getType() !== 'Administrator'" mat-button color="primary" [routerLink]="['/admin']"
+      routerLinkActive="router-link-active">Admin</button><br>
+    <button [disabled]="getType() !== 'Company'" mat-button color="primary" [routerLink]="['/company']"
+      routerLinkActive="router-link-active">Company</button><br>
+    <button [disabled]="getType() !== 'Customer'" mat-button color="primary" [routerLink]="['/customer']"
+      routerLinkActive="router-link-active">Customer</button><br>
     <ng-container *ngIf="isLoggedIn()===true">
       <button mat-icon-button color="primary" style="margin:1px;" aria-label="Example icon-button with share icon"
         (click)="showLogOutDialog()" [routerLink]="['/login']" routerLinkActive="router-link-active">
@@ -27,16 +29,36 @@
   </mat-menu>
 
   <span>Coupon System</span>
+  <div>
+    <mat-button-toggle-group #backgroundColorToggle="matButtonToggleGroup" value="primary" aria-label="Change color">
+     <mat-button-toggle value="primary"><button mat-button color="primary"> Primary</button> </mat-button-toggle>
+      <mat-button-toggle value="accent"><button mat-button color="accent">Accent</button></mat-button-toggle>
+      <mat-button-toggle value="basic"><button mat-button>Basic</button></mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+  <mat-form-field appearance="fill">
+    <mat-label>BackgroundColor</mat-label>
+    <mat-select disableRipple name="type">
+      <mat-option> <button mat-button (click) = "changeColor('aqua')">Aqua</button> </mat-option>
+      <mat-option ><button mat-button (click) = "changeColor('cornFlowerBlue')">CornFlowerBlue</button></mat-option>
+      <mat-option><button mat-button (click) = "changeColor('yellowGreen')">Yellow-Green</button></mat-option>
+      <mat-option><button mat-button (click) = "changeColor('pink')">Pink</button></mat-option>
+    </mat-select>
+  </mat-form-field>
+
   <span *ngIf="isLoggedIn()===true" disabled>Hello {{sayHello()}}</span>
   <span class="example-spacer"></span>
   <button mat-icon-button color="basic" style="margin:1px;" [routerLink]="['/home']"
     routerLinkActive="router-link-active">
     <mat-icon aria-hidden="true" aria-label="Example home icon" title="home page">home</mat-icon>
   </button>
-  <button *ngIf= "getType() === 'Administrator'" mat-button style="margin:1px;" [routerLink]="['/admin']" routerLinkActive="router-link-active">Admin</button>
+  <button *ngIf="getType() === 'Administrator'" mat-button style="margin:1px;" [routerLink]="['/admin']"
+    routerLinkActive="router-link-active">Admin</button>
   <button *ngIf="getType() === 'Company'" mat-button style="margin:1px;" [routerLink]="['/company']"
     routerLinkActive="router-link-active">Company</button>
-  <button *ngIf="getType() === 'Customer'" mat-button style="margin:1px;" [routerLink]="['/customer']" routerLinkActive="router-link-active">
+  <button *ngIf="getType() === 'Customer'" mat-button style="margin:1px;" [routerLink]="['/customer']"
+    routerLinkActive="router-link-active">
     Customer</button>
 
   <ng-container *ngIf="isLoggedIn()===true">

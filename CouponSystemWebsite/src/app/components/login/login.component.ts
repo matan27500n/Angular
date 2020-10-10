@@ -20,7 +20,9 @@ export class LoginComponent implements OnInit {
     private httpClient: HttpClient
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    document.body.style.background = 'cornFlowerBlue';
+  }
 
   public loginToServer(): void {
     this.loginService.loginRequest(this.credentials).subscribe(

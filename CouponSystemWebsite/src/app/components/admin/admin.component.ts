@@ -34,6 +34,7 @@ export class AdminComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    document.body.style.background = 'cornFlowerBlue';
     this.getAllCompanies();
     this.getAllCustomers();
     this.getAllCoupons();
@@ -113,7 +114,7 @@ export class AdminComponent implements OnInit {
           'endDate',
           'amount',
           'price',
-          'image'
+          'image',
         ];
         this.dataSource3 = new MatTableDataSource(this.coupons);
       },
@@ -149,8 +150,8 @@ export class AdminComponent implements OnInit {
   public getOneCustomer(id: number): void {
     this.adminService.getOneCustomer(id).subscribe(
       (res) => {
-        if(this.customer.length !== 0){
-          while(this.customer.length !== 0){
+        if (this.customer.length !== 0) {
+          while (this.customer.length !== 0) {
             this.customer.pop();
           }
         }
@@ -165,7 +166,9 @@ export class AdminComponent implements OnInit {
         ];
         this.dataSource2 = new MatTableDataSource(this.customer);
       },
-      (err) => {alert(err.message)}
+      (err) => {
+        alert(err.message);
+      }
     );
   }
 

@@ -11,6 +11,7 @@ import { CustomerService } from './services/customer.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
+  public typeOfSystem: string;
   public constructor(
     private loginService: LoginService,
     private router: Router,
@@ -21,34 +22,61 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {}
   title = 'CouponSystemWebsite';
 
+  public resetDate(): void {
+    this.loginService.email = '';
+    this.loginService.password = '';
+    this.loginService.type = '';
+    this.loginService.token = '';
+    this.loginService.isLoggedIn = false;
+    this.router.navigateByUrl('/login');
+  }
+
+  public changeColor(color: string): void{
+    document.body.style.background = color;
+  }
+
   public showLogOutDialog(): void {
-    if (confirm('Are you sure you want to log out?')) {
-      if (this.loginService.type == 'Administrator') {
-        this.adminService.logout().subscribe(
-          (res) => {},
-          (err) => {
-            alert(err.message);
-          }
-        );
-      } else {
-        if (this.loginService.type == 'Company') {
+    this.typeOfSystem = this.loginService.type;
+    if (confirm('Are you sure you want to log out?') === true) {
+      switch (this.typeOfSystem) {
+        case 'Administrator':
+          this.adminService.logout().subscribe(
+            (res) => {console.log('admin')},
+            (err) => {
+              alert(err.message);
+            }
+          );
+          break;
+        case 'Company':
           this.companyService.logout().subscribe(
-            (res) => {},
+            (res) => {console.log('company')},
             (err) => {}
           );
-        } else {
+          break;
+        case 'Customer':
           this.customerService.logout().subscribe(
-            (res) => {},
+            (res) => {console.log('customer')},
             (err) => {}
           );
-        }
+          break;
       }
-      this.loginService.token = '';
-      this.loginService.type = '';
-      this.loginService.isLoggedIn = false;
-      this.router.navigateByUrl('home');
+      this.resetDate();
     } else {
-      this.router.navigateByUrl('login');
+      switch (this.typeOfSystem) {
+        case 'Administrator':
+          this.router.navigateByUrl('/admin');
+          break;
+        case 'Company':
+          this.router.navigateByUrl('/company');
+          break;
+          case 'Customer':
+            this.router.navigateByUrl('/customer');
+            break;
+        default:
+          this.router.navigateByUrl('/***');
+          break;
+      }
+     
     }
   }
   public isLoggedIn(): boolean {
