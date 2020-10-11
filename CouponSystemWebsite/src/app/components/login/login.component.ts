@@ -1,5 +1,4 @@
 import { HttpClient } from '@angular/common/http';
-import { TokenManagerService } from './../../../../../CouponDemo2/src/app/services/token-manager.service';
 import { DevService } from './../../services/dev.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { LoginService } from './../../services/login.service';
