@@ -1,3 +1,4 @@
+import { AppComponent } from './../../app.component';
 import { LoginService } from './../../services/login.service';
 import { CompanyService } from 'src/app/services/company.service';
 import { Coupon } from './../../models/coupon';
@@ -30,7 +31,8 @@ export class AdminComponent implements OnInit {
     private router: Router,
     private adminService: AdminService,
     private companyService: CompanyService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private appComponent: AppComponent
   ) {}
 
   ngOnInit(): void {
@@ -63,12 +65,8 @@ export class AdminComponent implements OnInit {
         this.dataSource = new MatTableDataSource(this.companies);
       },
       (err) => {
-        this.loginService.email = '';
-        this.loginService.password = '';
-        this.loginService.type = '';
-        this.loginService.token = '';
-        this.loginService.isLoggedIn = false;
-        this.router.navigateByUrl('/home');
+        alert('something was wrong, please sign in again');
+        this.appComponent.resetDate();
       }
     );
   }
@@ -90,12 +88,7 @@ export class AdminComponent implements OnInit {
       },
       (err) => {
         alert('something was wrong, please sign in again');
-        this.loginService.email = '';
-        this.loginService.password = '';
-        this.loginService.type = '';
-        this.loginService.token = '';
-        this.loginService.isLoggedIn = false;
-        this.router.navigateByUrl('/home');
+        this.appComponent.resetDate();
       }
     );
   }
@@ -119,12 +112,8 @@ export class AdminComponent implements OnInit {
         this.dataSource3 = new MatTableDataSource(this.coupons);
       },
       (err) => {
-        this.loginService.email = '';
-        this.loginService.password = '';
-        this.loginService.type = '';
-        this.loginService.token = '';
-        this.loginService.isLoggedIn = false;
-        this.router.navigateByUrl('/home');
+        alert('something was wrong, please sign in again');
+        this.appComponent.resetDate();
       }
     );
   }
@@ -142,7 +131,8 @@ export class AdminComponent implements OnInit {
         this.dataSource = new MatTableDataSource(this.company);
       },
       (err) => {
-        alert(err.message);
+        alert('something was wrong, please sign in again');
+        this.appComponent.resetDate();
       }
     );
   }
@@ -167,7 +157,8 @@ export class AdminComponent implements OnInit {
         this.dataSource2 = new MatTableDataSource(this.customer);
       },
       (err) => {
-        alert(err.message);
+        alert('something was wrong, please sign in again');
+        this.appComponent.resetDate();
       }
     );
   }
@@ -206,7 +197,8 @@ export class AdminComponent implements OnInit {
           this.dataSource3 = new MatTableDataSource(this.coupons);
         },
         (err) => {
-          alert(err.message);
+          alert('something was wrong, please sign in again');
+          this.appComponent.resetDate();
         }
       );
     }
@@ -230,7 +222,8 @@ export class AdminComponent implements OnInit {
           this.dataSource2 = new MatTableDataSource(this.customers);
         },
         (err) => {
-          alert(err.message);
+          alert('something was wrong, please sign in again');
+          this.appComponent.resetDate();
         }
       );
     }
@@ -258,7 +251,8 @@ export class AdminComponent implements OnInit {
           alert('deleting successfully!!');
         },
         (err) => {
-          alert(err.message);
+          alert('something was wrong, please sign in again');
+          this.appComponent.resetDate();
         }
       );
     }

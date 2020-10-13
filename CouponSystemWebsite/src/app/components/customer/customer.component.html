@@ -1,4 +1,6 @@
 <body>
+  <mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Customer">
   <h1>Customer Details</h1>
   <mat-form-field>
     <mat-label>Filter</mat-label>
@@ -38,8 +40,6 @@
           [routerLink]="['/customer-add-and-update/' + element.id]" routerLinkActive="router-link-active"
           class="head2">Update</button> <button mat-button color="warn" (click)="deleteCustomer(element.id)"
           class="head2">Delete</button>
-        <button mat-button [routerLink]="['/customer-coupons/' + element.id]" routerLinkActive="router-link-active"
-          class="head2">Coupons</button>
         <button mat-button color="primary" [routerLink]="['/customer-purchase/' + element.id]"
           routerLinkActive="router-link-active" class="head2">Purchase</button>
       </td>
@@ -53,8 +53,10 @@
       <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
     </tr>
   </table>
+    </mat-tab>
 
   <div class="coupon123">
+    <mat-tab label="Coupons">
     <h1>Customer Coupons</h1>
     <mat-form-field>
       <mat-label>Filter</mat-label>
@@ -132,5 +134,7 @@
         <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
       </tr>
     </table>
+  </mat-tab>
   </div>
+  </mat-tab-group>
 </body>

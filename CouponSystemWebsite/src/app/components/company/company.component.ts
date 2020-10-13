@@ -1,3 +1,4 @@
+import { AppComponent } from './../../app.component';
 import { Location } from '@angular/common';
 import { CompanyService } from './../../services/company.service';
 import { LoginService } from './../../services/login.service';
@@ -38,20 +39,18 @@ export class CompanyComponent implements OnInit {
     private loginService: LoginService,
     private companyService: CompanyService,
     private location2: Location,
-    private router: Router
+    private router: Router,
+    private appComponent: AppComponent
   ) {}
 
   ngOnInit(): void {
     this.email = this.loginService.email;
-    console.log(this.email);
     this.password = this.loginService.password;
-    console.log(this.password);
     this.companyService
       .getCompanyIdByEmailAndPassword(this.email, this.password)
       .subscribe(
         (res) => {
           this.id = res;
-          console.log('the id: ' + this.id);
           this.adminService.getOneCompany(this.id).subscribe(
             (res) => {
               this.company.push(res);
@@ -66,8 +65,6 @@ export class CompanyComponent implements OnInit {
               this.companyService.getCompanyCoupons(this.id).subscribe(
                 (res) => {
                   this.coupons = res;
-
-                  console.log(this.coupons);
                   this.displayedColumns3 = [
                     'id',
                     'companyID',
@@ -84,32 +81,27 @@ export class CompanyComponent implements OnInit {
                   this.dataSource3 = new MatTableDataSource(this.coupons);
                 },
                 (err) => {
-                  alert('wrong1');
+                  alert('something was wrong please try again');
+                  this.appComponent.resetDate();
                 }
               );
             },
             (err) => {
-              alert('wrong2');
+              alert('something was wrong please try again');
+              this.appComponent.resetDate();
             }
           );
         },
         (err) => {
           alert('something was wrong, please login again');
-          this.loginService.email = '';
-          this.loginService.password = '';
-          this.loginService.type = '';
-          this.loginService.token = '';
-          this.loginService.isLoggedIn = false;
-          this.router.navigateByUrl('/home');
+          this.appComponent.resetDate();
         }
       );
   }
 
-  public getCompaniesCoupons(): void{
+  public getCompaniesCoupons(): void {
     this.email = this.loginService.email;
-    console.log(this.email);
     this.password = this.loginService.password;
-    console.log(this.password);
     this.companyService
       .getCompanyIdByEmailAndPassword(this.email, this.password)
       .subscribe(
@@ -136,16 +128,18 @@ export class CompanyComponent implements OnInit {
               this.dataSource3 = new MatTableDataSource(this.coupons);
             },
             (err) => {
-              alert('wrong1');
+              alert('something was wrong, please try again');
+              this.appComponent.resetDate();
             }
           );
         },
         (err) => {
-          alert('wrong2');
+          alert('something was wrong, please try again');
+          this.appComponent.resetDate();
         }
       );
-
   }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -181,7 +175,8 @@ export class CompanyComponent implements OnInit {
         this.dataSource3 = new MatTableDataSource(this.coupon);
       },
       (err) => {
-        alert(err.message);
+        alert('Something was wrong, please try again');
+        this.appComponent.resetDate();
       }
     );
   }
@@ -216,15 +211,11 @@ export class CompanyComponent implements OnInit {
             'Actions',
           ];
           this.dataSource3 = new MatTableDataSource(this.coupons);
-          this.loginService.isLoggedIn = false;
-          this.loginService.email = '';
-          this.loginService.password = '';
-          this.loginService.type = '';
-          this.loginService.token = '';
-          this.location2.back();
+          this.appComponent.resetDate();
         },
         (err) => {
-          alert(err.message);
+          alert('something was wrong, please try again');
+          this.appComponent.resetDate();
         }
       );
     }
@@ -252,6 +243,7 @@ export class CompanyComponent implements OnInit {
       },
       (err) => {
         alert(err.message);
+        this.appComponent.resetDate();
       }
     );
   }

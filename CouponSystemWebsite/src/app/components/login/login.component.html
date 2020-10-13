@@ -19,6 +19,7 @@
           </mat-select>
         </mat-form-field>
         <button mat-raised-button (click)="loginToServer()" *ngIf="form_login.valid">Login</button>
+        <mat-progress-bar mode="indeterminate" *ngIf="loginSuccess===true"></mat-progress-bar>
       </form>
     </mat-card>
   </div>

@@ -11,6 +11,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  public loginSuccess = false;
   public credentials = new Credentials();
   constructor(
     private loginService: LoginService,
@@ -26,11 +27,15 @@ export class LoginComponent implements OnInit {
   public loginToServer(): void {
     this.loginService.loginRequest(this.credentials).subscribe(
       (loginResponse) => {
+        this.loginSuccess = true;
         this.loginService.token = loginResponse.token;
         this.loginService.type = loginResponse.type;
         this.loginService.isLoggedIn = true;
-        alert(this.loginService.token + ' ' + this.loginService.type);
-        this.router.navigateByUrl(this.credentials.type);
+
+        setTimeout(() => {
+          this.router.navigateByUrl(this.credentials.type);
+          //alert(this.loginService.token + ' ' + this.loginService.type);
+        }, 1700);
       },
       (err) => {
         alert('Invalid email or password or type');
