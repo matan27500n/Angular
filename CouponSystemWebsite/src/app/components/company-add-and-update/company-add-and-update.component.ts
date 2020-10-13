@@ -1,3 +1,4 @@
+import { AppComponent } from './../../app.component';
 import { LoginService } from './../../services/login.service';
 import { CompanyDateService } from './../../services/company-data.service';
 import { Component, OnInit } from '@angular/core';
@@ -23,7 +24,8 @@ export class CompanyAddAndUpdateComponent implements OnInit {
     private adminService: AdminService,
     private route: Router,
     private loginService: LoginService,
-    private location2: Location
+    private location2: Location,
+    private appComponent: AppComponent
   ) {
     this.id = Number(activatedRoute.snapshot.params.id);
   }
@@ -41,7 +43,8 @@ export class CompanyAddAndUpdateComponent implements OnInit {
           this.company.password = res.password;
         },
         (err) => {
-          alert(err.message);
+          alert('something was wrong, please sign in again');
+          this.appComponent.resetDate();
         }
       );
     } else {
@@ -56,7 +59,8 @@ export class CompanyAddAndUpdateComponent implements OnInit {
         this.companies = res;
       },
       (err) => {
-        alert('something was wrong..');
+        alert('something was wrong, please sign in again');
+        this.appComponent.resetDate();
       }
     );
 
@@ -68,6 +72,7 @@ export class CompanyAddAndUpdateComponent implements OnInit {
         },
         (err) => {
           alert('error with adding company, please try again');
+          this.appComponent.resetDate();
         }
       );
     } else {
@@ -77,16 +82,12 @@ export class CompanyAddAndUpdateComponent implements OnInit {
           if (this.loginService.type === 'Administrator') {
             this.location2.back();
           } else {
-            this.loginService.email = '';
-            this.loginService.password = '';
-            this.loginService.type = '';
-            this.loginService.token = '';
-            this.loginService.isLoggedIn = false;
-            this.route.navigateByUrl('/home');
+            this.appComponent.resetDate();
           }
         },
         (err) => {
-          alert(err.message);
+          alert('something was wrong, please sign in again');
+          this.appComponent.resetDate();
         }
       );
     }

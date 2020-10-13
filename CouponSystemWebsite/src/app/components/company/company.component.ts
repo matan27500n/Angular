@@ -81,19 +81,19 @@ export class CompanyComponent implements OnInit {
                   this.dataSource3 = new MatTableDataSource(this.coupons);
                 },
                 (err) => {
-                  alert('something was wrong please try again');
+                  alert('something was wrong, please sign in again');
                   this.appComponent.resetDate();
                 }
               );
             },
             (err) => {
-              alert('something was wrong please try again');
+              alert('something was wrong, please sign in again');
               this.appComponent.resetDate();
             }
           );
         },
         (err) => {
-          alert('something was wrong, please login again');
+          alert('something was wrong, please sign in again');
           this.appComponent.resetDate();
         }
       );
@@ -110,8 +110,6 @@ export class CompanyComponent implements OnInit {
           this.companyService.getCompanyCoupons(this.id).subscribe(
             (res) => {
               this.coupons = res;
-
-              console.log(this.coupons);
               this.displayedColumns3 = [
                 'id',
                 'companyID',
@@ -128,13 +126,13 @@ export class CompanyComponent implements OnInit {
               this.dataSource3 = new MatTableDataSource(this.coupons);
             },
             (err) => {
-              alert('something was wrong, please try again');
+              alert('something was wrong, please sign in again');
               this.appComponent.resetDate();
             }
           );
         },
         (err) => {
-          alert('something was wrong, please try again');
+          alert('something was wrong, please sign in again');
           this.appComponent.resetDate();
         }
       );
@@ -175,7 +173,7 @@ export class CompanyComponent implements OnInit {
         this.dataSource3 = new MatTableDataSource(this.coupon);
       },
       (err) => {
-        alert('Something was wrong, please try again');
+        alert('something was wrong, please sign in again');
         this.appComponent.resetDate();
       }
     );
@@ -214,7 +212,7 @@ export class CompanyComponent implements OnInit {
           this.appComponent.resetDate();
         },
         (err) => {
-          alert('something was wrong, please try again');
+          alert('something was wrong, please sign in again');
           this.appComponent.resetDate();
         }
       );
@@ -222,29 +220,31 @@ export class CompanyComponent implements OnInit {
   }
 
   public deleteCoupon(id: number): void {
-    this.companyService.deleteCoupon(id).subscribe(
-      (res) => {
-        this.coupons = this.coupons.filter((coupon) => coupon.id !== id);
-        this.displayedColumns3 = [
-          'id',
-          'companyID',
-          'categoryID',
-          'title',
-          'description',
-          'startDate',
-          'endDate',
-          'amount',
-          'price',
-          'image',
-          'Actions',
-        ];
-        this.dataSource3 = new MatTableDataSource(this.coupons);
-        alert('deleting successfully!');
-      },
-      (err) => {
-        alert(err.message);
-        this.appComponent.resetDate();
-      }
-    );
+    if (confirm('Are you sure you want to delete this coupon?')) {
+      this.companyService.deleteCoupon(id).subscribe(
+        (res) => {
+          this.coupons = this.coupons.filter((coupon) => coupon.id !== id);
+          this.displayedColumns3 = [
+            'id',
+            'companyID',
+            'categoryID',
+            'title',
+            'description',
+            'startDate',
+            'endDate',
+            'amount',
+            'price',
+            'image',
+            'Actions',
+          ];
+          this.dataSource3 = new MatTableDataSource(this.coupons);
+          alert('deleting successfully!');
+        },
+        (err) => {
+          alert('something was wrong, please sign in again');
+          this.appComponent.resetDate();
+        }
+      );
+    }
   }
 }

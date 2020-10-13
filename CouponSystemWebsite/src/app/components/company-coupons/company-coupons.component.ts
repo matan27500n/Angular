@@ -1,3 +1,4 @@
+import { AppComponent } from './../../app.component';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
@@ -19,7 +20,8 @@ export class CompanyCouponsComponent implements OnInit {
   public constructor(
     private companyService: CompanyService,
     private activateRoute: ActivatedRoute,
-    private location2: Location
+    private location2: Location,
+    private appComponent: AppComponent
   ) {
     this.id = Number(activateRoute.snapshot.params.id);
   }
@@ -49,7 +51,8 @@ export class CompanyCouponsComponent implements OnInit {
         this.dataSource = new MatTableDataSource(this.coupons);
       },
       (err) => {
-        alert(err.message);
+        alert('something was wrong, please sign in again');
+        this.appComponent.resetDate();
       }
     );
   }

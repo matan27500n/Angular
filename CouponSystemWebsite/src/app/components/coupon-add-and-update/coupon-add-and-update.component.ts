@@ -1,3 +1,4 @@
+import { AppComponent } from './../../app.component';
 import { CustomerService } from './../../services/customer.service';
 import { LoginService } from './../../services/login.service';
 import { CompanyService } from 'src/app/services/company.service';
@@ -41,23 +42,25 @@ export class CouponAddAndUpdateComponent implements OnInit {
     private loginService: LoginService,
     private companyService: CompanyService,
     private customerService: CustomerService,
-    private location2: Location
+    private location2: Location,
+    private appComponent: AppComponent
   ) {
     this.id = Number(activatedRoute.snapshot.params.id);
     this.companyService
-        .getCompanyByEmailAndPassword(
-          this.loginService.email,
-          this.loginService.password
-        )
-        .subscribe(
-          (res) => {
-            this.company = res;
-            this.coupon.companyID = this.company.id;
-          },
-          (err) => {
-            alert('GetCompanyByEmailAndPassword failed..');
-          }
-        );
+      .getCompanyByEmailAndPassword(
+        this.loginService.email,
+        this.loginService.password
+      )
+      .subscribe(
+        (res) => {
+          this.company = res;
+          this.coupon.companyID = this.company.id;
+        },
+        (err) => {
+          alert('something was wrong, please sign in again');
+          this.appComponent.resetDate();
+        }
+      );
   }
 
   ngOnInit(): void {
@@ -78,11 +81,11 @@ export class CouponAddAndUpdateComponent implements OnInit {
           this.coupon.image = res.image;
         },
         (err) => {
-          alert(err.message);
+          alert('something was wrong, please sign in again');
+          this.appComponent.resetDate();
         }
       );
     } else {
-      console.log('email: ' + this.loginService.email);
       this.companyService
         .getCompanyByEmailAndPassword(
           this.loginService.email,
@@ -93,7 +96,8 @@ export class CouponAddAndUpdateComponent implements OnInit {
             this.company = res;
           },
           (err) => {
-            alert('GetCompanyByEmailAndPassword failed..');
+            alert('something was wrong, please sign in again');
+            this.appComponent.resetDate();
           }
         );
       this.title.setTitle('Adding Coupon');
@@ -109,20 +113,21 @@ export class CouponAddAndUpdateComponent implements OnInit {
             this.coupons = res;
           },
           (err) => {
-            alert('getCompanyCoupons wrong..');
+            alert('something was wrong, please sign in again');
+            this.appComponent.resetDate();
           }
         );
       }
       this.companyService.addCoupon(this.coupon).subscribe(
         (res) => {
-          console.log('res: ' + res);
           alert('Coupon added successfully');
           this.companyService.getCompanyCoupons(this.company.id).subscribe(
             (res) => {
               this.coupons = res;
             },
             (err) => {
-              alert('getCompanyCoupons wrong..');
+              alert('something was wrong, please sign in again');
+              this.appComponent.resetDate();
             }
           );
         },
