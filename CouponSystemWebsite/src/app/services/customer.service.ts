@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TokenManagerService } from './token-manager.service';
+import { Customer } from '../models/customer';
 
 @Injectable({
   providedIn: 'root',
@@ -44,6 +45,18 @@ export class CustomerService {
     return this.httpClient.put<any>(
       'http://localhost:8080/customer/updateCustomerID/' + id,
       null,
+      options
+    );
+  }
+
+  public updateCustomer(customer: Customer): Observable<any> {
+    const headers = new HttpHeaders({
+      'Coupon-System-Header': this.tokenManager.getToken(),
+    });
+    const options = { headers: headers };
+    return this.httpClient.put<any>(
+      'http://localhost:8080/customer/updateCustomer/',
+      customer,
       options
     );
   }
@@ -107,6 +120,17 @@ export class CustomerService {
         maxPrice +
         '/' +
         id,
+      options
+    );
+  }
+
+  public deleteCoupon(id: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Coupon-System-Header': this.tokenManager.getToken(),
+    });
+    const options = { headers: headers };
+    return this.httpClient.delete<any>(
+      'http://localhost:8080/customer/deleteCoupon/' + id,
       options
     );
   }

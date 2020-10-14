@@ -1,3 +1,4 @@
+import { AppComponent } from './../../app.component';
 import { Customer } from './../../models/customer';
 import { Location } from '@angular/common';
 import { LoginService } from 'src/app/services/login.service';
@@ -32,7 +33,8 @@ export class CouponsMaxPriceComponent implements OnInit {
     private customerService: CustomerService,
     private loginService: LoginService,
     private location2: Location,
-    private router: Router
+    private router: Router,
+    private appComponent: AppComponent
   ) {
     this.price = activateRoute.snapshot.params.price;
   }
@@ -40,7 +42,7 @@ export class CouponsMaxPriceComponent implements OnInit {
   ngOnInit(): void {
     this.email = this.loginService.email;
     this.password = this.loginService.password;
-    if (this.loginService.type === 'Company')
+    if (this.loginService.type === 'Company') {
       this.companyService
         .getCompanyByEmailAndPassword(this.email, this.password)
         .subscribe(
@@ -52,7 +54,7 @@ export class CouponsMaxPriceComponent implements OnInit {
               .subscribe(
                 (res) => {
                   if (res.length === 0) {
-                    alert('There are no coupons priceless then this');
+                    alert('There are no coupons price less then this coupon');
                     this.loginService.type = 'Company';
                     this.router.navigateByUrl('/company');
                   } else {
@@ -77,14 +79,17 @@ export class CouponsMaxPriceComponent implements OnInit {
                   }
                 },
                 (err) => {
-                  alert(err.message);
+                  alert('something was wrong, please sign in again');
+                  this.appComponent.resetDate();
                 }
               );
           },
           (err) => {
-            alert('failed in: getCompanyByEmailAndPassword');
+            alert('something was wrong, please sign in again');
+            this.appComponent.resetDate();
           }
         );
+    }
     if ((this.loginService.type = 'Customer')) {
       this.customerService
         .getCustomerByEmailAndPassword(this.email, this.password)
@@ -97,7 +102,7 @@ export class CouponsMaxPriceComponent implements OnInit {
               .subscribe(
                 (res) => {
                   if (res.length === 0) {
-                    alert('There are no coupons priceless then this');
+                    alert('There are no coupons price less then this coupon');
                     this.loginService.type = 'Customer';
                     this.router.navigateByUrl('/customer');
                   } else {
@@ -122,16 +127,14 @@ export class CouponsMaxPriceComponent implements OnInit {
                   }
                 },
                 (err) => {
-                  alert(err.message);
-                  this.loginService.type = '';
-                  this.router.navigateByUrl('/login');
+                  alert('something was wrong, please sign in again');
+                  this.appComponent.resetDate();
                 }
               );
           },
           (err) => {
-            alert(err.message);
-            this.loginService.type = '';
-            this.router.navigateByUrl('/login');
+            alert('something was wrong, please sign in again');
+            this.appComponent.resetDate();
           }
         );
     }
@@ -149,7 +152,8 @@ export class CouponsMaxPriceComponent implements OnInit {
         alert('deleting successfully!!');
       },
       (err) => {
-        alert(err.message);
+        alert('something was wrong, please sign in again');
+        this.appComponent.resetDate();
       }
     );
   }

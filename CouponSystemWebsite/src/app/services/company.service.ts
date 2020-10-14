@@ -65,6 +65,18 @@ export class CompanyService {
     );
   }
 
+  public updateCompany(company: Company): Observable<any> {
+    const headers = new HttpHeaders({
+      'Coupon-System-Header': this.tokenManager.getToken(),
+    });
+    const options = { headers: headers };
+    return this.httpClient.put<any>(
+      'http://localhost:8080/company/updateCompany/',
+      company,
+      options
+    );
+  }
+
   public setCompanyId(id: number): Observable<any> {
     const headers = new HttpHeaders({
       'Coupon-System-Header': this.tokenManager.getToken(),

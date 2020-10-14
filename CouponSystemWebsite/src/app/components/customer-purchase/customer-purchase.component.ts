@@ -31,6 +31,7 @@ export class CustomerPurchaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.tempCoupons = [];
+    this.couponsCustomer = [];
     this.customerService.getCustomerCoupons(this.id).subscribe(
       (res) => {
         this.couponsCustomer = res;
@@ -40,10 +41,10 @@ export class CustomerPurchaseComponent implements OnInit {
         alert(err.message);
       }
     );
+    this.coupons = [];
     this.adminService.getCoupons().subscribe(
       (res) => {
         this.coupons = res;
-
         this.tempCoupons = [];
         for (let i = 0; i < this.coupons.length; i++) {
           for (let j = 0; j < this.couponsCustomer.length; j++) {
@@ -57,7 +58,6 @@ export class CustomerPurchaseComponent implements OnInit {
           }
           this.flag = false;
         }
-        console.log('temp: ' + this.tempCoupons);
        if(this.tempCoupons.length === this.emptyArray.length){
         this.tempCoupons = [];
         this.flag = false;
@@ -92,15 +92,6 @@ export class CustomerPurchaseComponent implements OnInit {
   }
 
   public purchaseCoupon(coupon: Coupon): void {
-    // console.log(this.id);
-    /*this.customerService.updateCustomerID(this.id).subscribe(
-      (res) => {
-        console.log('customerID: ' + this.id);
-      },
-      (err) => {
-        alert('something was wrong...');
-      }
-    );*/
     this.customerService.purchaseCoupon(coupon).subscribe(
       (res) => {
         alert('purchase successfully!!!');

@@ -1,3 +1,4 @@
+import { CompanyService } from 'src/app/services/company.service';
 import { AppComponent } from './../../app.component';
 import { LoginService } from './../../services/login.service';
 import { CompanyDateService } from './../../services/company-data.service';
@@ -24,8 +25,8 @@ export class CompanyAddAndUpdateComponent implements OnInit {
     private adminService: AdminService,
     private route: Router,
     private loginService: LoginService,
-    private location2: Location,
-    private appComponent: AppComponent
+    private appComponent: AppComponent,
+    private companyService: CompanyService
   ) {
     this.id = Number(activatedRoute.snapshot.params.id);
   }
@@ -68,28 +69,37 @@ export class CompanyAddAndUpdateComponent implements OnInit {
       this.adminService.addCompany(this.company).subscribe(
         (res) => {
           alert('company added successfully!!');
-          this.location2.back();
-        },
-        (err) => {
-          alert('error with adding company, please try again');
-          this.appComponent.resetDate();
-        }
-      );
-    } else {
-      this.adminService.updateCompany(this.company).subscribe(
-        (res) => {
-          alert('company updated successfully!!');
-          if (this.loginService.type === 'Administrator') {
-            this.location2.back();
-          } else {
-            this.appComponent.resetDate();
-          }
+          this.route.navigateByUrl('/admin');
         },
         (err) => {
           alert('something was wrong, please sign in again');
-          this.appComponent.resetDate();
+            this.appComponent.resetDate();
         }
       );
+    } else {
+      if (this.loginService.type === 'Administrator') {
+        this.adminService.updateCompany(this.company).subscribe(
+          (res) => {
+            alert('company updated successfully!!');
+            this.route.navigateByUrl('/admin');
+          },
+          (err) => {
+            alert('something was wrong, please sign in again');
+            this.appComponent.resetDate();
+          }
+        );
+      } else {
+        this.companyService.updateCompany(this.company).subscribe(
+          (res) => {
+            alert('company updated successfully!!');
+            this.route.navigateByUrl('/company');
+          },
+          (err) => {
+            alert('something was wrong, please sign in again');
+            this.appComponent.resetDate();
+          }
+        );
+      }
     }
   }
 }

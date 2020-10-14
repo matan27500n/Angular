@@ -1,3 +1,4 @@
+import { AppComponent } from './../../app.component';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { CompanyService } from 'src/app/services/company.service';
@@ -8,15 +9,6 @@ import { Customer } from './../../models/customer';
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 import { Coupon } from 'src/app/models/coupon';
-
-export interface PeriodicElement {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  actions: string;
-}
 
 @Component({
   selector: 'app-customer',
@@ -40,7 +32,8 @@ export class CustomerComponent implements OnInit {
     private loginService: LoginService,
     private companyService: CompanyService,
     private location2: Location,
-    private router: Router
+    private router: Router,
+    private appComponent: AppComponent
   ) {}
 
   ngOnInit(): void {
@@ -81,11 +74,13 @@ export class CustomerComponent implements OnInit {
             },
             (err) => {
               alert(err.message);
+              this.appComponent.resetDate();
             }
           );
         },
         (err) => {
           alert(err.message);
+          this.appComponent.resetDate();
         }
       );
   }
@@ -106,12 +101,7 @@ export class CustomerComponent implements OnInit {
           this.customer = this.customer.filter(
             (customer) => customer.id !== id
           );
-          this.loginService.isLoggedIn = false;
-          this.loginService.email = '';
-          this.loginService.password = '';
-          this.loginService.type = '';
-          this.loginService.token = '';
-          this.router.navigateByUrl('/login');
+          this.appComponent.resetDate();
         },
         (err) => {
           alert(err.message);
@@ -122,7 +112,7 @@ export class CustomerComponent implements OnInit {
 
   public deleteCoupon(id: number): void {
     if (confirm('Are you sure you want to delete this coupon?')) {
-      this.companyService.deleteCoupon(id).subscribe(
+      this.customerService.deleteCoupon(id).subscribe(
         (res) => {
           this.coupons = this.coupons.filter((coupon) => coupon.id !== id);
           this.displayedColumns3 = [

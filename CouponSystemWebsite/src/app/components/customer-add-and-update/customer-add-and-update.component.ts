@@ -1,3 +1,5 @@
+import { AppComponent } from './../../app.component';
+import { CustomerService } from 'src/app/services/customer.service';
 import { LoginService } from 'src/app/services/login.service';
 import { Location } from '@angular/common';
 import { CustomerDataService } from './../../services/customer-data.service';
@@ -23,7 +25,10 @@ export class CustomerAddAndUpdateComponent implements OnInit {
     private adminService: AdminService,
     private route: Router,
     private customerDataService: CustomerDataService,
-    private location2: Location
+    private location2: Location,
+    private loginService: LoginService,
+    private customerService: CustomerService,
+    private appComponent: AppComponent
   ) {
     this.id = Number(activatedRoute.snapshot.params.id);
   }
@@ -52,32 +57,39 @@ export class CustomerAddAndUpdateComponent implements OnInit {
 
   public addOrUpdateCustomer(): void {
     if (this.id === 0) {
-      this.adminService.getCustomers().subscribe(
-        (res) => {
-          this.customers = res;
-        },
-        (err) => {
-          alert('getCustomers failed..');
-        }
-      );
       this.adminService.addCustomer(this.customer).subscribe(
         (res) => {
           this.customers = res;
           alert('customer added');
         },
         (err) => {
-          alert('email equal to the other email, please try again');
+           alert('something went wrong, please sign in again');
+            this.appComponent.resetDate();
         }
       );
     } else {
-      this.adminService.updateCustomer(this.customer).subscribe(
-        (res) => {
-          alert('customer ' + this.customer.id + ' updated!');
-        },
-        (err) => {
-          alert('something wrong here');
-        }
-      );
+      if (this.loginService.type === 'Administrator') {
+        this.adminService.updateCustomer(this.customer).subscribe(
+          (res) => {
+            alert('customer ' + this.customer.id + ' updated!');
+          },
+          (err) => {
+            alert('something went wrong, please sign in again');
+            this.appComponent.resetDate();
+          }
+        );
+      } else {
+        this.customerService.updateCustomer(this.customer).subscribe(
+          (res) => {
+            alert('customer updated!, please sign in again');
+            this.appComponent.resetDate();
+          },
+          (err) => {
+            alert('something went wrong, please try again');
+            this.location2.back();
+          }
+        );
+      }
     }
     this.location2.back();
   }
