@@ -37,7 +37,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: '', component: HomeComponent },
-  { path: '**', component: Page404Component },
+
   {
     path: 'company-add-and-update/:id',
     component: CompanyAddAndUpdateComponent,
@@ -53,6 +53,7 @@ const routes: Routes = [
   { path: 'customer-purchase/:id', component: CustomerPurchaseComponent },
   { path: 'coupons-category/:categoryID', component: CouponsCategoryComponent },
   { path: 'coupons-max-price/:price', component: CouponsMaxPriceComponent },
+  { path: '**', component: Page404Component },
 ];
 
 @NgModule({
