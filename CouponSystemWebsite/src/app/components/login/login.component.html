@@ -1,3 +1,4 @@
+<html theme='dark-mode'>
 <body>
   <div fxLayoutAlign="center center" fxFlexFill class="main-div">
     <mat-card fxFlex="30">
@@ -24,11 +25,10 @@
     </mat-card>
   </div>
 </body>
-
-  <div *ngIf="isDev()">
-    <hr>
-    <p>email: {{credentials.email}}</p>
-    <p>password: {{credentials.password}}</p>
-    <p>type: {{credentials.type}}</p>
-  </div>
-
+</html>
+<div *ngIf="isDev()">
+  <hr>
+  <p>email: {{credentials.email}}</p>
+  <p>password: {{credentials.password}}</p>
+  <p>type: {{credentials.type}}</p>
+</div>

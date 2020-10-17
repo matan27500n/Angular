@@ -22,6 +22,11 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {}
   title = 'CouponSystemWebsite';
 
+  html = document.getElementsByTagName('html')[0];
+  toggleTheme = (theme) => {
+    this.html.dataset.theme = theme;
+  };
+
   public resetDate(): void {
     this.loginService.email = '';
     this.loginService.password = '';
@@ -31,7 +36,7 @@ export class AppComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
 
-  public changeColor(color: string): void{
+  public changeColor(color: string): void {
     document.body.style.background = color;
   }
 
@@ -41,7 +46,9 @@ export class AppComponent implements OnInit {
       switch (this.typeOfSystem) {
         case 'Administrator':
           this.adminService.logout().subscribe(
-            (res) => {console.log('admin')},
+            (res) => {
+              console.log('admin');
+            },
             (err) => {
               alert(err.message);
             }
@@ -49,13 +56,17 @@ export class AppComponent implements OnInit {
           break;
         case 'Company':
           this.companyService.logout().subscribe(
-            (res) => {console.log('company')},
+            (res) => {
+              console.log('company');
+            },
             (err) => {}
           );
           break;
         case 'Customer':
           this.customerService.logout().subscribe(
-            (res) => {console.log('customer')},
+            (res) => {
+              console.log('customer');
+            },
             (err) => {}
           );
           break;
@@ -69,14 +80,13 @@ export class AppComponent implements OnInit {
         case 'Company':
           this.router.navigateByUrl('/company');
           break;
-          case 'Customer':
-            this.router.navigateByUrl('/customer');
-            break;
+        case 'Customer':
+          this.router.navigateByUrl('/customer');
+          break;
         default:
           this.router.navigateByUrl('/***');
           break;
       }
-     
     }
   }
   public isLoggedIn(): boolean {
