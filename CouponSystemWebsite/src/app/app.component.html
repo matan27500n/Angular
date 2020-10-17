@@ -1,4 +1,4 @@
-<mat-toolbar [color]="backgroundColorToggle.value" class="tool-main">
+<mat-toolbar class="tool-main" color = "primary">
   <button mat-button [matMenuTriggerFor]="menu">
     <mat-icon>menu</mat-icon>
   </button>
@@ -29,23 +29,6 @@
   </mat-menu>
 
   <span>Coupon System</span>
-  <div>
-    <mat-button-toggle-group #backgroundColorToggle="matButtonToggleGroup" value="primary" aria-label="Change color">
-     <mat-button-toggle value="primary"><button mat-button color="primary"> Primary</button> </mat-button-toggle>
-      <mat-button-toggle value="accent"><button mat-button color="accent">Accent</button></mat-button-toggle>
-      <mat-button-toggle value="basic"><button mat-button>Basic</button></mat-button-toggle>
-    </mat-button-toggle-group>
-  </div>
-
-  <mat-form-field appearance="fill">
-    <mat-label>BackgroundColor</mat-label>
-    <mat-select disableRipple name="type">
-      <mat-option> <button mat-button (click) = "changeColor('aqua')">Aqua</button> </mat-option>
-      <mat-option ><button mat-button (click) = "changeColor('cornFlowerBlue')">CornFlowerBlue</button></mat-option>
-      <mat-option><button mat-button (click) = "changeColor('yellowGreen')">Yellow-Green</button></mat-option>
-      <mat-option><button mat-button (click) = "changeColor('pink')">Pink</button></mat-option>
-    </mat-select>
-  </mat-form-field>
 
   <span *ngIf="isLoggedIn()===true" disabled>Hello {{sayHello()}}</span>
   <span class="example-spacer"></span>
@@ -74,4 +57,9 @@
     </button>
   </ng-container>
 </mat-toolbar>
-<router-outlet></router-outlet>
+<router-outlet>
+  <label>
+    <input type="checkbox">
+    <span class="check"></span>
+  </label>
+</router-outlet>

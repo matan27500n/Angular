@@ -38,6 +38,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 
@@ -84,6 +85,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatTabsModule,
     MatButtonToggleModule,
     MatProgressBarModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent],

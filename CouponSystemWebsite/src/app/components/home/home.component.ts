@@ -18,6 +18,6 @@ export class HomeComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    document.body.style.background = 'cornFlowerBlue';
+    //document.body.style.background = 'cornFlowerBlue';
   }
 }
