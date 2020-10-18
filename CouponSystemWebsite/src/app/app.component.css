@@ -11,10 +11,12 @@
 
  html[theme='dark-mode']{
   filter: invert(100%) hue-rotate(180deg);
+  will-change: transform
 } 
 
 img {
   transition: color 300ms, background-color 300ms;
+  will-change: transform;
 }
 
 html { background-color: #fff; }
