@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,eAAe,CAAC;EACZ,IAAI,EAAE,QAAQ;CACf;;AACF,AAAA,IAAI,CAAA;EACF,OAAO,EAAE,GAAG;EACZ,MAAM,EAAE,GAAG;CACZ;;AACD,AAAA,MAAM,CAAA;EACL,MAAM,EAAC,GACR;CAAC;;AASD;;;;;;IAMG",
+    "sources": [
+        "app.component.scss"
+    ],
+    "names": [],
+    "file": "app.component.css"
+}

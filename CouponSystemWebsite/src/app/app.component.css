@@ -1,25 +1,23 @@
 .example-spacer {
-    flex: 1 1 auto;
-  }
- span{
-   padding: 5px;
-   margin: 5px;
- }
- button{
-  margin:5px
- }
-
- html[theme='dark-mode']{
-  filter: invert(100%) hue-rotate(180deg);
-  will-change: transform
-} 
-
-img {
-  transition: color 300ms, background-color 300ms;
-  will-change: transform;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
 }
 
-html { background-color: #fff; }
-body { background-color: #fff; }
+span {
+  padding: 5px;
+  margin: 5px;
+}
 
-body > .wrapper { background-color: #fff; }
+button {
+  margin: 5px;
+}
+
+/*html{
+   height: 100%;
+ }
+ body{
+   background-color: $bg-theme-light;
+   color: $color-theme-light;
+ }*/
+/*# sourceMappingURL=app.component.css.map */

@@ -1,0 +1,26 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+ span{
+   padding: 5px;
+   margin: 5px;
+ }
+ button{
+  margin:5px
+ }
+ //light
+$bg-theme-light: #fff;
+$color-theme-light: #222;
+
+//dark
+$bg-theme-dark: #222;
+$color-theme-dark: #fff;
+
+ /*html{
+   height: 100%;
+ }
+ body{
+   background-color: $bg-theme-light;
+   color: $color-theme-light;
+ }*/
+ 

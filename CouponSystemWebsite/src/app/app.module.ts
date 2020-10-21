@@ -58,7 +58,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     CustomerCouponsComponent,
     CustomerPurchaseComponent,
     CouponsCategoryComponent,
-    CouponsMaxPriceComponent,
+    CouponsMaxPriceComponent
   ],
   imports: [
     BrowserModule,
