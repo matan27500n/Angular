@@ -5,13 +5,10 @@ table {
 table,
 th,
 td {
-  border: 1px solid blue;
-}
-td {
-  background-color: lightblue;
+  border: 1px solid black;
 }
 th {
-  background-color: cornflowerblue;
+  color: cornflowerblue;
   font-size: 25px;
   text-align: center;
 }
@@ -33,7 +30,6 @@ th {
   text-align: center;
 }
 h1 {
-  color: whitesmoke;
   font-family: "Helvetica Neue", sans-serif;
   font-size: 50px;
   font-weight: bold;
@@ -43,7 +39,3 @@ h1 {
   text-decoration: solid;
   padding: 15px;
 }
-
-/*body {
-  background-color: cornflowerblue;
-}*/

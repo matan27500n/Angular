@@ -5,15 +5,10 @@ table {
 table,
 th,
 td {
-  border: 1px solid blue;
-}
-td {
-  background-color: lightblue;
+  border: 1px solid black;
 }
 th {
-  background-color: cornflowerblue;
-  font-size: 25px;
-  text-align: center;
+  color: cornflowerblue;
 }
 
 .mat-form-field {
@@ -29,11 +24,10 @@ th {
   font-size: 25px;
 }
 
-.mat-header-cell{
+.mat-header-cell {
   text-align: center;
 }
 h1 {
-  color: whitesmoke;
   font-family: "Helvetica Neue", sans-serif;
   font-size: 50px;
   font-weight: bold;

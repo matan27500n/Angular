@@ -36,7 +36,6 @@ export class AdminComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    document.body.style.background = 'cornFlowerBlue';
     this.getAllCompanies();
     this.getAllCustomers();
     this.getAllCoupons();

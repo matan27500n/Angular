@@ -1,9 +1,11 @@
+import { DialogComponent } from './components/dialog/dialog.component';
 import { Router } from '@angular/router';
 import { LoginService } from './services/login.service';
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from './services/admin.service';
 import { CompanyService } from './services/company.service';
 import { CustomerService } from './services/customer.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',
@@ -18,10 +20,19 @@ export class AppComponent implements OnInit {
     private router: Router,
     private adminService: AdminService,
     private companyService: CompanyService,
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    private dialog: MatDialog
   ) {}
   ngOnInit(): void {}
   title = 'CouponSystemWebsite';
+
+   openDialog() {
+    const dialogRef = this.dialog.open(DialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 
   /*html = document.getElementsByTagName('html')[0];
   toggleTheme = (theme) => {

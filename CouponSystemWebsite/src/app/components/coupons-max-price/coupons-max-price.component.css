@@ -14,14 +14,10 @@ table {
 table,
 th,
 td {
-  border: 1px solid blue;
-}
-td {
-  background-color: lightblue;
-  font-size: 16px;
+  border: 1px solid black;
 }
 th {
-  background-color: cornflowerblue;
+  color: cornflowerblue;
 }
 
 .mat-form-field {
@@ -52,11 +48,8 @@ th {
 .head2 {
   font-size: 20px;
 }
-/*body {
-  background-color: cornflowerblue;
-}*/
+
 h1 {
-  color: whitesmoke;
   font-family: "Helvetica Neue", sans-serif;
   font-size: 50px;
   font-weight: bold;

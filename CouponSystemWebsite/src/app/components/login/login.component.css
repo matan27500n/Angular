@@ -1,10 +1,9 @@
-body{
-    /*background-color: cornflowerblue;*/
-    padding: 0px;
+body {
+  padding: 0px;
 }
-.main-div mat-card{
-    padding: 0px;
+.main-div mat-card {
+  padding: 0px;
 }
-.login-form{
-    padding: 20px;
+.login-form {
+  padding: 20px;
 }

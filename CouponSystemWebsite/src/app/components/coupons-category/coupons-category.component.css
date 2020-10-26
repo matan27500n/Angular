@@ -1,71 +1,61 @@
 .main-div {
-    font-family: "Helvetica Neue", sans-serif;
-    font-size: 35px;
-    font-weight: bold;
-    letter-spacing: -1px;
-    line-height: 1;
-    text-align: center;
-    padding-top: 14px;
-  }
-  table {
-    margin: auto;
-    width: 100%;
-  }
-  table,
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 35px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  line-height: 1;
+  text-align: center;
+  padding-top: 14px;
+}
+table {
+  margin: auto;
+  width: 100%;
+}
+table,
 th,
 td {
-  border: 1px solid blue;
-}
-td {
-  background-color: lightblue;
-  font-size: 16px;
+  border: 1px solid black;
 }
 th {
-  background-color: cornflowerblue;
+  color: cornflowerblue;
 }
-  
-  .mat-form-field {
-    font-size: 22px;
-    width: 100%;
-  }
-  
-  button {
-    padding: 8px;
-    margin: 5px;
-  }
-  
-  th {
-    font-size: 25px;
-    text-align: center;
-  }
-  
-  .mat-table {
-    text-align: center;
-  }
-  
-  .mat-cell {
-    font-size: 15px;
-  }
-  .head1 {
-    text-align: center;
-    font-size: 20px;
-  }
-  .head2 {
-    font-size: 20px;
-  }
-  /*body {
-    background-color: cornflowerblue;
-  }*/
-  h1 {
-    color: whitesmoke;
-    font-family: "Helvetica Neue", sans-serif;
-    font-size: 50px;
-    font-weight: bold;
-    letter-spacing: -1px;
-    line-height: 1;
-    text-align: center;
-    text-decoration: solid;
-    padding: 15px;
-  }
-  
-  
+
+.mat-form-field {
+  font-size: 22px;
+  width: 100%;
+}
+
+button {
+  padding: 8px;
+  margin: 5px;
+}
+
+th {
+  font-size: 25px;
+  text-align: center;
+}
+
+.mat-table {
+  text-align: center;
+}
+
+.mat-cell {
+  font-size: 15px;
+}
+.head1 {
+  text-align: center;
+  font-size: 20px;
+}
+.head2 {
+  font-size: 20px;
+}
+h1 {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  line-height: 1;
+  text-align: center;
+  text-decoration: solid;
+  padding: 15px;
+}

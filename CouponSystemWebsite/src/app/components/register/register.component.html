@@ -1,0 +1,112 @@
+<div *ngIf="type === 'Customer'">
+  <h1>Customer registration</h1>
+
+  <p>
+    <mat-form-field appearance="legacy">
+      <mat-label>FirstName</mat-label>
+      <input #customer_first="ngModel" required matInput placeholder="First Name" pattern="^[A-Z].*" minlength="2"
+        [(ngModel)]="customer.first_name" ngDefaultControl>
+      <mat-icon matSuffix
+        *ngIf="!customer_first.errors?.required && !customer_first.errors?.pattern && !customer_first.errors?.minlength">
+        sentiment_very_satisfied</mat-icon>
+      <mat-hint class="icon2" *ngIf="customer_first.errors?.required">Empty first name</mat-hint>
+      <mat-hint class="icon2" *ngIf="customer_first.errors?.minlength">Short name - should be at least 2 characters
+      </mat-hint>
+      <mat-hint class="icon2" *ngIf="customer_first.errors?.pattern">Invalid name</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="legacy">
+      <mat-label>LastName</mat-label>
+      <input #customer_last="ngModel" matInput placeholder="Last Name" [(ngModel)]="customer.last_name" required
+        minlength="2" pattern="^[A-Z].*" ngDefaultControl>
+      <mat-icon matSuffix
+        *ngIf="!customer_last.errors?.required && !customer_last.errors?.pattern && !customer_last.errors?.minlength">
+        sentiment_very_satisfied</mat-icon>
+      <mat-hint class="icon2" *ngIf="customer_last.errors?.required">Empty last name</mat-hint>
+      <mat-hint class="icon2" *ngIf="customer_last.errors?.minlength">Short last name - should be at least 2 characters
+      </mat-hint>
+      <mat-hint class="icon2" *ngIf="customer_last.errors?.pattern">Invalid last name</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="legacy">
+      <mat-label>Email</mat-label>
+      <input #customer_email="ngModel" matInput placeholder="Email" [(ngModel)]="customer.email"
+        pattern="^[\w.+\-]+@gmail\.com$" required ngDefaultControl>
+      <mat-icon matSuffix *ngIf="!customer_email.errors?.required && !customer_email.errors?.pattern">
+        sentiment_very_satisfied</mat-icon>
+      <mat-hint class="icon2" *ngIf="customer_email.errors?.required">Empty email</mat-hint>
+      <mat-hint class="icon2" *ngIf="customer_email.errors?.pattern">Invalid email</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="legacy">
+      <mat-label>Password</mat-label>
+      <input #customer_password="ngModel" matInput placeholder="Password" [(ngModel)]="customer.password" required
+        minlength="4" ngDefaultControl>
+      <mat-icon matSuffix *ngIf="!customer_password.errors?.required && !customer_password.errors?.minlength">
+        sentiment_very_satisfied</mat-icon>
+      <mat-hint class="icon2" *ngIf="customer_password.errors?.required">Empty password</mat-hint>
+      <mat-hint class="icon2" *ngIf="customer_password.errors?.minlength">Short password - should be at least 4
+        characters
+      </mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <button
+      [disabled]="customer_first.errors?.required || customer_first.errors?.pattern || customer_first.errors?.minlength || customer_last.errors?.required || customer_last.errors?.pattern || customer_last.errors?.minlength || customer_email.errors?.required || customer_email.errors?.pattern || customer_password.errors?.required || customer_password.errors?.minlength"
+      (click)="registerCustomer(customer)" mat-raised-button color="primary">register</button>
+  </p>
+</div>
+
+
+<div *ngIf="type === 'Company'">
+  <h1>Company registration</h1>
+
+  <p>
+    <mat-form-field appearance="legacy">
+      <mat-label>Name</mat-label>
+      <input #company_name="ngModel" pattern="^[A-Z].*" required matInput placeholder="Name" minlength="2"
+        [(ngModel)]="company.name" ngDefaultControl>
+      <mat-icon matSuffix
+        *ngIf="!company_name.errors?.required  && !company_name.errors?.minlength && !company_name.errors?.pattern">
+        sentiment_very_satisfied</mat-icon>
+      <mat-hint class="icon2" *ngIf="company_name.errors?.required">Empty name</mat-hint>
+      <mat-hint class="icon2" *ngIf="company_name.errors?.minlength">Short name - must be at least 2 characters
+      </mat-hint>
+      <mat-hint class="icon2" *ngIf="company_name.errors?.pattern"> not valid</mat-hint>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field appearance="legacy">
+      <mat-label>Email</mat-label>
+      <input #company_email="ngModel" matInput placeholder="Email" pattern="^[\w.+\-]+@gmail\.com$"
+        [(ngModel)]="company.email" required ngDefaultControl>
+      <mat-icon matSuffix *ngIf="!company_email.errors?.required && !company_email.errors?.pattern">
+        sentiment_very_satisfied</mat-icon>
+      <mat-hint class="icon2" *ngIf="company_email.errors?.required">Empty email</mat-hint>
+      <mat-hint class="icon2" *ngIf="company_email.errors?.pattern">Invalid email</mat-hint>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field appearance="legacy">
+      <mat-label>Password</mat-label>
+      <input #company_password="ngModel" matInput placeholder="Password" [(ngModel)]="company.password" required
+        minlength="4" ngDefaultControl>
+      <mat-icon matSuffix *ngIf="!company_password.errors?.required && !company_password.errors?.minlength">
+        sentiment_very_satisfied</mat-icon>
+      <mat-hint class="icon2" *ngIf="company_password.errors?.required">Empty password</mat-hint>
+      <mat-hint class="icon2" *ngIf="company_password.errors?.minlength">Invalid password-must be at least 4 letters
+      </mat-hint>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <button
+      [disabled]="company_password.errors?.required || company_password.errors?.minlength || company_email.errors?.required || company_email.errors?.pattern || company_name.errors?.required || company_name.errors?.minlength && company_name.errors?.pattern"
+      (click)="registerCompany(company)" mat-raised-button color="primary">register</button>
+  </p>
+</div>

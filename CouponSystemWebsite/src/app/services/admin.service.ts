@@ -15,14 +15,18 @@ export class AdminService {
     private tokenManager: TokenManagerService
   ) {}
 
-  public logout(): Observable<any> {
+  public resetToken() {
     const headers = new HttpHeaders({
       'Coupon-System-Header': this.tokenManager.getToken(),
     });
     const options = { headers: headers };
+    return options;
+  }
+
+  public logout(): Observable<any> {
     return this.httpClient.delete<any>(
       'http://localhost:8080/admin/logout',
-      options
+      this.resetToken()
     );
   }
 

@@ -40,7 +40,10 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { TokenInterceptorService } from './services/token-interceptor.service';
+import { RegisterComponent } from './components/register/register.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogComponent } from './components/dialog/dialog.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -59,6 +62,8 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     CustomerPurchaseComponent,
     CouponsCategoryComponent,
     CouponsMaxPriceComponent,
+    RegisterComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,14 +91,10 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     MatButtonToggleModule,
     MatProgressBarModule,
     MatSlideToggleModule,
+    MatDialogModule,
+    MatRadioModule,
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptorService,
-      multi: true,
-    },
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

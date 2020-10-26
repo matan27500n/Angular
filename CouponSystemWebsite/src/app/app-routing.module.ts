@@ -1,3 +1,4 @@
+import { RegisterComponent } from './components/register/register.component';
 import { CouponsMaxPriceComponent } from './components/coupons-max-price/coupons-max-price.component';
 import { CouponsCategoryComponent } from './components/coupons-category/coupons-category.component';
 import { CustomerPurchaseComponent } from './components/customer-purchase/customer-purchase.component';
@@ -35,6 +36,7 @@ const routes: Routes = [
     canActivate: [AdminGuardService],
   },
   { path: 'login', component: LoginComponent },
+  { path: 'register/:type', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
   { path: '', component: HomeComponent },
 
