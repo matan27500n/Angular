@@ -1,3 +1,4 @@
+import { Category } from './../../models/category';
 import { AppComponent } from './../../app.component';
 import { Location } from '@angular/common';
 import { CompanyService } from './../../services/company.service';
@@ -24,6 +25,9 @@ export interface PeriodicElement {
   styleUrls: ['./company.component.css'],
 })
 export class CompanyComponent implements OnInit {
+  public categories: string[] = ['Drinks', 'Pharmacy', 'Fast_food'];
+  public couponsMaxPrice: Coupon[] = [];
+  public couponsCategory: Coupon[] = [];
   public id: number;
   public company: Company[] = [];
   public coupon: Coupon[] = [];
@@ -175,6 +179,58 @@ export class CompanyComponent implements OnInit {
       (err) => {
         alert('something was wrong, please sign in again');
         this.appComponent.resetDate();
+      }
+    );
+  }
+
+  public getCompanyCouponsCategory(categoryID: Category): void {
+    this.companyService
+      .getCompanyCouponsCategory(categoryID, this.id)
+      .subscribe(
+        (res) => {
+          this.couponsCategory = res;
+          this.displayedColumns3 = [
+            'id',
+            'companyID',
+            'categoryID',
+            'title',
+            'description',
+            'startDate',
+            'endDate',
+            'amount',
+            'price',
+            'image',
+            'Actions',
+          ];
+          this.dataSource3 = new MatTableDataSource(this.couponsCategory);
+        },
+        (err) => {
+          alert(err.message());
+        }
+      );
+  }
+
+  public getCompanyCouponsMaxPrice(maxPrice: number): void {
+    this.companyService.getCompanyCouponsMaxPrice(maxPrice, this.id).subscribe(
+      (res) => {
+        this.couponsMaxPrice = res;
+        this.displayedColumns3 = [
+          'id',
+          'companyID',
+          'categoryID',
+          'title',
+          'description',
+          'startDate',
+          'endDate',
+          'amount',
+          'price',
+          'image',
+          'Actions',
+        ];
+        this.dataSource3 = new MatTableDataSource(this.couponsMaxPrice);
+      },
+      (err) => {
+        alert(err.message());
       }
     );
   }

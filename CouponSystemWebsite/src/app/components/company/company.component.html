@@ -120,15 +120,30 @@
                 </mat-select>
               </mat-form-field>
             </button> <button mat-button color="primary" class="head2" (click)="getCompaniesCoupons()">Get All</button>
+
+            <button mat-button color="primary">
+              <mat-form-field color="primary" appearance="fill">
+                <mat-label>ByCategory</mat-label>
+                <mat-select>
+                  <mat-option (click)="getCompanyCouponsCategory(element)" *ngFor="let element of categories"
+                    [value]="element">
+                    {{element}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </button>
+
+            <button mat-button color="primary" (click)="getCompanyCouponsMaxPrice(max.value)">
+              <mat-form-field appearance="fill">
+                <mat-label>ByMaxPrice</mat-label>
+                <input matInput type="number" name="maxPrice" #max name="max">
+              </mat-form-field>
+            </button>
           </th>
           <td mat-cell *matCellDef="let element"> <button mat-button color="accent"
               [routerLink]="['/coupon-add-and-update/' + element.id]" routerLinkActive="router-link-active"
               class="head2">Update</button> <button mat-button color="warn" (click)="deleteCoupon(element.id)"
               class="head2">Delete</button>
-            <button mat-button [routerLink]="['/coupons-category/' +element.categoryID]"
-              routerLinkActive="router-link-active" class="head2">ByCategory</button>
-            <button mat-button [routerLink]="['/coupons-max-price/' +element.price]"
-              routerLinkActive="router-link-active" class="head2">ByMaxPrice</button>
           </td>
         </ng-container>
 

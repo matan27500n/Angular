@@ -16,60 +16,33 @@ export class CustomerService {
   ) {}
 
   public logout(): Observable<any> {
-    const headers = new HttpHeaders({
-      'Coupon-System-Header': this.tokenManager.getToken(),
-    });
-    const options = { headers: headers };
-    return this.httpClient.delete<any>(
-      'http://localhost:8080/customer/logout',
-      options
-    );
+    return this.httpClient.delete<any>('http://localhost:8080/customer/logout');
   }
 
   public getCustomerCoupons(id: number): Observable<any> {
-    const headers = new HttpHeaders({
-      'Coupon-System-Header': this.tokenManager.getToken(),
-    });
-    const options = { headers: headers };
     return this.httpClient.get<Coupon[]>(
-      'http://localhost:8080/customer/customerCoupons/' + id,
-      options
+      'http://localhost:8080/customer/customerCoupons/' + id
     );
   }
 
   public updateCustomerID(id: number): Observable<any> {
-    const headers = new HttpHeaders({
-      'Coupon-System-Header': this.tokenManager.getToken(),
-    });
-    const options = { headers: headers };
     return this.httpClient.put<any>(
       'http://localhost:8080/customer/updateCustomerID/' + id,
-      null,
-      options
+      null
     );
   }
 
   public updateCustomer(customer: Customer): Observable<any> {
-    const headers = new HttpHeaders({
-      'Coupon-System-Header': this.tokenManager.getToken(),
-    });
-    const options = { headers: headers };
     return this.httpClient.put<any>(
       'http://localhost:8080/customer/updateCustomer/',
-      customer,
-      options
+      customer
     );
   }
 
   public purchaseCoupon(coupon: Coupon): Observable<any> {
-    const headers = new HttpHeaders({
-      'Coupon-System-Header': this.tokenManager.getToken(),
-    });
-    const options = { headers: headers };
     return this.httpClient.post<any>(
       'http://localhost:8080/customer/purchaseCoupon/',
-      coupon,
-      options
+      coupon
     );
   }
 
@@ -77,16 +50,11 @@ export class CustomerService {
     email: string,
     password: string
   ): Observable<any> {
-    const headers = new HttpHeaders({
-      'Coupon-System-Header': this.tokenManager.getToken(),
-    });
-    const options = { headers: headers };
     return this.httpClient.get<any>(
       'http://localhost:8080/customer/getCustomerByEmailAndPassword/' +
         email +
         '/' +
-        password,
-      options
+        password
     );
   }
 
@@ -94,16 +62,11 @@ export class CustomerService {
     category: Category,
     id: number
   ): Observable<any> {
-    const headers = new HttpHeaders({
-      'Coupon-System-Header': this.tokenManager.getToken(),
-    });
-    const options = { headers: headers };
     return this.httpClient.get<any>(
       'http://localhost:8080/customer/customerCouponsCategory/' +
         category +
         '/' +
-        id,
-      options
+        id
     );
   }
 
@@ -111,27 +74,17 @@ export class CustomerService {
     maxPrice: number,
     id: number
   ): Observable<any> {
-    const headers = new HttpHeaders({
-      'Coupon-System-Header': this.tokenManager.getToken(),
-    });
-    const options = { headers: headers };
     return this.httpClient.get<any>(
       'http://localhost:8080/customer/customerCouponsMaxPrice/' +
         maxPrice +
         '/' +
-        id,
-      options
+        id
     );
   }
 
   public deleteCoupon(id: number): Observable<any> {
-    const headers = new HttpHeaders({
-      'Coupon-System-Header': this.tokenManager.getToken(),
-    });
-    const options = { headers: headers };
     return this.httpClient.delete<any>(
-      'http://localhost:8080/customer/deleteCoupon/' + id,
-      options
+      'http://localhost:8080/customer/deleteCoupon/' + id
     );
   }
 }
