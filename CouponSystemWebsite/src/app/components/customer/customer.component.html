@@ -1,140 +1,155 @@
 <body>
   <mat-tab-group mat-align-tabs="center">
     <mat-tab label="Customer">
-  <h1>Customer Details</h1>
-  <mat-form-field>
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
-  </mat-form-field>
+      <h1>Customer Details</h1>
+      <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+      </mat-form-field>
 
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef class="head1"> Id </th>
-      <td mat-cell *matCellDef="let element" class="head2"> {{element.id}} </td>
-    </ng-container>
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef class="head1"> Id </th>
+          <td mat-cell *matCellDef="let element" class="head2"> {{element.id}} </td>
+        </ng-container>
 
-    <ng-container matColumnDef="firstName">
-      <th mat-header-cell *matHeaderCellDef class="head1"> FirstName </th>
-      <td mat-cell *matCellDef="let element" class="head2"> {{element.first_name}} </td>
-    </ng-container>
+        <ng-container matColumnDef="firstName">
+          <th mat-header-cell *matHeaderCellDef class="head1"> FirstName </th>
+          <td mat-cell *matCellDef="let element" class="head2"> {{element.first_name}} </td>
+        </ng-container>
 
-    <ng-container matColumnDef="lastName">
-      <th mat-header-cell *matHeaderCellDef class="head1"> LastName </th>
-      <td mat-cell *matCellDef="let element" class="head2"> {{element.last_name}} </td>
-    </ng-container>
+        <ng-container matColumnDef="lastName">
+          <th mat-header-cell *matHeaderCellDef class="head1"> LastName </th>
+          <td mat-cell *matCellDef="let element" class="head2"> {{element.last_name}} </td>
+        </ng-container>
 
-    <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef class="head1"> Email </th>
-      <td mat-cell *matCellDef="let element" class="head2"> {{element.email}} </td>
-    </ng-container>
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef class="head1"> Email </th>
+          <td mat-cell *matCellDef="let element" class="head2"> {{element.email}} </td>
+        </ng-container>
 
-    <ng-container matColumnDef="password">
-      <th mat-header-cell *matHeaderCellDef class="head1"> Password </th>
-      <td mat-cell *matCellDef="let element" class="head2"> {{element.password}} </td>
-    </ng-container>
+        <ng-container matColumnDef="password">
+          <th mat-header-cell *matHeaderCellDef class="head1"> Password </th>
+          <td mat-cell *matCellDef="let element" class="head2"> {{element.password}} </td>
+        </ng-container>
 
-    <ng-container matColumnDef="Actions">
-      <th mat-header-cell *matHeaderCellDef class="head1"> Actions</th>
-      <td mat-cell *matCellDef="let element"> <button mat-button color="accent"
-          [routerLink]="['/customer-add-and-update/' + element.id]" routerLinkActive="router-link-active"
-          class="head2">Update</button> <button mat-button color="warn" (click)="deleteCustomer(element.id)"
-          class="head2">Delete</button>
-        <button mat-button color="primary" [routerLink]="['/customer-purchase/' + element.id]"
-          routerLinkActive="router-link-active" class="head2">Purchase</button>
-      </td>
-    </ng-container>
+        <ng-container matColumnDef="Actions">
+          <th mat-header-cell *matHeaderCellDef class="head1"> Actions</th>
+          <td mat-cell *matCellDef="let element"> <button mat-button color="accent"
+              [routerLink]="['/customer-add-and-update/' + element.id]" routerLinkActive="router-link-active"
+              class="head2">Update</button> <button mat-button color="warn" (click)="deleteCustomer(element.id)"
+              class="head2">Delete</button>
+            <button mat-button color="primary" [routerLink]="['/customer-purchase/' + element.id]"
+              routerLinkActive="router-link-active" class="head2">Purchase</button>
+          </td>
+        </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-    <!-- Row shown when there is no matching data. -->
-    <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-    </tr>
-  </table>
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
     </mat-tab>
 
-  <div class="coupon123">
-    <mat-tab label="Coupons">
-    <h1>Customer Coupons</h1>
-    <mat-form-field>
-      <mat-label>Filter</mat-label>
-      <input matInput (keyup)="applyFilter3($event)" placeholder="Ex. ium" #input>
-    </mat-form-field>
+    <div class="coupon123">
+      <mat-tab label="Coupons">
+        <h1>Customer Coupons</h1>
+        <mat-form-field>
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter3($event)" placeholder="Ex. ium" #input>
+        </mat-form-field>
 
-    <table mat-table [dataSource]="dataSource3" class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource3" class="mat-elevation-z8">
 
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef class="head1"> Id </th>
-        <td mat-cell *matCellDef="let element" class="head2"> {{element.id}} </td>
-      </ng-container>
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef class="head1"> Id </th>
+            <td mat-cell *matCellDef="let element" class="head2"> {{element.id}} </td>
+          </ng-container>
 
-      <ng-container matColumnDef="companyID">
-        <th mat-header-cell *matHeaderCellDef class="head1"> CompanyID </th>
-        <td mat-cell *matCellDef="let element" class="head2"> {{element.companyID}} </td>
-      </ng-container>
+          <ng-container matColumnDef="companyID">
+            <th mat-header-cell *matHeaderCellDef class="head1"> CompanyID </th>
+            <td mat-cell *matCellDef="let element" class="head2"> {{element.companyID}} </td>
+          </ng-container>
 
-      <ng-container matColumnDef="categoryID">
-        <th mat-header-cell *matHeaderCellDef class="head1"> CategoryID </th>
-        <td mat-cell *matCellDef="let element" class="head2"> {{element.categoryID}} </td>
-      </ng-container>
+          <ng-container matColumnDef="categoryID">
+            <th mat-header-cell *matHeaderCellDef class="head1"> CategoryID </th>
+            <td mat-cell *matCellDef="let element" class="head2"> {{element.categoryID}} </td>
+          </ng-container>
 
-      <ng-container matColumnDef="title">
-        <th mat-header-cell *matHeaderCellDef class="head1"> Title </th>
-        <td mat-cell *matCellDef="let element" class="head2"> {{element.title}} </td>
-      </ng-container>
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef class="head1"> Title </th>
+            <td mat-cell *matCellDef="let element" class="head2"> {{element.title}} </td>
+          </ng-container>
 
-      <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef class="head1"> Description </th>
-        <td mat-cell *matCellDef="let element" class="head2"> {{element.description}} </td>
-      </ng-container>
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef class="head1"> Description </th>
+            <td mat-cell *matCellDef="let element" class="head2"> {{element.description}} </td>
+          </ng-container>
 
-      <ng-container matColumnDef="startDate">
-        <th mat-header-cell *matHeaderCellDef class="head1"> Start Date </th>
-        <td mat-cell *matCellDef="let element" class="head2"> {{element.start_date}} </td>
-      </ng-container>
+          <ng-container matColumnDef="startDate">
+            <th mat-header-cell *matHeaderCellDef class="head1"> Start Date </th>
+            <td mat-cell *matCellDef="let element" class="head2"> {{element.start_date}} </td>
+          </ng-container>
 
-      <ng-container matColumnDef="endDate">
-        <th mat-header-cell *matHeaderCellDef class="head1"> End Date </th>
-        <td mat-cell *matCellDef="let element" class="head2"> {{element.end_date}} </td>
-      </ng-container>
+          <ng-container matColumnDef="endDate">
+            <th mat-header-cell *matHeaderCellDef class="head1"> End Date </th>
+            <td mat-cell *matCellDef="let element" class="head2"> {{element.end_date}} </td>
+          </ng-container>
 
-      <ng-container matColumnDef="amount">
-        <th mat-header-cell *matHeaderCellDef class="head1"> Amount </th>
-        <td mat-cell *matCellDef="let element" class="head2"> {{element.amount}} </td>
-      </ng-container>
+          <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef class="head1"> Amount </th>
+            <td mat-cell *matCellDef="let element" class="head2"> {{element.amount}} </td>
+          </ng-container>
 
-      <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef class="head1"> Price </th>
-        <td mat-cell *matCellDef="let element" class="head2"> {{element.price}} </td>
-      </ng-container>
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef class="head1"> Price </th>
+            <td mat-cell *matCellDef="let element" class="head2"> {{element.price}} </td>
+          </ng-container>
 
-      <ng-container matColumnDef="image">
-        <th mat-header-cell *matHeaderCellDef class="head1"> Image </th>
-        <td mat-cell *matCellDef="let element" class="head2"> <img height="50px" width="50px" src="{{element.image}}">
-        </td>
-      </ng-container>
+          <ng-container matColumnDef="image">
+            <th mat-header-cell *matHeaderCellDef class="head1"> Image </th>
+            <td mat-cell *matCellDef="let element" class="head2"> <img height="50px" width="50px"
+                src="{{element.image}}">
+            </td>
+          </ng-container>
 
-      <ng-container matColumnDef="Actions">
-        <th mat-header-cell *matHeaderCellDef class="head1">Actions</th>
-        <td mat-cell *matCellDef="let element"> <button mat-button color="warn" (click)="deleteCoupon(element.id)"
-            class="head2">Delete</button>
-          <button mat-button [routerLink]="['/coupons-category/' +element.categoryID]"
-            routerLinkActive="router-link-active" class="head2">ByCategory</button>
-          <button mat-button [routerLink]="['/coupons-max-price/' +element.price]" routerLinkActive="router-link-active"
-            class="head2">ByMaxPrice</button>
-        </td>
-      </ng-container>
+          <ng-container matColumnDef="Actions">
+            <th mat-header-cell *matHeaderCellDef class="head1">
+              <button mat-button color="primary">
+                <mat-form-field color="primary" appearance="fill">
+                  <mat-label>ByCategory</mat-label>
+                  <mat-select>
+                    <mat-option (click)="getCustomerCouponsCategory(element)" *ngFor="let element of categories"
+                      [value]="element">
+                      {{element}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </button>
+              <button mat-button color="primary" (click)="getCustomerCouponsMaxPrice(max.value)">
+                <mat-form-field appearance="fill">
+                  <mat-label>ByMaxPrice</mat-label>
+                  <input matInput type="number" name="maxPrice" #max name="max">
+                </mat-form-field>
+              </button>
+              <button mat-button color="primary" class="head2" (click)="getCustomersCoupons()">Get All</button>
+            </th>
+            <td mat-cell *matCellDef="let element"> <button mat-button color="warn" (click)="deleteCoupon(element.id)"
+                class="head2">Delete</button>
+            </td>
+          </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns3"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns3;"></tr>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns3"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns3;"></tr>
 
-      <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-      </tr>
-    </table>
-  </mat-tab>
-  </div>
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          </tr>
+        </table>
+      </mat-tab>
+    </div>
   </mat-tab-group>
 </body>

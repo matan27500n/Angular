@@ -11,14 +11,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Coupon } from 'src/app/models/coupon';
 import { Router } from '@angular/router';
 
-export interface PeriodicElement {
-  id: number;
-  name: number;
-  email: number;
-  password: string;
-  actions: string;
-}
-
 @Component({
   selector: 'app-company',
   templateUrl: './company.component.html',
@@ -47,6 +39,23 @@ export class CompanyComponent implements OnInit {
     private appComponent: AppComponent
   ) {}
 
+  public resetTableCoupons(coupons: Coupon[]): void {
+    this.displayedColumns3 = [
+      'id',
+      'companyID',
+      'categoryID',
+      'title',
+      'description',
+      'startDate',
+      'endDate',
+      'amount',
+      'price',
+      'image',
+      'Actions',
+    ];
+    this.dataSource3 = new MatTableDataSource(coupons);
+  }
+
   ngOnInit(): void {
     this.email = this.loginService.email;
     this.password = this.loginService.password;
@@ -69,20 +78,7 @@ export class CompanyComponent implements OnInit {
               this.companyService.getCompanyCoupons(this.id).subscribe(
                 (res) => {
                   this.coupons = res;
-                  this.displayedColumns3 = [
-                    'id',
-                    'companyID',
-                    'categoryID',
-                    'title',
-                    'description',
-                    'startDate',
-                    'endDate',
-                    'amount',
-                    'price',
-                    'image',
-                    'Actions',
-                  ];
-                  this.dataSource3 = new MatTableDataSource(this.coupons);
+                  this.resetTableCoupons(this.coupons);
                 },
                 (err) => {
                   alert('something was wrong, please sign in again');
@@ -114,20 +110,7 @@ export class CompanyComponent implements OnInit {
           this.companyService.getCompanyCoupons(this.id).subscribe(
             (res) => {
               this.coupons = res;
-              this.displayedColumns3 = [
-                'id',
-                'companyID',
-                'categoryID',
-                'title',
-                'description',
-                'startDate',
-                'endDate',
-                'amount',
-                'price',
-                'image',
-                'Actions',
-              ];
-              this.dataSource3 = new MatTableDataSource(this.coupons);
+              this.resetTableCoupons(this.coupons);
             },
             (err) => {
               alert('something was wrong, please sign in again');
@@ -161,20 +144,7 @@ export class CompanyComponent implements OnInit {
           }
         }
         this.coupon.push(res);
-        this.displayedColumns3 = [
-          'id',
-          'companyID',
-          'categoryID',
-          'title',
-          'description',
-          'startDate',
-          'endDate',
-          'amount',
-          'price',
-          'image',
-          'Actions',
-        ];
-        this.dataSource3 = new MatTableDataSource(this.coupon);
+        this.resetTableCoupons(this.coupon);
       },
       (err) => {
         alert('something was wrong, please sign in again');
@@ -189,20 +159,7 @@ export class CompanyComponent implements OnInit {
       .subscribe(
         (res) => {
           this.couponsCategory = res;
-          this.displayedColumns3 = [
-            'id',
-            'companyID',
-            'categoryID',
-            'title',
-            'description',
-            'startDate',
-            'endDate',
-            'amount',
-            'price',
-            'image',
-            'Actions',
-          ];
-          this.dataSource3 = new MatTableDataSource(this.couponsCategory);
+          this.resetTableCoupons(this.couponsCategory);
         },
         (err) => {
           alert(err.message());
@@ -214,20 +171,7 @@ export class CompanyComponent implements OnInit {
     this.companyService.getCompanyCouponsMaxPrice(maxPrice, this.id).subscribe(
       (res) => {
         this.couponsMaxPrice = res;
-        this.displayedColumns3 = [
-          'id',
-          'companyID',
-          'categoryID',
-          'title',
-          'description',
-          'startDate',
-          'endDate',
-          'amount',
-          'price',
-          'image',
-          'Actions',
-        ];
-        this.dataSource3 = new MatTableDataSource(this.couponsMaxPrice);
+        this.resetTableCoupons(this.couponsMaxPrice);
       },
       (err) => {
         alert(err.message());
@@ -251,20 +195,7 @@ export class CompanyComponent implements OnInit {
           this.coupons = this.coupons.filter(
             (coupon) => coupon.companyID !== id
           );
-          this.displayedColumns3 = [
-            'id',
-            'companyID',
-            'categoryID',
-            'title',
-            'description',
-            'startDate',
-            'endDate',
-            'amount',
-            'price',
-            'image',
-            'Actions',
-          ];
-          this.dataSource3 = new MatTableDataSource(this.coupons);
+          this.resetTableCoupons(this.coupons);
           this.appComponent.resetDate();
         },
         (err) => {
@@ -280,20 +211,7 @@ export class CompanyComponent implements OnInit {
       this.companyService.deleteCoupon(id).subscribe(
         (res) => {
           this.coupons = this.coupons.filter((coupon) => coupon.id !== id);
-          this.displayedColumns3 = [
-            'id',
-            'companyID',
-            'categoryID',
-            'title',
-            'description',
-            'startDate',
-            'endDate',
-            'amount',
-            'price',
-            'image',
-            'Actions',
-          ];
-          this.dataSource3 = new MatTableDataSource(this.coupons);
+          this.resetTableCoupons(this.coupons);
           alert('deleting successfully!');
         },
         (err) => {

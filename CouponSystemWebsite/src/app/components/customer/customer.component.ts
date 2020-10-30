@@ -1,3 +1,4 @@
+import { Category } from './../../models/category';
 import { AppComponent } from './../../app.component';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -16,6 +17,9 @@ import { Coupon } from 'src/app/models/coupon';
   styleUrls: ['./customer.component.css'],
 })
 export class CustomerComponent implements OnInit {
+  public categories: string[] = ['Drinks', 'Pharmacy', 'Fast_food'];
+  public couponsCategory: Coupon[] = [];
+  public couponsMaxPrice: Coupon[] = [];
   public id: number;
   public customer: Customer[] = [];
   public email: string;
@@ -92,6 +96,86 @@ export class CustomerComponent implements OnInit {
   applyFilter3(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource3.filter = filterValue.trim().toLowerCase();
+  }
+
+  public getCustomersCoupons(id: number): void {
+    this.customerService.getCustomerCoupons(this.id).subscribe(
+      (res) => {
+        this.coupons = res;
+        this.displayedColumns3 = [
+          'id',
+          'companyID',
+          'categoryID',
+          'title',
+          'description',
+          'startDate',
+          'endDate',
+          'amount',
+          'price',
+          'image',
+          'Actions',
+        ];
+        this.dataSource3 = new MatTableDataSource(this.coupons);
+      },
+      (err) => {
+        alert(err.message);
+        this.appComponent.resetDate();
+      }
+    );
+  }
+
+  public getCustomerCouponsCategory(categoryID: Category): void {
+    this.customerService
+      .getCustomerCouponsByCategory(categoryID, this.id)
+      .subscribe(
+        (res) => {
+          this.couponsCategory = res;
+          this.displayedColumns3 = [
+            'id',
+            'companyID',
+            'categoryID',
+            'title',
+            'description',
+            'startDate',
+            'endDate',
+            'amount',
+            'price',
+            'image',
+            'Actions',
+          ];
+          this.dataSource3 = new MatTableDataSource(this.couponsCategory);
+        },
+        (err) => {
+          alert(err.message);
+        }
+      );
+  }
+
+  public getCustomerCouponsMaxPrice(maxPrice: number): void {
+    this.customerService
+      .getCustomerCouponsByMaxPrice(maxPrice, this.id)
+      .subscribe(
+        (res) => {
+          this.couponsMaxPrice = res;
+          this.displayedColumns3 = [
+            'id',
+            'companyID',
+            'categoryID',
+            'title',
+            'description',
+            'startDate',
+            'endDate',
+            'amount',
+            'price',
+            'image',
+            'Actions',
+          ];
+          this.dataSource3 = new MatTableDataSource(this.couponsMaxPrice);
+        },
+        (err) => {
+          alert(err.message());
+        }
+      );
   }
 
   public deleteCustomer(id: number): void {
